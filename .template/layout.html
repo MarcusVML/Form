@@ -1,0 +1,42 @@
+<h1 style="text-align: center">Parte 1 - Identificação e Condições Gerais</h1>
+{{ Begin dados_gerais }}
+
+{{ dados_gerais }}
+
+{{ End dados_gerais }}
+
+{{ Begin ciclo_temp_frio }}
+
+<div class="page-break"></div>
+
+<h1 style="text-align: center">Parte 2 - Resultado dos Ensaios</h1>
+<h1>Ensaio com Água Fria</h1>
+
+{{ sujevidade-frio }}
+
+{{ ciclo_temp_frio }}
+
+{{ End ciclo_temp_frio }}
+
+{{ Begin ciclo_temp_quente }}
+
+<div class="page-break"></div>
+<h1>Ensaio com Água Quente</h1>
+
+{{ sujevidade-quente }}
+
+{{ ciclo_temp_quente }}
+
+{{ End ciclo_temp_quente }}
+
+
+<hr>
+<b>Incertezas de Medição (IM)</b>
+<br><br>
+A incerteza expandida de medição relatada é declarada como a incerteza padrão de medição
+multiplicada pelo fator de abrangência “k”, com graus de liberdade efetivos (Veff) correspondentes
+a um nível de confiança de aproximadamente 95%.
+<hr>
+{{Begin fotos-da-amostra}}
+{{fotos-da-amostra}}
+{{End fotos-da-amostra}}

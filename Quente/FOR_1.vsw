@@ -1,0 +1,824 @@
+{
+  "mode": "form-creator",
+  "id": "ciclo_temp_quente",
+  "cells": [
+    {
+      "id": "title",
+      "type": "h1",
+      "value": "Pressão, Temperatura e Centrifugação&nbsp;"
+    },
+    {
+      "id": "MTY3OTA1NDM4MzA0OTEwMDg4NDk4",
+      "type": "select",
+      "items": [
+        "Selecionar",
+        "Frio",
+        "Quente"
+      ],
+      "title": "Tipo de cliclo<br><br>",
+      "value": "Quente",
+      "lock": true
+    },
+    {
+      "id": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY3OTkxMzg4NjgxMDEwMDg4NDk4",
+          "title": "Tempo de Início - Ciclo 1",
+          "type": "inputDate",
+          "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkxNzkyNDk2MTEwMDg4NDk4",
+          "title": "Tempo de Fim - Ciclo 1",
+          "type": "inputDate",
+          "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkxNzkyNzgwMjEwMDg4NDk4",
+          "title": "Canal de Temperatura - Ciclo 1",
+          "type": "input",
+          "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkxNzkzMDEzNTEwMDg4NDk4",
+          "title": "Canal de Pressão - Ciclo 1",
+          "type": "input",
+          "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "b4fd112bc3a3750f187152b6097",
+          "title": "Volume de água (L/ciclo)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "c76614b66eb36bd0187152cc43f",
+          "title": "Tempo de Ciclo (minutos)",
+          "value": "",
+          "type": "input",
+          "lock": true
+        },
+        {
+          "id": "22cd5a4f49942949187152cd43d",
+          "title": "Energia Inicial (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "9b0a8a89fe6c354f1871531e796",
+          "title": "Energia Final (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "MTY4MDA4OTA5Nzc1NDEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
+          "title": "Carga Padrão (kg)",
+          "value": ""
+        },
+        {
+          "id": "MTY4MDA4OTEwMDkwNDEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
+          "title": "Carga após ensaio (kg)",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTk0ODI0NjgwNzEwMDg4NDk4",
+          "type": "file",
+          "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (begin,end) => {\r\n\r\n    var new_end = ((new Date(end)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_end = (+new_end.split(\":\")[0])*60\r\n    const minutes_end = (+new_end.split(\":\")[1])\r\n    const seconds_end = (+new_end.split(\":\")[2])/60\r\n    new_end = hour_end+minutes_end+seconds_end\r\n    \r\n    var new_begin = ((new Date(begin)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_begin = (+new_begin.split(\":\")[0])*60\r\n    const minutes_begin = (+new_begin.split(\":\")[1])\r\n    const seconds_begin = (+new_begin.split(\":\")[2])/60\r\n    new_begin = hour_begin+minutes_begin+seconds_begin\r\n\r\n    const minutes = new_end-new_begin;\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n  }\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = await HourToMinutes(time_begin,time_end)\r\nparentCell.items[5].value = cicle_time\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\nciclo_max_temp = await fixTemperature(ciclo_max_temp);\r\nciclo_min_temp = await fixTemperature(ciclo_min_temp);\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "metadata": {
+            "alreadyExecuted": false,
+            "output": ""
+          },
+          "title": "Arquivo de leituras",
+          "value": "",
+          "": ""
+        }
+      ],
+      "title": "Canal de Pressão - Ciclo 1",
+      "value": "",
+      "": "",
+      "metadata": {
+        "max_temp": 22.14068825910931,
+        "min_temp": 21.24645748987854,
+        "max_pres": 257.85,
+        "min_pres": 217.358,
+        "water_volume": 56.697,
+        "cicle_time": 270,
+        "energy": 0.3275,
+        "standard_load": 12.809,
+        "new_load": 18.985
+      }
+    },
+    {
+      "id": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY3OTkyNTkzMTkwODEwMDg4NDk4",
+          "title": "Tempo de Início - Ciclo 2",
+          "type": "inputDate",
+          "parentId": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNTkzNDIxNzEwMDg4NDk4",
+          "title": "Tempo de Fim - Ciclo 2",
+          "type": "inputDate",
+          "parentId": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNTkzNjU5MDEwMDg4NDk4",
+          "type": "input",
+          "parentId": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
+          "title": "Canal de Temperatura - Ciclo 2",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNTkzOTI0NDEwMDg4NDk4",
+          "title": "Canal de Pressão - Ciclo 2",
+          "type": "input",
+          "parentId": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "a4fd112bc3a3750f185552b6097",
+          "title": "<div style=\"text-align: center;\">Volume de água (L/ciclo)</div>",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "c76614c96eb36bd0287152cc43f",
+          "title": "Tempo de Ciclo (minutos)",
+          "value": "",
+          "type": "input",
+          "lock": true
+        },
+        {
+          "id": "22cd5a4f49942949187188cd43d",
+          "title": "Energia Inicial (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "9b0a8a89fe3d354f1871531e696",
+          "title": "Energia Final (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "gTY4MDA4OTA5Nzc1NDEwMDg4GDt4",
+          "type": "input",
+          "title": "Carga Padrão (kg)",
+          "value": ""
+        },
+        {
+          "id": "MTY4MDA4OFFwMDkwNDEwMDg4NDk4",
+          "type": "input",
+          "title": "Carga após ensaio (kg)",
+          "value": ""
+        },
+        {
+          "id": "MTY4MDAzNTE0NTI5MDEwMDg4NDk4",
+          "type": "file",
+          "parentId": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (begin,end) => {\r\n\r\n    var new_end = ((new Date(end)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_end = (+new_end.split(\":\")[0])*60\r\n    const minutes_end = (+new_end.split(\":\")[1])\r\n    const seconds_end = (+new_end.split(\":\")[2])/60\r\n    new_end = hour_end+minutes_end+seconds_end\r\n    \r\n    var new_begin = ((new Date(begin)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_begin = (+new_begin.split(\":\")[0])*60\r\n    const minutes_begin = (+new_begin.split(\":\")[1])\r\n    const seconds_begin = (+new_begin.split(\":\")[2])/60\r\n    new_begin = hour_begin+minutes_begin+seconds_begin\r\n\r\n    const minutes = new_end-new_begin;\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n  }\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = await HourToMinutes(time_begin,time_end)\r\nparentCell.items[5].value = cicle_time\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\nciclo_max_temp = await fixTemperature(ciclo_max_temp);\r\nciclo_min_temp = await fixTemperature(ciclo_min_temp);\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "metadata": {
+            "alreadyExecuted": false,
+            "output": ""
+          },
+          "title": "Arquivo de leituras",
+          "value": "",
+          "": ""
+        }
+      ],
+      "title": "Carga após ensaio (kg)",
+      "value": "",
+      "metadata": {
+        "max_temp": 21.783704453441292,
+        "min_temp": 21.07560728744939,
+        "max_pres": 253.595,
+        "min_pres": 219.765,
+        "water_volume": 56.976,
+        "cicle_time": 261,
+        "energy": 0.335,
+        "standard_load": 12.809,
+        "new_load": 18.98
+      },
+      "": ""
+    },
+    {
+      "id": "GTG3OTY4NzM3D6cxMjEwMDg4NDk5",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY3OTkyNjk0MDUwNDEwMDg4NDk4",
+          "title": "Tempo de Início - Ciclo 3",
+          "type": "inputDate",
+          "parentId": "GTG3OTY4NzM3D6cxMjEwMDg4NDk5",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNjk0Mjk2MjEwMDg4NDk4",
+          "title": "Tempo de Fim - Ciclo 3",
+          "type": "inputDate",
+          "parentId": "GTG3OTY4NzM3D6cxMjEwMDg4NDk5",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNjk0NTMzOTEwMDg4NDk4",
+          "title": "Canal de Temperatura - Ciclo 3",
+          "type": "input",
+          "parentId": "GTG3OTY4NzM3D6cxMjEwMDg4NDk5",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNjk0NzUyMTEwMDg4NDk4",
+          "title": "Canal de Pressão - Ciclo 3",
+          "type": "input",
+          "parentId": "GTG3OTY4NzM3D6cxMjEwMDg4NDk5",
+          "value": ""
+        },
+        {
+          "id": "hgfd112bc3a37d0f187152b639e",
+          "title": "<div style=\"text-align: center;\">Volume de água (L/ciclo)</div>",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "4f6614b66eb36bd0987152cc4hf",
+          "title": "Tempo de Ciclo (minutos)",
+          "value": "",
+          "type": "input",
+          "lock": true
+        },
+        {
+          "id": "22175a4f49942948787152cdG3d",
+          "title": "Energia Inicial (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "1b0a8a77fe6c3hjf1871531e7ij",
+          "title": "Energia final (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "gTY4MDA4OTAAAzc1NDEwMDg5GDt4",
+          "type": "input",
+          "title": "Carga Padrão (kg)",
+          "value": ""
+        },
+        {
+          "id": "RTY4MDA4OFFwggkwNDEwMDg4N3k5",
+          "type": "input",
+          "title": "Carga após ensaio (kg)",
+          "value": ""
+        },
+        {
+          "id": "MTY4MDAzNTU0OTgzNzEwMDg4NDk4",
+          "type": "file",
+          "parentId": "GTG3OTY4NzM3D6cxMjEwMDg4NDk5",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (begin,end) => {\r\n\r\n    var new_end = ((new Date(end)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_end = (+new_end.split(\":\")[0])*60\r\n    const minutes_end = (+new_end.split(\":\")[1])\r\n    const seconds_end = (+new_end.split(\":\")[2])/60\r\n    new_end = hour_end+minutes_end+seconds_end\r\n    \r\n    var new_begin = ((new Date(begin)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_begin = (+new_begin.split(\":\")[0])*60\r\n    const minutes_begin = (+new_begin.split(\":\")[1])\r\n    const seconds_begin = (+new_begin.split(\":\")[2])/60\r\n    new_begin = hour_begin+minutes_begin+seconds_begin\r\n\r\n    const minutes = new_end-new_begin;\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n  }\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = await HourToMinutes(time_begin,time_end)\r\nparentCell.items[5].value = cicle_time\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\nciclo_max_temp = await fixTemperature(ciclo_max_temp);\r\nciclo_min_temp = await fixTemperature(ciclo_min_temp);\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "metadata": {
+            "alreadyExecuted": false,
+            "output": ""
+          },
+          "title": "Arquivo de leituras",
+          "value": ""
+        }
+      ],
+      "title": "Energia Inicial (kWh)",
+      "value": "",
+      "metadata": {
+        "max_temp": 22.073380566801617,
+        "min_temp": 21.258198380566803,
+        "max_pres": 260.129,
+        "min_pres": 218.414,
+        "water_volume": 58.369,
+        "cicle_time": 271,
+        "energy": 0.345,
+        "standard_load": 12.809,
+        "new_load": 19.56
+      }
+    },
+    {
+      "id": "sTY2OTY4NzM3hDcxMjEwMfg666k4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY3OTkyNjk1NjQzMTEwMDg4NDk4",
+          "title": "Tempo de Início - Ciclo 4",
+          "type": "inputDate",
+          "parentId": "sTY2OTY4NzM3hDcxMjEwMfg666k4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNjk1ODY2NjEwMDg4NDk4",
+          "title": "Tempo de Fim - Ciclo 4",
+          "type": "inputDate",
+          "parentId": "sTY2OTY4NzM3hDcxMjEwMfg666k4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNjk2MDgyNzEwMDg4NDk4",
+          "title": "Canal de Temperatura - Ciclo 4",
+          "type": "input",
+          "parentId": "sTY2OTY4NzM3hDcxMjEwMfg666k4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNjk2MzA2MjEwMDg4NDk4",
+          "title": "Canal de Pressão - Ciclo 4",
+          "type": "input",
+          "parentId": "sTY2OTY4NzM3hDcxMjEwMfg666k4",
+          "value": ""
+        },
+        {
+          "id": "b4fd112bc3a37s0f187152b6099",
+          "title": "<div style=\"text-align: center;\">Volume de água (L/ciclo)</div>",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "c76614b66eb36bd0lll152cc43f",
+          "title": "Tempo de Ciclo (minutos)",
+          "value": "",
+          "type": "input",
+          "lock": true
+        },
+        {
+          "id": "2jjd5a4f4994294ll87151cd43d",
+          "title": "Energia Inicial (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "111a8a89fe6c35vf1871531e796",
+          "title": "Energia final (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "UtY4ggA4OTA5Nzc1NDEwYDg4GD94",
+          "type": "input",
+          "title": "Carga Padrão (kg)",
+          "value": ""
+        },
+        {
+          "id": "MTY3MDA4OFFwMDk666EwMDg4NDk9",
+          "type": "input",
+          "title": "Carga após ensaio (kg)",
+          "value": ""
+        },
+        {
+          "id": "MTY4MDA4NjA3MjAxMDEwMDg4NDk4",
+          "type": "file",
+          "parentId": "sTY2OTY4NzM3hDcxMjEwMfg666k4",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (begin,end) => {\r\n\r\n    var new_end = ((new Date(end)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_end = (+new_end.split(\":\")[0])*60\r\n    const minutes_end = (+new_end.split(\":\")[1])\r\n    const seconds_end = (+new_end.split(\":\")[2])/60\r\n    new_end = hour_end+minutes_end+seconds_end\r\n    \r\n    var new_begin = ((new Date(begin)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_begin = (+new_begin.split(\":\")[0])*60\r\n    const minutes_begin = (+new_begin.split(\":\")[1])\r\n    const seconds_begin = (+new_begin.split(\":\")[2])/60\r\n    new_begin = hour_begin+minutes_begin+seconds_begin\r\n\r\n    const minutes = new_end-new_begin;\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n  }\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = await HourToMinutes(time_begin,time_end)\r\nparentCell.items[5].value = cicle_time\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\nciclo_max_temp = await fixTemperature(ciclo_max_temp);\r\nciclo_min_temp = await fixTemperature(ciclo_min_temp);\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "metadata": {
+            "alreadyExecuted": false,
+            "output": ""
+          },
+          "title": "Arquivo de leituras",
+          "value": "",
+          "": ""
+        }
+      ],
+      "title": "Carga após ensaio (kg)",
+      "value": "",
+      "metadata": {
+        "max_temp": 22.486943319838055,
+        "min_temp": 21.489574898785424,
+        "max_pres": 273.63553,
+        "min_pres": 192.757,
+        "water_volume": 58.201,
+        "cicle_time": 269,
+        "energy": 0.36375,
+        "standard_load": 12.809,
+        "new_load": 19.68
+      }
+    },
+    {
+      "id": "MTY3OTY4NzM3MDcx554wMDg4NDk4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY3OTkyNzA5NzcwMzEwMDg4NDk4",
+          "title": "Tempo de Início - Ciclo 5",
+          "type": "inputDate",
+          "parentId": "MTY3OTY4NzM3MDcx554wMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNzEwMTI5NDEwMDg4NDk4",
+          "title": "Tempo de Fim - Ciclo 5",
+          "type": "inputDate",
+          "parentId": "MTY3OTY4NzM3MDcx554wMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNzEwMzI4ODEwMDg4NDk4",
+          "title": "Canal de Temperatura - Ciclo 5",
+          "type": "input",
+          "parentId": "MTY3OTY4NzM3MDcx554wMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkyNzEwOTE0ODEwMDg4NDk4",
+          "title": "Canal de Pressão - Ciclo 5",
+          "type": "input",
+          "parentId": "MTY3OTY4NzM3MDcx554wMDg4NDk4",
+          "value": ""
+        },
+        {
+          "id": "bG6d512bc3a3750f183152b6097",
+          "title": "<div style=\"text-align: center;\">Volume de água (L/ciclo)</div>",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "cc661yb66eb36bd0187152cc487",
+          "title": "Tempo de Ciclo (minutos)",
+          "value": "",
+          "type": "input",
+          "lock": true
+        },
+        {
+          "id": "12cd5a4f49942949k87152cd43d",
+          "title": "&nbsp; &nbsp;Energia Inicial (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "9g0a8a89fe6c354f8171531yu96",
+          "title": "&nbsp; &nbsp;Energia final (kWh)",
+          "value": "",
+          "type": "input"
+        },
+        {
+          "id": "gTY4MDA4OT24Nzc1N666MDg4GDt8",
+          "type": "input",
+          "title": "Carga Padrão (kg)",
+          "value": ""
+        },
+        {
+          "id": "MTY4MDA4OwFwMDkwN32wMDg4NDk1",
+          "type": "input",
+          "title": "Carga após ensaio (kg)",
+          "value": ""
+        },
+        {
+          "id": "MTY4MDA4NjQ1NjM0NzEwMDg4NDk4",
+          "type": "file",
+          "parentId": "MTY3OTY4NzM3MDcx554wMDg4NDk4",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (begin,end) => {\r\n\r\n    var new_end = ((new Date(end)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_end = (+new_end.split(\":\")[0])*60\r\n    const minutes_end = (+new_end.split(\":\")[1])\r\n    const seconds_end = (+new_end.split(\":\")[2])/60\r\n    new_end = hour_end+minutes_end+seconds_end\r\n    \r\n    var new_begin = ((new Date(begin)).toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second:'numeric', hour12: false })) \r\n    const hour_begin = (+new_begin.split(\":\")[0])*60\r\n    const minutes_begin = (+new_begin.split(\":\")[1])\r\n    const seconds_begin = (+new_begin.split(\":\")[2])/60\r\n    new_begin = hour_begin+minutes_begin+seconds_begin\r\n\r\n    const minutes = new_end-new_begin;\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = await HourToMinutes(time_begin,time_end)\r\nparentCell.items[5].value = cicle_time\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\nciclo_max_temp = await fixTemperature(ciclo_max_temp);\r\nciclo_min_temp = await fixTemperature(ciclo_min_temp);\r\n\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "metadata": {
+            "alreadyExecuted": false,
+            "output": ""
+          },
+          "title": "Arquivo de leituras",
+          "value": "",
+          "": ""
+        }
+      ],
+      "title": "&nbsp; &nbsp;Energia Inicial (kWh)",
+      "value": "",
+      "metadata": {
+        "max_temp": null,
+        "min_temp": null,
+        "max_pres": null,
+        "min_pres": null,
+        "water_volume": 57.535,
+        "cicle_time": 268,
+        "energy": 0.31875,
+        "standard_load": 12.809,
+        "new_load": 19.575
+      },
+      "": ""
+    },
+    {
+      "id": "MTY4MTk5MjU4OTc3MDEwMDg4NDk4",
+      "type": "file",
+      "source": "const getCell = (id) => this.TextDocument.cells.find((c) => c.id === id);\r\n\r\nconst csvToArray = (str, delimiter) => {\r\n  // slice from start of text to the first \\n index\r\n  // use split to create an array from string by delimiter\r\n  const headers = str.slice(0, str.indexOf(\"\\n\")).split(delimiter);\r\n\r\n  // slice from \\n index + 1 to the end of the text\r\n  // use split to create an array of each csv value row\r\n  const rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n\r\n  // Map the rows\r\n  // split values from each row into an array\r\n  // use headers.reduce to create an object\r\n  // object properties derived from headers:values\r\n  // the object passed as an element of the array\r\n  const arr = rows.map(function (row) {\r\n    const values = row.split(delimiter);\r\n    const el = headers.reduce(function (object, header, index) {\r\n      object[header] = values[index];\r\n      return object;\r\n    }, {});\r\n    return el;\r\n  });\r\n\r\n  // return the array\r\n  return arr;\r\n};\r\n\r\nconst data = csvToArray(file, \";\");\r\n\r\nthis.cell.metadata.Instrumentos_ref = data;\r\n",
+      "metadata": {
+        "alreadyExecuted": false,
+        "html": "Cálculo de Incertezas Concluido",
+        "Instrumentos_ref": [
+          {
+            "Grandeza": "Balança (kg)",
+            "Resol.": 0.005,
+            "TAG": "2980DOM",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.005,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.01,
+            "Total": 0.075165
+          },
+          {
+            "Grandeza": "Tensão (V)",
+            "Resol.": 0.01,
+            "TAG": "2935DOM",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.01,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0
+          },
+          {
+            "Grandeza": "Máxima pressão (kPa)",
+            "Resol.": 0.001,
+            "TAG": "1205DOM",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.05,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0,
+            "Total": 13.681776500000002
+          },
+          {
+            "Grandeza": "Mínima pressão (kPa)",
+            "Resol.": 0.001,
+            "TAG": "",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.05,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0,
+            "Total": 0
+          },
+          {
+            "Grandeza": "Temperatura de entrada min. (°C)",
+            "Resol.": 0.01,
+            "TAG": "1205DOM",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.5,
+            "Total": 0.5
+          },
+          {
+            "Grandeza": "Temperatura de entrada máx. (°C)",
+            "Resol.": 0.01,
+            "TAG": "",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.5,
+            "Total": 0.5
+          },
+          {
+            "Grandeza": "Cronômetro (s)",
+            "Resol.": 1,
+            "TAG": "3378LAV",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 1,
+            "Total": 1
+          },
+          {
+            "Grandeza": "Energia água fria (kWh)",
+            "Resol.": 0.00063,
+            "TAG": "3018DOM",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.01,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0
+          },
+          {
+            "Grandeza": "Energia água quente (kWh)",
+            "Resol.": 0.00063,
+            "TAG": "",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.01,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0,
+            "Total": 0.0033799999999999998
+          },
+          {
+            "Grandeza": "Volume água fria (L)",
+            "Resol.": 0.01,
+            "TAG": "2988LAV",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.01,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0
+          },
+          {
+            "Grandeza": "Volume água quente (L)",
+            "Resol.": 0.01,
+            "TAG": "",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.01,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0,
+            "Total": 0.5755560000000001
+          },
+          {
+            "Grandeza": "Datacolor água fria",
+            "Resol.": 0.01,
+            "TAG": "2952DOM",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.5
+          },
+          {
+            "Grandeza": "Datacolor água quente",
+            "Resol.": 0.01,
+            "TAG": "",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.5
+          },
+          {
+            "Grandeza": "Balança analítica (g)",
+            "Resol.": 0.0001,
+            "TAG": "1315QUI",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0
+          },
+          {
+            "Grandeza": "Balão volumétrico (mL)",
+            "Resol.": 0.01,
+            "TAG": "1891QUI",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.8
+          },
+          {
+            "Grandeza": "Pipeta / Proveta (mL)",
+            "Resol.": 0.01,
+            "TAG": "3113QUI",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.05
+          },
+          {
+            "Grandeza": "Padrão de cálcio (mmol/L)",
+            "Resol.": 0.01,
+            "TAG": "1890QUI",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.8
+          },
+          {
+            "Grandeza": "-",
+            "Resol.": 0.08,
+            "TAG": "1648QUI",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.08
+          },
+          {
+            "Grandeza": "Água fria - Balança (kg)",
+            "Resol.": 0.005,
+            "TAG": "2980DOM",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.005,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.01
+          },
+          {
+            "Grandeza": "Água quente - Balança (kg)",
+            "Resol.": 0.005,
+            "TAG": "2980DOM",
+            "Faixa": 0,
+            "Criterio de aceitação - % da leitura": 0.005,
+            "Criterio de aceitação - % da faixa": 0,
+            "Criterio de aceitação - Valor absoluto\r": 0.01,
+            "Total": 0.10678000000000001
+          }
+        ],
+        "output": ""
+      },
+      "value": "",
+      "title": "Instrumentos de Referência Utilizados",
+      "": ""
+    },
+    {
+      "id": "MTY4MTQxMTEwMTc0MTEwMDg4NDk4",
+      "type": "ps1",
+      "source": "const getCell = (id) => this.TextDocument.cells.find(c=> c.id === id);\r\nconst getMetadata = (id)=> JSON.stringify(getCell(id).metadata)\r\n\r\n\r\nconst fixReference = (Reference_instruments) =>{\r\nlet size = Object.keys(Reference_instruments).length\r\nfor (let i = 0; i < size; i++) {\r\n    Reference_instruments[i][\"Resol.\"]=(+Reference_instruments[i][\"Resol.\"].replace(',', '.').replace('%', ''))\r\n    Reference_instruments[i][\"Faixa\"]=(+Reference_instruments[i][\"Faixa\"].replace(',', '.').replace('%', ''))\r\n    Reference_instruments[i][\"Criterio de aceitação - % da faixa\"]=(+Reference_instruments[i][\"Criterio de aceitação - % da faixa\"].replace(',', '.').replace('%', ''))\r\n    Reference_instruments[i][\"Criterio de aceitação - Valor absoluto\\r\"]=+Reference_instruments[i][\"Criterio de aceitação - Valor absoluto\\r\"].replace(',', '.').replace('%', '').replace('\\r', '')\r\n    Reference_instruments[i][\"Criterio de aceitação - % da leitura\"]=(+Reference_instruments[i][\"Criterio de aceitação - % da leitura\"].replace(',', '.').replace('%', ''))/100   \r\n}\r\n\r\n    \r\n   return Reference_instruments \r\n}\r\n\r\n\r\n//----Ciclo 1----\r\nconst cicle1_temp_min =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.min_temp \r\nconst cicle1_temp_max =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.max_temp \r\nconst cicle1_pres_min =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.min_pres\r\nconst cicle1_pres_max =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.max_pres\r\nconst cicle1_water_volume =  getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.water_volume\r\nconst cicle1_cicle_time =    getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.cicle_time\r\nconst cicle1_energy =        getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.energy\r\nconst cicle1_standard_load = getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.standard_load\r\nconst cicle1_new_load =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.new_load\r\n//---------------\r\n//----Ciclo 2----\r\nconst cicle2_temp_min =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.min_temp \r\nconst cicle2_temp_max =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.max_temp \r\nconst cicle2_pres_min =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.min_pres\r\nconst cicle2_pres_max =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.max_pres\r\nconst cicle2_water_volume =  getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.water_volume\r\nconst cicle2_cicle_time =    getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.cicle_time\r\nconst cicle2_energy =        getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.energy\r\nconst cicle2_standard_load = getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.standard_load\r\nconst cicle2_new_load =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.new_load\r\n//---------------\r\n//----Ciclo 3----\r\nconst cicle3_temp_min =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.min_temp \r\nconst cicle3_temp_max =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.max_temp \r\nconst cicle3_pres_min =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.min_pres\r\nconst cicle3_pres_max =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.max_pres\r\nconst cicle3_water_volume =  getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.water_volume\r\nconst cicle3_cicle_time =    getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.cicle_time\r\nconst cicle3_energy =        getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.energy\r\nconst cicle3_standard_load = getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.standard_load\r\nconst cicle3_new_load =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.new_load\r\n//---------------\r\n//----Ciclo 4----\r\nconst cicle4_temp_min =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.min_temp \r\nconst cicle4_temp_max =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.max_temp \r\nconst cicle4_pres_min =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.min_pres\r\nconst cicle4_pres_max =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.max_pres\r\nconst cicle4_water_volume =  getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.water_volume\r\nconst cicle4_cicle_time =    getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.cicle_time\r\nconst cicle4_energy =        getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.energy\r\nconst cicle4_standard_load = getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.standard_load\r\nconst cicle4_new_load =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.new_load\r\n//---------------\r\n//----Ciclo 5----\r\nconst cicle5_temp_min =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.min_temp \r\nconst cicle5_temp_max =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.max_temp \r\nconst cicle5_pres_min =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.min_pres\r\nconst cicle5_pres_max =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.max_pres\r\nconst cicle5_water_volume =  getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.water_volume\r\nconst cicle5_cicle_time =    getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.cicle_time\r\nconst cicle5_energy =        getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.energy\r\nconst cicle5_standard_load = getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.standard_load\r\nconst cicle5_new_load =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.new_load\r\n//---------------\r\n\r\nconst temp_min_average = ((cicle1_temp_min + cicle2_temp_min + cicle3_temp_min + cicle4_temp_min + cicle5_temp_min)/5).toFixed(3)\r\nconst temp_max_average = ((cicle1_temp_max + cicle2_temp_max + cicle3_temp_max + cicle4_temp_max + cicle5_temp_max)/5).toFixed(3)\r\nconst pres_min_average = ((cicle1_pres_min + cicle2_pres_min + cicle3_pres_min + cicle4_pres_min + cicle5_pres_min)/5).toFixed(3)\r\nconst pres_max_average = ((cicle1_pres_max + cicle2_pres_max + cicle3_pres_max + cicle4_pres_max + cicle5_pres_max)/5).toFixed(3)\r\nconst water_volume_average = ((cicle1_water_volume + cicle2_water_volume + cicle3_water_volume + cicle4_water_volume + cicle5_water_volume)/5)\r\nconst cicle_time_average = ((cicle1_cicle_time + cicle2_cicle_time + cicle3_cicle_time + cicle4_cicle_time + cicle5_cicle_time)/5).toFixed(0)\r\nconst energy_average = ((cicle1_energy + cicle2_energy + cicle3_energy + cicle4_energy + cicle5_energy)/5)\r\nconst standard_load_average = ((cicle1_standard_load + cicle2_standard_load + cicle3_standard_load + cicle4_standard_load + cicle5_standard_load)/5).toFixed(3)\r\n\r\nconst RM_1 = (cicle1_new_load - standard_load_average)/standard_load_average\r\nconst RM_2 = (cicle2_new_load - standard_load_average)/standard_load_average\r\nconst RM_3 = (cicle3_new_load - standard_load_average)/standard_load_average\r\nconst RM_4 = (cicle4_new_load - standard_load_average)/standard_load_average\r\nconst RM_5 = (cicle5_new_load - standard_load_average)/standard_load_average\r\nconst RM_average = (((RM_1 + RM_2 + RM_3 + RM_4 + RM_5)/5)*100).toFixed(2)\r\n\r\n//valores medidos em cada ciclo para o calculo de incerteza\r\nconst RM_Values = [RM_1,RM_2,RM_3,RM_4,RM_5] //eficiencia de extração de água\r\nconst Water_volume_Values = [cicle1_water_volume,cicle2_water_volume,cicle3_water_volume,cicle4_water_volume,cicle5_water_volume] //Consumo de água\r\nconst Energy_Values = [cicle1_energy,cicle2_energy,cicle3_energy,cicle4_energy,cicle5_energy] //Energia\r\nconst Cicle_Values = [cicle1_cicle_time,cicle2_cicle_time,cicle3_cicle_time,cicle4_cicle_time,cicle5_cicle_time] //Tempo de programa\r\n\r\n//Valor dos instrumentos de referência e calculo para o uso das Incertezas quente\r\nlet Reference_instruments =  getCell(`MTY4MTk5MjU4OTc3MDEwMDg4NDk4`).metadata.Instrumentos_ref\r\nReference_instruments=fixReference(Reference_instruments)\r\nReference_instruments[19][\"Total\"]= (Reference_instruments[19][\"Criterio de aceitação - % da leitura\"]*(cicle1_new_load+cicle2_new_load+cicle3_new_load+cicle4_new_load+cicle5_new_load)/5) + (Reference_instruments[19][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[19][\"Faixa\"]) + Reference_instruments[19][\"Criterio de aceitação - Valor absoluto\\r\"] // IM - Eficiência de extração de água\r\nReference_instruments[10][\"Total\"]= (Reference_instruments[10][\"Criterio de aceitação - % da leitura\"]*(water_volume_average)) + (Reference_instruments[10][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[10][\"Faixa\"]) + Reference_instruments[10][\"Criterio de aceitação - Valor absoluto\\r\"] // IM - Consumo de Água\r\nReference_instruments[8][\"Total\"]= (Reference_instruments[8][\"Criterio de aceitação - % da leitura\"]*(energy_average)) + (Reference_instruments[8][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[8][\"Faixa\"]) + Reference_instruments[8][\"Criterio de aceitação - Valor absoluto\\r\"] // IM - Energia\r\nReference_instruments[6][\"Total\"]= (Reference_instruments[6][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[6][\"Faixa\"]) + Reference_instruments[6][\"Criterio de aceitação - Valor absoluto\\r\"] // IM - Tempo de programa \r\n\r\nconst press_min_values = [+(cicle1_pres_min),+(cicle2_pres_min),+(cicle3_pres_min),+(cicle4_pres_min),+(cicle5_pres_min)]\r\nconst press_max_values = [cicle1_pres_max,cicle2_pres_max,cicle3_pres_max,cicle4_pres_max,cicle5_pres_max]\r\nReference_instruments[0][\"Total\"]= (Reference_instruments[0][\"Criterio de aceitação - % da leitura\"]*((+standard_load_average)+0.224)) + (Reference_instruments[0][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[0][\"Faixa\"]) + Reference_instruments[0][\"Criterio de aceitação - Valor absoluto\\r\"] // IM massa_da_carga_padrão\r\nReference_instruments[4][\"Total\"]= (Reference_instruments[4][\"Criterio de aceitação - % da leitura\"]*(Math.min(cicle1_temp_min,cicle2_temp_min,cicle3_temp_min,cicle4_temp_min,cicle5_temp_min)) )+ (Reference_instruments[4][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[4][\"Faixa\"]) + Reference_instruments[4][\"Criterio de aceitação - Valor absoluto\\r\"] // IM temperatura de entrada minima\r\nReference_instruments[5][\"Total\"]= (Reference_instruments[5][\"Criterio de aceitação - % da leitura\"]*(Math.max(cicle1_temp_max,cicle2_temp_max,cicle3_temp_max,cicle4_temp_max,cicle5_temp_max)) )+ (Reference_instruments[5][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[5][\"Faixa\"]) + Reference_instruments[5][\"Criterio de aceitação - Valor absoluto\\r\"] // IM temperatura de entrada máxima\r\nReference_instruments[3][\"Total\"]= (Reference_instruments[3][\"Criterio de aceitação - % da leitura\"]*(Math.min(cicle1_pres_min,cicle2_pres_min,cicle3_pres_min,cicle4_pres_min,cicle5_pres_min)) )+ (Reference_instruments[3][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[3][\"Faixa\"]) + Reference_instruments[3][\"Criterio de aceitação - Valor absoluto\\r\"] // IM pressao de entrada minima\r\nReference_instruments[2][\"Total\"]= (Reference_instruments[2][\"Criterio de aceitação - % da leitura\"]*(Math.max(cicle1_pres_max,cicle2_pres_max,cicle3_pres_max,cicle4_pres_max,cicle5_pres_max)) )+ (Reference_instruments[2][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[2][\"Faixa\"]) + Reference_instruments[2][\"Criterio de aceitação - Valor absoluto\\r\"] // IM pressao de entrada maxima\r\nconst contributes_massa_da_carga_padrão = [\r\n    {\r\n        value: Reference_instruments[0][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[0][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n\r\n]\r\n\r\nconst contributes_temperatura_entrada_minima = [\r\n    {\r\n        value: Reference_instruments[4][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[4][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n\r\n]\r\n\r\nconst contributes_temperatura_entrada_maxima = [\r\n    {\r\n        value: Reference_instruments[5][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[5][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n\r\n]\r\n\r\nconst contributes_pressao_entrada_minima = [\r\n    {\r\n        value: Reference_instruments[3][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[3][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n\r\n]\r\n\r\nconst contributes_pressao_entrada_maxima = [\r\n    {\r\n        value: Reference_instruments[2][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[2][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n\r\n]\r\n\r\nconst contributes_eficiencia_centrifugacao = [\r\n    {\r\n        value: Reference_instruments[19][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração - UMP1\",\r\n        cs: 1/standard_load_average,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[19][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução - UMP1\",\r\n        cs: 1/standard_load_average,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: Reference_instruments[19][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração - UMP2\",\r\n        cs: (-1/standard_load_average) + ((- (((cicle1_new_load+cicle2_new_load+cicle3_new_load+cicle4_new_load+cicle5_new_load)/5)-standard_load_average)))/(standard_load_average*standard_load_average),\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[19][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução - UMP2\",\r\n        cs: (-1/standard_load_average) + ((- (((cicle1_new_load+cicle2_new_load+cicle3_new_load+cicle4_new_load+cicle5_new_load)/5)-standard_load_average)))/(standard_load_average*standard_load_average),\r\n        v_eff: 1e5\r\n    }\r\n]\r\n\r\nconst contributes_Consumo_de_agua = [\r\n    {\r\n        value: Reference_instruments[10][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[10][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n]\r\n\r\nconst contributes_energia = [\r\n    {\r\n        value: Reference_instruments[8][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[8][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n]\r\n\r\nconst contributes_tempo = [\r\n    {\r\n        value: Reference_instruments[6][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação - Plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[6][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    }\r\n]\r\n\r\n\r\nthis.cell.metadata.html =\"Cálculo de Incertezas Concluido\"\r\n\r\nlet imValue = IM.calculate([...contributes_eficiencia_centrifugacao, \r\n    {\r\n        value: IM.standardDeviation(RM_Values),\r\n        cs: 1,\r\n        name: 'Desvio padrão',\r\n        divisor: Math.sqrt(RM_Values.length), \r\n        v_eff: RM_Values.length - 1\r\n}])\r\n\r\nthis.cell.metadata.Eficiencia_de_extracao_de_agua = imValue;\r\n\r\nimValue = IM.calculate([...contributes_Consumo_de_agua, \r\n    {\r\n        value: IM.standardDeviation(Water_volume_Values),\r\n        cs: 1,\r\n        name: 'Desvio padrão',\r\n        divisor: Math.sqrt(Water_volume_Values.length), \r\n        v_eff: Water_volume_Values.length - 1\r\n}])\r\n\r\nthis.cell.metadata.Consume_de_agua = imValue;\r\n\r\nimValue = IM.calculate([...contributes_energia, \r\n    {\r\n        value: IM.standardDeviation(Energy_Values),\r\n        cs: 1,\r\n        name: 'Desvio padrão',\r\n        divisor: Math.sqrt(Energy_Values.length), \r\n        v_eff: Energy_Values.length - 1\r\n}])\r\n\r\nthis.cell.metadata.Energia = imValue;\r\n\r\n\r\nimValue = IM.calculate([...contributes_tempo, \r\n    {\r\n        value: IM.standardDeviation(Cicle_Values),\r\n        cs: 1,\r\n        name: 'Desvio padrão',\r\n        divisor: Math.sqrt(Cicle_Values.length), \r\n        v_eff: Cicle_Values.length - 1\r\n}])\r\n\r\nthis.cell.metadata.Tempo = imValue;\r\n\r\n//Incertezas que não vão para o relatório\r\nimValue = IM.calculate(contributes_massa_da_carga_padrão)\r\n\r\nthis.cell.metadata.Massa__carga_padrao = imValue;\r\n\r\nimValue = IM.calculate(contributes_temperatura_entrada_minima)\r\n\r\nthis.cell.metadata.Temperatura_entrada_minima = imValue;\r\n\r\nimValue = IM.calculate(contributes_temperatura_entrada_maxima)\r\n\r\nthis.cell.metadata.Temperatura_entrada_maxima = imValue;\r\n\r\nimValue = IM.calculate([...contributes_pressao_entrada_minima, \r\n    {\r\n        value: IM.standardDeviation(press_min_values),\r\n        cs: 1,\r\n        name: 'Desvio padrão',\r\n        divisor: Math.sqrt(press_min_values.length), \r\n        v_eff: press_min_values.length - 1\r\n}])\r\n\r\nthis.cell.metadata.Pressao_entrada_minima = imValue;\r\n\r\nimValue = IM.calculate([...contributes_pressao_entrada_maxima, \r\n    {\r\n        value: IM.standardDeviation(press_max_values),\r\n        cs: 1,\r\n        name: 'Desvio padrão',\r\n        divisor: Math.sqrt(press_max_values.length), \r\n        v_eff: press_max_values.length - 1\r\n}])\r\n\r\nthis.cell.metadata.Pressao_entrada_maxima = imValue;\r\n\r\nthis.cell.metadata.Massa_de_Carga = ((+standard_load_average)+0.224).toString() + \" ± \" + this.cell.metadata.Massa__carga_padrao.u.toString()\r\nthis.cell.metadata.Temperatura_Minima= (Math.min(cicle1_temp_min,cicle2_temp_min,cicle3_temp_min,cicle4_temp_min,cicle5_temp_min)).toString() + \" ± \" + this.cell.metadata.Temperatura_entrada_minima.u.toString()\r\nthis.cell.metadata.Temperatura_Maxima= (Math.max(cicle1_temp_max,cicle2_temp_max,cicle3_temp_max,cicle4_temp_max,cicle5_temp_max)).toString() + \" ± \" + this.cell.metadata.Temperatura_entrada_maxima .u.toString()\r\nthis.cell.metadata.Pressao_Minima = (Math.min(cicle1_pres_min,cicle2_pres_min,cicle3_pres_min,cicle4_pres_min,cicle5_pres_min)).toString() + \" ± \" + this.cell.metadata.Pressao_entrada_minima.u.toString()\r\nthis.cell.metadata.Pressao_Maxima = (Math.max(cicle1_pres_max,cicle2_pres_max,cicle3_pres_max,cicle4_pres_max,cicle5_pres_max)).toString() + \" ± \" + this.cell.metadata.Pressao_entrada_maxima.u.toString()\r\n\r\n//this.cell.metadata.teste =IM.standardDeviation(press_max_values)\r\n\r\nvscode.postMessage({type: 'update_with_reload', data: this.TextDocument});\r\n\r\n\r\n\r\n\r\n",
+      "metadata": {
+        "output": "",
+        "html": "Cálculo de Incertezas Concluido",
+        "Eficiencia_de_extracao_de_agua": {
+          "ui_2": 0.014846625355575781,
+          "ui_4": 5.207032175754403e-9,
+          "v_eff": 9,
+          "k": 2.3198094379589027,
+          "u": "0.035",
+          "numberOfDecimals": 3
+        },
+        "Consume_de_agua": {
+          "ui_2": 0.4669214741745481,
+          "ui_4": 0.0028937958679256617,
+          "v_eff": 16,
+          "k": 2.1689429859597524,
+          "u": "1.1",
+          "numberOfDecimals": 1
+        },
+        "Energia": {
+          "ui_2": 0.007995933862491195,
+          "ui_4": 9.028148422953606e-10,
+          "v_eff": 4,
+          "k": 2.869315165197189,
+          "u": "0.023",
+          "numberOfDecimals": 3
+        },
+        "Tempo": {
+          "ui_2": 1.8859126879754178,
+          "ui_4": 2.464901180555554,
+          "v_eff": 5,
+          "k": 2.6486542537333713,
+          "u": "5.0",
+          "numberOfDecimals": 1
+        },
+        "Tempo_DS": 3.9623225512317894,
+        "Tempo_Values": [
+          270,
+          261,
+          271,
+          269,
+          268
+        ],
+        "Massa__carga_padrao": {
+          "ui_2": 0.0434205298025408,
+          "ui_4": 3.5466690838476336e-11,
+          "v_eff": 100221,
+          "k": 2.0000272969128257,
+          "u": "0.087",
+          "numberOfDecimals": 3
+        },
+        "Temperatura_entrada_minima": {
+          "ui_2": 0.28868956799071677,
+          "ui_4": 6.944444513888893e-8,
+          "v_eff": 100019,
+          "k": 2.0000273472769394,
+          "u": "0.58",
+          "numberOfDecimals": 2
+        },
+        "Temperatura_entrada_maxima": {
+          "ui_2": 0.28868956799071677,
+          "ui_4": 6.944444513888893e-8,
+          "v_eff": 100019,
+          "k": 2.0000273472769394,
+          "u": "0.58",
+          "numberOfDecimals": 2
+        },
+        "Pressao_entrada_minima": {
+          "ui_2": 47.68416069771841,
+          "ui_4": 1292517.94139938,
+          "v_eff": 4,
+          "k": 2.869315165197189,
+          "u": "136.8209",
+          "numberOfDecimals": 4
+        },
+        "Pressao_entrada_maxima": {
+          "ui_2": 59.05577075957875,
+          "ui_4": 2932976.6331237834,
+          "v_eff": 4,
+          "k": 2.869315165197189,
+          "u": "169.4497",
+          "numberOfDecimals": 4
+        },
+        "Massa_de_Carga": "13.033 ± 0.087",
+        "Temperatura_Minima": "0 ± 0.58",
+        "Temperatura_Maxima": "22.486943319838055 ± 0.58",
+        "Pressao_Minima": "0 ± 136.8209",
+        "Pressao_Maxima": "273.63553 ± 169.4497"
+      },
+      "title": "Calculo de Incertezas",
+      "": ""
+    }
+  ],
+  "report_template": {
+    "type": "code",
+    "id": "report_template",
+    "source": "const getCell = (id)=> register.cells.find(c=>c.id===id);\r\n\r\n[\r\n  \"MTY3OTY4NzM3MDcxMjEwMDg4NDk4\",\r\n  \"NTY3OT666zM3MDcxMjEgMDg4NDk4\",\r\n  \"GTG3OTY4NzM3D6cxMjEwMDg4NDk5\",\r\n  \"sTY2OTY4NzM3hDcxMjEwMfg666k4\",\r\n  \"MTY3OTY4NzM3MDcx554wMDg4NDk4\",\r\n].forEach((id) => {\r\n  const cell = getCell(id);\r\n  if (!cell.items[0].value) return null;\r\n  const data = new Date(cell.items[0].value);\r\n  data.setHours(3, 0, 0);\r\n  const DataRelatorio = getGeneral()?.Data;\r\n  if (DataRelatorio) {\r\n    DataRelatorio.Inicial = DataRelatorio.Inicial || data.toJSON();\r\n    DataRelatorio.Final = DataRelatorio.Final || data.toJSON();\r\n    if (data){\r\n      if (data.getTime() < (new Date(DataRelatorio.Inicial).getTime()))  {\r\n        DataRelatorio.Inicial = data.toJSON();\r\n      }\r\n      if (data.getTime() > (new Date(DataRelatorio.Final).getTime()))  {\r\n        DataRelatorio.Final = data.toJSON();\r\n      }\r\n    }\r\n    \r\n  }\r\n  return JSON.stringify(DataRelatorio)\r\n});\r\n\r\n//----Ciclo 1----\r\nconst cicle1_temp_min =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.min_temp \r\nconst cicle1_temp_max =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.max_temp \r\nconst cicle1_pres_min =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.min_pres\r\nconst cicle1_pres_max =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.max_pres\r\nconst cicle1_water_volume =  getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.water_volume\r\nconst cicle1_cicle_time =    getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.cicle_time\r\nconst cicle1_energy =        getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.energy\r\nconst cicle1_standard_load = getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.standard_load\r\nconst cicle1_new_load =      getCell(`MTY3OTY4NzM3MDcxMjEwMDg4NDk4`).metadata.new_load\r\n//---------------\r\n//----Ciclo 2----\r\nconst cicle2_temp_min =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.min_temp \r\nconst cicle2_temp_max =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.max_temp \r\nconst cicle2_pres_min =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.min_pres\r\nconst cicle2_pres_max =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.max_pres\r\nconst cicle2_water_volume =  getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.water_volume\r\nconst cicle2_cicle_time =    getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.cicle_time\r\nconst cicle2_energy =        getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.energy\r\nconst cicle2_standard_load = getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.standard_load\r\nconst cicle2_new_load =      getCell(`NTY3OT666zM3MDcxMjEgMDg4NDk4`).metadata.new_load\r\n//---------------\r\n//----Ciclo 3----\r\nconst cicle3_temp_min =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.min_temp \r\nconst cicle3_temp_max =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.max_temp \r\nconst cicle3_pres_min =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.min_pres\r\nconst cicle3_pres_max =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.max_pres\r\nconst cicle3_water_volume =  getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.water_volume\r\nconst cicle3_cicle_time =    getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.cicle_time\r\nconst cicle3_energy =        getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.energy\r\nconst cicle3_standard_load = getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.standard_load\r\nconst cicle3_new_load =      getCell(`GTG3OTY4NzM3D6cxMjEwMDg4NDk5`).metadata.new_load\r\n//---------------\r\n//----Ciclo 4----\r\nconst cicle4_temp_min =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.min_temp \r\nconst cicle4_temp_max =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.max_temp \r\nconst cicle4_pres_min =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.min_pres\r\nconst cicle4_pres_max =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.max_pres\r\nconst cicle4_water_volume =  getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.water_volume\r\nconst cicle4_cicle_time =    getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.cicle_time\r\nconst cicle4_energy =        getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.energy\r\nconst cicle4_standard_load = getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.standard_load\r\nconst cicle4_new_load =      getCell(`sTY2OTY4NzM3hDcxMjEwMfg666k4`).metadata.new_load\r\n//---------------\r\n//----Ciclo 5----\r\nconst cicle5_temp_min =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.min_temp \r\nconst cicle5_temp_max =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.max_temp \r\nconst cicle5_pres_min =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.min_pres\r\nconst cicle5_pres_max =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.max_pres\r\nconst cicle5_water_volume =  getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.water_volume\r\nconst cicle5_cicle_time =    getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.cicle_time\r\nconst cicle5_energy =        getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.energy\r\nconst cicle5_standard_load = getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.standard_load\r\nconst cicle5_new_load =      getCell(`MTY3OTY4NzM3MDcx554wMDg4NDk4`).metadata.new_load\r\n//---------------\r\n\r\nconst temp_min_average = ((cicle1_temp_min + cicle2_temp_min + cicle3_temp_min + cicle4_temp_min + cicle5_temp_min)/5)\r\nconst temp_max_average = ((cicle1_temp_max + cicle2_temp_max + cicle3_temp_max + cicle4_temp_max + cicle5_temp_max)/5)\r\nconst pres_min_average = ((cicle1_pres_min + cicle2_pres_min + cicle3_pres_min + cicle4_pres_min + cicle5_pres_min)/5)\r\nconst pres_max_average = ((cicle1_pres_max + cicle2_pres_max + cicle3_pres_max + cicle4_pres_max + cicle5_pres_max)/5)\r\nconst water_volume_average = ((cicle1_water_volume + cicle2_water_volume + cicle3_water_volume + cicle4_water_volume + cicle5_water_volume)/5)\r\nconst cicle_time_average = ((cicle1_cicle_time + cicle2_cicle_time + cicle3_cicle_time + cicle4_cicle_time + cicle5_cicle_time)/5)\r\nconst energy_average = ((cicle1_energy + cicle2_energy + cicle3_energy + cicle4_energy + cicle5_energy)/5)\r\nconst standard_load_average = ((cicle1_standard_load + cicle2_standard_load + cicle3_standard_load + cicle4_standard_load + cicle5_standard_load)/5)\r\n\r\nconst RM_1 = (cicle1_new_load - standard_load_average)/standard_load_average\r\nconst RM_2 = (cicle2_new_load - standard_load_average)/standard_load_average\r\nconst RM_3 = (cicle3_new_load - standard_load_average)/standard_load_average\r\nconst RM_4 = (cicle4_new_load - standard_load_average)/standard_load_average\r\nconst RM_5 = (cicle5_new_load - standard_load_average)/standard_load_average\r\nconst RM_average = (((RM_1 + RM_2 + RM_3 + RM_4 + RM_5)/5)*100)\r\n\r\n//Busca os valores de Incerteza e K\r\nlet RM_IM = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Eficiencia_de_extracao_de_agua.u \r\nconst RM_K = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Eficiencia_de_extracao_de_agua.k \r\nlet RM_Decimals = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Eficiencia_de_extracao_de_agua.numberOfDecimals\r\nif(RM_Decimals==32){RM_Decimals=2;RM_IM=RM_IM.toString()}\r\nif(RM_Decimals==-1){RM_Decimals=0}\r\n\r\nlet Water_volume_IM = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Consume_de_agua.u \r\nconst Water_volume_K = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Consume_de_agua.k \r\nlet Water_volume_Decimals = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Consume_de_agua.numberOfDecimals\r\nif(Water_volume_Decimals==32){Water_volume_Decimals=RM_2;Water_volume_IM=Water_volume_IM.toString()}\r\nif(Water_volume_Decimals==-1){Water_volume_Decimals=0}\r\n\r\nlet Energy_IM = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Energia.u \r\nconst Energy_K = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Energia.k\r\nlet Energy_Decimals = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Energia.numberOfDecimals\r\nif(Energy_Decimals==32){Energy_Decimals=2;Energy_IM=Energy_IM.toString()}\r\nif(Energy_Decimals==-1){Energy_Decimals=0}\r\n\r\nlet Cicle_IM = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Tempo.u \r\nconst Cicle_K = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Tempo.k \r\nlet Cicle_Decimals = getCell(`MTY4MTQxMTEwMTc0MTEwMDg4NDk4`).metadata.Tempo.numberOfDecimals\r\nif(Cicle_Decimals==32){Cicle_Decimals=2;Cicle_IM=Cicle_IM.toString()}\r\nif(Cicle_Decimals==-1){Cicle_Decimals=0}\r\n\r\n\r\nreturn`\r\n<h1 class=\"title\">Eficiência de extração de água:</h1>\r\n<table style=\"width:50%;  margin-left: auto; margin-right: auto;\">\r\n  <tr>\r\n    <th style=\"width:50%;background-color:silver\">Média dos valores medidos</th>\r\n    <th style=\"width:30%;background-color:silver\">IM (%)</th>\r\n    <th style=\"background-color:silver\">k</th>\r\n  </tr>\r\n  <tr>\r\n    <td style=\"background-color:white\">${RM_average.toFixed(RM_Decimals).replace(\".\",\",\")}%</td>\r\n    <td style=\"background-color:white\">${(RM_IM).replace(\".\",\",\")}%</td>\r\n    <td style=\"background-color:white\">${RM_K.toFixed(2).replace(\".\",\",\")}</td>\r\n</tr>\r\n<caption>Eficiência de extração de água</caption>\r\n</table>\r\n\r\n<br>\r\n<h1 class=\"title\">Consumo de água, energia elétrica e tempo de programa:</h1>\r\n<table style=\"width:50%;  margin-left: auto; margin-right: auto;\">\r\n  <tr>\r\n    <th style=\"width:50%;background-color:silver\">Média dos valores medidos (L)</th>\r\n    <th style=\"width:30%;background-color:silver\">IM (L)</th>\r\n    <th style=\"background-color:silver\">k</th>\r\n  </tr>\r\n  <tr>\r\n    <td style=\"background-color:white\">${water_volume_average.toFixed(Water_volume_Decimals).replace(\".\",\",\")}</td>\r\n    <td style=\"background-color:white\">${(Water_volume_IM).replace(\".\",\",\")}</td>\r\n    <td style=\"background-color:white\">${Water_volume_K.toFixed(2).replace(\".\",\",\")}</td>\r\n</tr>\r\n<caption>Consumo de água</caption>\r\n</table>\r\n\r\n<br>\r\n\r\n<table style=\"width:50%;  margin-left: auto; margin-right: auto;\">\r\n  <tr>\r\n    <th style=\"width:50%;background-color:silver\">Média dos valores medidos (kWh/ciclo)</th>\r\n    <th style=\"width:30%;background-color:silver\">IM (kWh/ciclo)</th>\r\n    <th style=\"background-color:silver\">k</th>\r\n  </tr>\r\n  <tr>\r\n    <td style=\"background-color:white\">${energy_average.toFixed(Energy_Decimals).replace(\".\",\",\")}</td>\r\n    <td style=\"background-color:white\">${(Energy_IM).replace(\".\",\",\")}</td>\r\n    <td style=\"background-color:white\">${Energy_K.toFixed(2).replace(\".\",\",\")}</td>\r\n</tr>\r\n<caption>Energia</caption>\r\n</table>\r\n\r\n<br>\r\n\r\n<table style=\"width:50%;  margin-left: auto; margin-right: auto;\">\r\n  <tr>\r\n    <th style=\"width:50%;background-color:silver\">Média dos valores medidos (min)</th>\r\n    <th style=\"width:30%;background-color:silver\">IM (min)</th>\r\n    <th style=\"background-color:silver\">k</th>\r\n  </tr>\r\n  <tr>\r\n    <td style=\"background-color:white\">${cicle_time_average.toFixed(Cicle_Decimals).replace(\".\",\",\")}</td>\r\n    <td style=\"background-color:white\">${(Cicle_IM).replace(\".\",\",\")}</td>\r\n    <td style=\"background-color:white\">${Cicle_K.toFixed(2).replace(\".\",\",\")}</td>\r\n</tr>\r\n<caption>Tempo de programa</caption>\r\n</table>\r\n\r\n\r\n`",
+    "metadata": {
+      "output": "\n<h1 class=\"title\">Eficiência de extração de água:</h1>\n<table style=\"width:50%;  margin-left: auto; margin-right: auto;\">\n  <tr>\n    <th style=\"width:50%;background-color:silver\">Média dos valores medidos</th>\n    <th style=\"width:30%;background-color:silver\">IM (%)</th>\n    <th style=\"background-color:silver\">k</th>\n  </tr>\n  <tr>\n    <td style=\"background-color:white\">51,112%</td>\n    <td style=\"background-color:white\">0,035%</td>\n    <td style=\"background-color:white\">2,32</td>\n</tr>\n<caption>Eficiência de extração de água</caption>\n</table>\n\n<br>\n<h1 class=\"title\">Consumo de água, energia elétrica e tempo de programa:</h1>\n<table style=\"width:50%;  margin-left: auto; margin-right: auto;\">\n  <tr>\n    <th style=\"width:50%;background-color:silver\">Média dos valores medidos (L)</th>\n    <th style=\"width:30%;background-color:silver\">IM (L)</th>\n    <th style=\"background-color:silver\">k</th>\n  </tr>\n  <tr>\n    <td style=\"background-color:white\">57,6</td>\n    <td style=\"background-color:white\">1,1</td>\n    <td style=\"background-color:white\">2,17</td>\n</tr>\n<caption>Consumo de água</caption>\n</table>\n\n<br>\n\n<table style=\"width:50%;  margin-left: auto; margin-right: auto;\">\n  <tr>\n    <th style=\"width:50%;background-color:silver\">Média dos valores medidos (kWh/ciclo)</th>\n    <th style=\"width:30%;background-color:silver\">IM (kWh/ciclo)</th>\n    <th style=\"background-color:silver\">k</th>\n  </tr>\n  <tr>\n    <td style=\"background-color:white\">0,338</td>\n    <td style=\"background-color:white\">0,023</td>\n    <td style=\"background-color:white\">2,87</td>\n</tr>\n<caption>Energia</caption>\n</table>\n\n<br>\n\n<table style=\"width:50%;  margin-left: auto; margin-right: auto;\">\n  <tr>\n    <th style=\"width:50%;background-color:silver\">Média dos valores medidos (min)</th>\n    <th style=\"width:30%;background-color:silver\">IM (min)</th>\n    <th style=\"background-color:silver\">k</th>\n  </tr>\n  <tr>\n    <td style=\"background-color:white\">267,8</td>\n    <td style=\"background-color:white\">5,0</td>\n    <td style=\"background-color:white\">2,65</td>\n</tr>\n<caption>Tempo de programa</caption>\n</table>\n\n\n"
+    },
+    "": ""
+  },
+  "metadata": {
+    "lastModified": "2023-05-03T11:04:39.243Z"
+  }
+}

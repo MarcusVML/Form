@@ -1,0 +1,392 @@
+{
+  "mode": "form-creator",
+  "id": "dados_gerais",
+  "cells": [
+    {
+      "id": "title",
+      "type": "h1",
+      "value": "Informações Gerais"
+    },
+    {
+      "id": "MTY4MjY5MzQ4OTY5MTEwMDg4NDk4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY4MjY5MzUyOTcxMDEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MjY5MzQ4OTY5MTEwMDg4NDk4",
+          "title": "Elaborado por:"
+        },
+        {
+          "id": "MTY4MjY5MzUzMTUyNTEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MjY5MzQ4OTY5MTEwMDg4NDk4",
+          "title": "Aprovado por:"
+        },
+        {
+          "id": "MTY4MjY5MzUzNDk1MTEwMDg4NDk4",
+          "type": "inputDateWithOutTime",
+          "parentId": "MTY4MjY5MzQ4OTY5MTEwMDg4NDk4",
+          "title": "Data de Publicação"
+        }
+      ],
+      "title": "Aprovado por:"
+    },
+    {
+      "id": "MTY3OTkxNDUzMzkyNzEwMDg4Nzg3",
+      "type": "h2",
+      "value": "Cliente:",
+      "": ""
+    },
+    {
+      "id": "MTY4MTI0MzAzMjgyNjEwMDg4NDk4",
+      "type": "input",
+      "title": "Nome do Cliente",
+      "value": ""
+    },
+    {
+      "id": "MTY4MTI0MzAzNTM2NzEwMDg4NDk4",
+      "type": "input",
+      "title": "Endereço do Cliente",
+      "value": ""
+    },
+    {
+      "id": "MTY4MTIzOTU5ODg3OTEwMDg4NDk4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY4MTIzOTYzMjQ1NjEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTIzOTU5ODg3OTEwMDg4NDk4",
+          "title": "CEP",
+          "value": ""
+        },
+        {
+          "id": "MTY4MTIzOTYzNDU0MDEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTIzOTU5ODg3OTEwMDg4NDk4",
+          "title": "CNPJ",
+          "value": ""
+        }
+      ],
+      "title": "CNPJ",
+      "value": ""
+    },
+    {
+      "id": "MTY4MTIzNDUwNjY1NjEwMDg4NDk4",
+      "type": "h2",
+      "value": "Fabricante"
+    },
+    {
+      "id": "MTY3OTkxNDU1M83735MDEwMDg4Nzg3",
+      "type": "input",
+      "title": "Nome do Fabricante",
+      "value": ""
+    },
+    {
+      "id": "MTY3OTkxND22Mzc5ODEwMDg4Nzg3",
+      "type": "input",
+      "title": "Endereço do Fabricante",
+      "value": ""
+    },
+    {
+      "id": "MTY3OTkxNDU2NjcwNDEwMDg4Nzg3",
+      "type": "h2",
+      "value": "Dados da Amostra:"
+    },
+    {
+      "id": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY3OTkxNTQwODE3MjEwMDg4Nzg3",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Produto",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkxNTQxNDM5MzEwMDg4Nzg3",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Marca de Comercialização",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkxNTQyNjUwOTEwMDg4Nzg3",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Modelo",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkxNTQyOTQ3NjEwMDg4Nzg3",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Número de Série",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkxNTQzMTk5ODEwMDg4Nzg3",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Tipo de Carregamento",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkxNTQ0MzA4ODEwMDg4Nzg3",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Protocolo LABELO",
+          "value": ""
+        },
+        {
+          "id": "MTY3OTkxNTQ0NjM0MDEwMDg4Nzg3",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Orçamento LABELO",
+          "value": ""
+        },
+        {
+          "id": "MTY4MTI0Mzc2Njg0MzEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Tensão Nominal (V)",
+          "value": ""
+        },
+        {
+          "id": "MTY4MTI0Mzc4MDEyODEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Corrente Nominal (A)"
+        },
+        {
+          "id": "MTY4MTI0Mzc5NzUxOTEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Potência Nominal de Lavagem (W)&nbsp;",
+          "value": ""
+        },
+        {
+          "id": "MTY4MTI0NDAyNTkzMTEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Potência Nominal de Secagem (W)&nbsp;",
+          "value": ""
+        },
+        {
+          "id": "MTY4MTI0NDAzODYzOTEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Frequência Nominal (Hz)",
+          "value": ""
+        },
+        {
+          "id": "MTY4MTI0NDA3NTc5NDEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Capacidade de Lavagem (kg)&nbsp;",
+          "value": ""
+        },
+        {
+          "id": "MTY4MTI0NDEwMTA0NjEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY3OTkxNTM5MDM1MzEwMDg4Nzg3",
+          "title": "Capacidade de Secagem (kg)&nbsp;",
+          "value": ""
+        }
+      ],
+      "title": "Capacidade de Lavagem (kg)&nbsp;",
+      "value": "",
+      "": ""
+    },
+    {
+      "id": "MTY4MDAzNjA3NDQ5ODEwMDg4Nzg3",
+      "type": "ps1",
+      "args": {
+        "command": "",
+        "args": []
+      },
+      "": "",
+      "title": "Número do relatório",
+      "source": "const getCell = (id) => this.TextDocument.cells.find((cell) => cell.id === id);\r\n\r\nconst cliente = getCell(\"MTY4MTI0MzAzMjgyNjEwMDg4NDk4\").value || \"\";\r\nconst produto = getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[0].value || \"\";\r\nconst protocolo = getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[5].value || \"\";\r\nconst orcamento = getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[6].value || \"\";\r\n\r\ndocument.querySelectorAll('button,input').forEach(button => button.disabled = true);\r\nformContainer.classList.add('loading');\r\n\r\nvscode.postMessage({\r\n  data: this.TextDocument,\r\n  id: this.cell.id,\r\n  type: \"script\",\r\n  args: [\r\n    `${cliente}`,\r\n    `${produto}`,\r\n    `${protocolo}`,\r\n    `${orcamento}`,\r\n    `R:\\\\Compartilhado\\\\VSW\\\\Maquinas_de_lavar\\\\Form\\\\Arquivos\\\\teste\\\\Eletrodomésticos_2023.xlsx`,\r\n  ],\r\n  script: \"reportEnum\",\r\n});\r\n",
+      "metadata": {}
+    },
+    {
+      "id": "MTY4MTMyMDgzOTY3MTEwMDg4NDk4",
+      "type": "h3",
+      "value": "Dados do Detergente Utilizado&nbsp;"
+    },
+    {
+      "id": "MTY4MTMyMDc4NDU3MDEwMDg4NDk4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY4MTMyMDgxMDQ3NDEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyMDc4NDU3MDEwMDg4NDk4",
+          "title": "Informação: Número do Lote/Data",
+          "value": "Pó base soprado com enzima e inibidor de espuma:"
+        },
+        {
+          "id": "MTY4MTMyMDgxMjc5ODEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyMDc4NDU3MDEwMDg4NDk4",
+          "title": "Informação: Número do Lote/Data",
+          "value": "Perborato de sódio tetrahidratado:"
+        },
+        {
+          "id": "MTY4MTMyMDgxNDc4NjEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyMDc4NDU3MDEwMDg4NDk4",
+          "title": "Informação: Número do Lote/Data",
+          "value": "Ativador de branqueamento etilenodiamino tetra acetil:"
+        }
+      ],
+      "title": "Informação: Número do Lote/Data",
+      "value": "Ativador de branqueamento etilenodiamino tetra acetil:"
+    },
+    {
+      "id": "MTY4MTMyMjIwNDg5NzEwMDg4NDk4",
+      "type": "h3",
+      "value": "Dados das tiras de&nbsp; Sujidade",
+      "": ""
+    },
+    {
+      "id": "MTY4MTMyMjEzNTYyMzEwMDg4NDk4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY4MTMyMjE5ODE2MzEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyMjEzNTYyMzEwMDg4NDk4",
+          "title": "Informação: Dados",
+          "value": "Número do lote das tiras utilizadas:"
+        },
+        {
+          "id": "MTY4MTMyMjIwMDI2MzEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyMjEzNTYyMzEwMDg4NDk4",
+          "title": "Informação: Dados",
+          "value": "Data de validade das tiras / lote utilizada:"
+        },
+        {
+          "id": "MTY4MTMyMjQ2NzEzODEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyMjEzNTYyMzEwMDg4NDk4",
+          "title": "Informação: Dados"
+        }
+      ],
+      "title": "Informação: Dados",
+      "value": "Data de validade das tiras / lote utilizada:"
+    },
+    {
+      "id": "MTY4MTMyMjU2OTg4NjEwMDg4NDk4",
+      "type": "h3",
+      "value": "Programa de Lavagem"
+    },
+    {
+      "id": "MTY4MTMyMjUzNDc3NDEwMDg4NDk4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY4MTMyMjU4NjgxNTEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyMjUzNDc3NDEwMDg4NDk4",
+          "title": "Informação: Dados",
+          "value": "Para água fria:"
+        },
+        {
+          "id": "MTY4MTMyMjU5MDAyNzEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyMjUzNDc3NDEwMDg4NDk4",
+          "title": "Informação: Dados",
+          "value": "Para água quente:"
+        },
+        {
+          "id": "MTY4MTMyMjU5MjY4ODEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyMjUzNDc3NDEwMDg4NDk4",
+          "title": "Informação: Dados"
+        }
+      ],
+      "title": "Informação: Dados",
+      "value": "Para água quente:"
+    },
+    {
+      "id": "MTY4MTMyNTM1NjAwMzEwMDg4NDk4",
+      "type": "h3",
+      "value": "Documentação que Acompanha a amostra"
+    },
+    {
+      "id": "MTY4MTMyNTM0Nzc0MTEwMDg4NDk4",
+      "type": "list",
+      "items": [
+        {
+          "id": "MTY4MTMyNTY2OTA1MzEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyNTM0Nzc0MTEwMDg4NDk4",
+          "title": "Documento 1",
+          "value": ""
+        },
+        {
+          "id": "MTY4MTMyNTY3MTQ2MDEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyNTM0Nzc0MTEwMDg4NDk4",
+          "title": "Documento 2"
+        },
+        {
+          "id": "MTY4MTMyNTY3NDEyMjEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MTMyNTM0Nzc0MTEwMDg4NDk4",
+          "title": "Documento 3"
+        }
+      ],
+      "title": "Documento 1",
+      "value": ""
+    },
+    {
+      "id": "MTY4MTMyNTg1NDA2OTEwMDg4NDk4",
+      "type": "h3",
+      "value": "Observações da Amostra"
+    },
+    {
+      "id": "MTY4MTI0NDU2NzIxMjEwMDg4NDk4",
+      "type": "select",
+      "items": [
+        "Solicitação dos ensaios decorrente de Processo de Acompanhamento da Produção (AcP)",
+        "Solicitação dos ensaios decorrente de Processo de Homologação"
+      ],
+      "title": "Tipo de Processo",
+      "": "",
+      "value": "Solicitação dos ensaios decorrente de Processo de Acompanhamento da Produção (AcP)"
+    },
+    {
+      "id": "MTY4MTI0NDk5NzIzMzEwMDg4NDk4",
+      "type": "h2",
+      "value": "Observações Finais"
+    },
+    {
+      "id": "MTY4MTI0NTAxNTk2MDEwMDg4NDk4",
+      "type": "select",
+      "items": [
+        "Considerou-se como regra de decisão para a declaração da conformidade a não utilização da incerteza de medição",
+        "A regra de decisão empregada foi a descrita no item 8.3 do documento JCGM 106:2012"
+      ],
+      "title": "",
+      "value": "Considerou-se como regra de decisão para a declaração da conformidade a não utilização da incerteza de medição"
+    }
+  ],
+  "report_template": {
+    "type": "code",
+    "id": "report_template",
+    "source": "const getCell = (id) => register.cells.find(cell => cell.id === id);\r\n\r\nconst header = getCell('MTY4MjY5MzQ4OTY5MTEwMDg4NDk4').items\r\n\r\nsetAttr('FOR', {Title: register.cells[0].value, Created: new Date(header[2].value).toJSON(), Author: header[0].value, AprovedBy: header[1].value});\r\nconst Relatorio = {\r\n  Numero: 'Nº ' +  getCell('MTY4MDAzNjA3NDQ5ODEwMDg4Nzg3').metadata.report,\r\n  Data: new Date()\r\n}\r\n\r\nsetAttr('Relatorio', Relatorio);\r\nconst cliente = {\r\n  Nome: getCell('MTY4MTI0MzAzMjgyNjEwMDg4NDk4').value,\r\n  Endereço: getCell('MTY4MTI0MzAzNTM2NzEwMDg4NDk4').value,\r\n  CEP: getCell(`MTY4MTIzOTU5ODg3OTEwMDg4NDk4`).items[0].value,\r\n  CNPJ: getCell(`MTY4MTIzOTU5ODg3OTEwMDg4NDk4`).items[1].value\r\n}\r\n\r\nconst fabricante = {\r\n  Nome: getCell('MTY3OTkxNDU1M83735MDEwMDg4Nzg3').value,\r\n  Endereço: getCell('MTY3OTkxND22Mzc5ODEwMDg4Nzg3').value,\r\n}\r\n\r\nconst amostra = \r\n{\r\n  Produto: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[0].value,\r\n  Marca: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[1].value,\r\n  Modelo: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[2].value,\r\n  NumeroSerie: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[3].value,\r\n  Carregamento: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[4].value,\r\n  ProtocoloLabelo: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[5].value,\r\n  OrcamentoLabelo: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[6].value,\r\n  Tensao: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[7].value,\r\n  Corrente: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[8].value,\r\n  PotenciaLavagem: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[9].value,\r\n  PotenciaSecagem: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[10].value,\r\n  Frequencia: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[11].value,\r\n  CapacidadeLavagem: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[12].value,\r\n  CapacidadeSecagem: getCell(`MTY3OTkxNTM5MDM1MzEwMDg4Nzg3`).items[13].value\r\n}\r\n\r\nconst detergente_label =getCell(`MTY4MTMyMDc4NDU3MDEwMDg4NDk4`).items\r\n.filter(e=>(e.value && e.value !== \"\"))\r\n.map(e=>`${e.value.split(\":\")[0]}:<br>`)\r\n.join(\"\\n\")\r\n\r\nconst detergente_info =getCell(`MTY4MTMyMDc4NDU3MDEwMDg4NDk4`).items\r\n.filter(e=>(e.value && e.value !== \"\"))\r\n.map(e=>`${e.value.split(\":\")[1]}<br>`)\r\n.join(\"\\n\")\r\n\r\nconst tirasSujidade = getCell(`MTY4MTMyMjEzNTYyMzEwMDg4NDk4`).items\r\n.filter(e=> (e.value && e.value !== \"\"))\r\n.map(e=>`<li>${e.value}</li>`)\r\n.join(\"\\n\")\r\n\r\n\r\nconst lavagem = getCell(`MTY4MTMyMjUzNDc3NDEwMDg4NDk4`).items\r\n.filter(e=> (e.value && e.value !== \"\"))\r\n.map(e=>`<li>${e.value}</li>`)\r\n.join(\"\\n\")\r\n\r\nconst documentos = getCell(`MTY4MTMyNTM0Nzc0MTEwMDg4NDk4`).items\r\n.filter(e=> (e.value && e.value !== \"\"))\r\n.map(e=>`<li>${e.value}</li>`)\r\n.join(\"\\n\")\r\n\r\n\r\nlet observacoes_amostra = getCell('MTY4MTI0NDU2NzIxMjEwMDg4NDk4').value \r\n\r\nlet observacoes_finais = getCell('MTY4MTI0NTAxNTk2MDEwMDg4NDk4').value \r\n\r\nfor (const [key, value] of Object.entries(amostra)) {\r\n  if (value==undefined) {\r\n    amostra[key] = \"Não declarado\"\r\n  }\r\n  \r\n}\r\n\r\n// const objeto = getCell('MTY3OTkxNTM5MDM1MzEwMDg4Nzg3').items.map(item => `${item.title}: ${item.value}`);\r\n\r\n// setAttr(\"Data\", {\r\n//   Inicial: new Date(register.metadata.Created)\r\n// })\r\n\r\n// setAttr('Relatorio', {\r\n//   Data: new Date(),\r\n//   Numero: getCell('MTY4MDAzNjA3NDQ5ODEwMDg4Nzg3').metadata.report\r\n// })\r\n// setAttr('Cliente', cliente);\r\n// setAttr('Objetos', [objeto]);\r\n\r\nreturn `\r\n<div class=\"hide-on-vscode\">\r\n<h1 class=\"title\">Cliente:</h1>\r\n${cliente.Nome}<br>\r\n${cliente.Endereço}<br>\r\nCEP: ${cliente.CEP}<br>\r\nCNPJ: ${cliente.CNPJ}<br>\r\n\r\n\r\n<h2 class=\"title\">Fabricante:</h2>\r\n${fabricante.Nome}<br>\r\n${fabricante.Endereço}<br>\r\n\r\n<h2 class=\"title\">Sumário de Identificação do Laboratório:</h2>\r\nRazão Social: União Brasileira de Educação e Assistência.<br>\r\nNome Fantasia: Pontifícia Universidade Católica do Rio Grande do Sul - PUCRS.<br>\r\nUnidade: LABELO - Laboratórios Especializados em Eletroeletrônica.  <br>\r\nCNPJ: 88.630.413/0002-81.<br>\r\nEndereço: Av. Ipiranga, nº 6681, Prédio 30, Bloco A - Sala 210 - Partenon - Porto Alegre - RS.<br>\r\nCEP: 90619-900<br>\r\nNúmero de Acreditação do LABELO/PUCRS: CRL 0075.\r\n\r\n<h1 class=\"title\">Objeto ensaiado (amostra):</h1>\r\n<ul style=\"column-count: 2;column-gap: 10px;list-style: none\">\r\n    <li>${amostra.Produto}\r\n    <li>Fabricante: ${fabricante.Nome}</li>\r\n    <li>Marca de Comercialização: ${amostra.Marca}</li>\r\n    <li>Modelo: ${amostra.Modelo}</li>\r\n    <li>Número de Série: ${amostra.NumeroSerie}</li>\r\n    <li>Tipo de Carregamento: ${amostra.Carregamento}</li>\r\n    <li>Protocolo LABELO: ${amostra.ProtocoloLabelo}</li>\r\n    <li>Orçamento LABELO: ${amostra.OrcamentoLabelo}</li>\r\n    <li>Tensão Nominal: ${amostra.Tensao}V</li>\r\n    <li>Corrente Nominal: ${amostra.Corrente}</li>\r\n    <li>Potência Nominal de Lavagem: ${amostra.PotenciaLavagem}W</li>\r\n    <li>Potência Nominal de Secagem: ${amostra.PotenciaSecagem}W</li>\r\n    <li>Frequência Nominal: ${amostra.Frequencia}Hz</li>\r\n    <li>Capacidade Nominal de Lavagem: ${amostra.CapacidadeLavagem}kg</li>\r\n    <li>Capacidade Nominal de Secagem: ${amostra.CapacidadeSecagem}kg</li>\r\n</ul>\r\n<hr>\r\n<div style=\"display:table;clear:both;width:100%;\">\r\n  <div style=\"float:left;width:50%;\">\r\n  <b>Dados do detergente utilizado:</b><br><br>\r\n  ${detergente_label}\r\n  </div>\r\n  <div style=\"float:left;width:50%;\">\r\n  <b>Número do Lote / Data do lote</b><br><br>\r\n  ${detergente_info} \r\n  </div>\r\n</div>\r\n\r\n<br>\r\n<b>Dados das Tiras de Sujidade:</b><br><br>\r\n${tirasSujidade}\r\n\r\n<br>\r\n<b>Programa de Lavagem:</b><br><br>\r\n${lavagem} \r\n\r\n<br>\r\n<h2 class=\"title\">Documentação que Acomanha a Amostra:</h2>\r\n<ul>\r\n${documentos}\r\n</ul>\r\n\r\n<h2 class=\"title\">Observações:</h2>\r\n<ul>\r\n<li>${observacoes_amostra}</li>\r\n</ul>\r\n<h1 class=\"title\">Documento(s) normativo(s) utilizado(s)</h1>\r\n<ul>\r\n<li>Portaria Inmetro nº121, de 24 de março de 2022 - Requisitos de Avaliação da Conformidade para Máquinas de Lavar Roupas de Uso Doméstico - Consolidado</li>\r\n</ul>\r\n<h1 class=\"title\">Condições Ambientais</h1>\r\n<div style=\"text-align: center;\">Temperatura: 20 ºC ± 5 ºC</div>\r\n<div style=\"text-align: center;\">Umidade Relativa: 55 % ± 15 %</div>\r\n<hr>\r\n<h1 class=\"title\">Observações:</h1>\r\n${observacoes_finais}\r\n<br><br>\r\nItens dos documentos normativos de referência deste relatório não descritos com resultados não foram solicitados pelo requerente ou não fazem parte do escopo de acreditação do laboratório.\r\n</div>\r\n` \r\n",
+    "metadata": {
+      "output": "\n<div class=\"hide-on-vscode\">\n<h1 class=\"title\">Cliente:</h1>\n<br>\n<br>\nCEP: <br>\nCNPJ: <br>\n\n\n<h2 class=\"title\">Fabricante:</h2>\n<br>\n<br>\n\n<h2 class=\"title\">Sumário de Identificação do Laboratório:</h2>\nRazão Social: União Brasileira de Educação e Assistência.<br>\nNome Fantasia: Pontifícia Universidade Católica do Rio Grande do Sul - PUCRS.<br>\nUnidade: LABELO - Laboratórios Especializados em Eletroeletrônica.  <br>\nCNPJ: 88.630.413/0002-81.<br>\nEndereço: Av. Ipiranga, nº 6681, Prédio 30, Bloco A - Sala 210 - Partenon - Porto Alegre - RS.<br>\nCEP: 90619-900<br>\nNúmero de Acreditação do LABELO/PUCRS: CRL 0075.\n\n<h1 class=\"title\">Objeto ensaiado (amostra):</h1>\n<ul style=\"column-count: 2;column-gap: 10px;list-style: none\">\n    <li>\n    <li>Fabricante: </li>\n    <li>Marca de Comercialização: </li>\n    <li>Modelo: </li>\n    <li>Número de Série: </li>\n    <li>Tipo de Carregamento: </li>\n    <li>Protocolo LABELO: </li>\n    <li>Orçamento LABELO: </li>\n    <li>Tensão Nominal: V</li>\n    <li>Corrente Nominal: Não declarado</li>\n    <li>Potência Nominal de Lavagem: W</li>\n    <li>Potência Nominal de Secagem: W</li>\n    <li>Frequência Nominal: Hz</li>\n    <li>Capacidade Nominal de Lavagem: kg</li>\n    <li>Capacidade Nominal de Secagem: kg</li>\n</ul>\n<hr>\n<div style=\"display:table;clear:both;width:100%;\">\n  <div style=\"float:left;width:50%;\">\n  <b>Dados do detergente utilizado:</b><br><br>\n  Pó base soprado com enzima e inibidor de espuma:<br>\nPerborato de sódio tetrahidratado:<br>\nAtivador de branqueamento etilenodiamino tetra acetil:<br>\n  </div>\n  <div style=\"float:left;width:50%;\">\n  <b>Número do Lote / Data do lote</b><br><br>\n  <br>\n<br>\n<br> \n  </div>\n</div>\n\n<br>\n<b>Dados das Tiras de Sujidade:</b><br><br>\n<li>Número do lote das tiras utilizadas:</li>\n<li>Data de validade das tiras / lote utilizada:</li>\n\n<br>\n<b>Programa de Lavagem:</b><br><br>\n<li>Para água fria:</li>\n<li>Para água quente:</li> \n\n<br>\n<h2 class=\"title\">Documentação que Acomanha a Amostra:</h2>\n<ul>\n\n</ul>\n\n<h2 class=\"title\">Observações:</h2>\n<ul>\n<li>Solicitação dos ensaios decorrente de Processo de Acompanhamento da Produção (AcP)</li>\n</ul>\n<h1 class=\"title\">Documento(s) normativo(s) utilizado(s)</h1>\n<ul>\n<li>Portaria Inmetro nº121, de 24 de março de 2022 - Requisitos de Avaliação da Conformidade para Máquinas de Lavar Roupas de Uso Doméstico - Consolidado</li>\n</ul>\n<h1 class=\"title\">Condições Ambientais</h1>\n<div style=\"text-align: center;\">Temperatura: 20 ºC ± 5 ºC</div>\n<div style=\"text-align: center;\">Umidade Relativa: 55 % ± 15 %</div>\n<hr>\n<h1 class=\"title\">Observações:</h1>\nConsiderou-se como regra de decisão para a declaração da conformidade a não utilização da incerteza de medição\n<br><br>\nItens dos documentos normativos de referência deste relatório não descritos com resultados não foram solicitados pelo requerente ou não fazem parte do escopo de acreditação do laboratório.\n</div>\n"
+    },
+    "": ""
+  },
+  "metadata": {
+    "lastModified": "2023-05-11T13:50:33.200Z"
+  }
+}
