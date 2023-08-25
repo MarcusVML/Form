@@ -311,48 +311,52 @@
       "source": "\r\nthis.cell.metadata = {};\r\nvscode.postMessage({\r\n    type: 'sp_request', \r\n    method: 'GET',\r\n    url: `https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/web/lists/GetByTitle('Incerteza')/items?$filter=FileDirRef eq '/sites/Labelo_Processos/Lists/CES/Máquinas de Lavar'`,\r\n    data: this.TextDocument,\r\n    id: this.cell.id\r\n});\r\n",
       "metadata": {},
       "title": "Calculo de Incertezas",
-      "": "",
-      "icon": "fa fa-play"
+      "": ""
     },
     {
       "id": "MTY5MTc2MDUyMjI1ODEwMDg4NDk4",
       "type": "ps1",
       "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst standardMachine = getCell('MTY4NDE2MDM3MjQ2NDEwMDg2NTE5').items\r\nconst standardMachineCycles = []\r\nconst cyclesData = getCell('MTY4NDE2MDY4MzI3ODEwMDg2NTE5').items\r\nconst cycles = [ ]\r\nthis.cell.metadata={}\r\n\r\nstandardMachineCycles.C = IM.average(standardMachine[0].metadata.negro_fumo) + IM.average(standardMachine[0].metadata.sangue) + IM.average(standardMachine[0].metadata.chocolateComLeite) + IM.average(standardMachine[0].metadata.vinho)  \r\n\r\ncycles.negro_fumo = IM.average((cyclesData[1].metadata.negro_fumo).concat(cyclesData[2].metadata.negro_fumo))\r\ncycles.sangue = IM.average((cyclesData[1].metadata.sangue).concat(cyclesData[2].metadata.sangue))\r\ncycles.chocolateComLeite = IM.average((cyclesData[1].metadata.chocolateComLeite).concat(cyclesData[2].metadata.chocolateComLeite))\r\ncycles.vinho = IM.average((cyclesData[1].metadata.vinho).concat(cyclesData[2].metadata.vinho))\r\ncycles.C = cycles.negro_fumo+cycles.sangue+cycles.chocolateComLeite+cycles.vinho\r\nthis.cell.metadata.html = cycles.C/standardMachineCycles.C\r\n\r\nvscode.postMessage({type: 'update_with_reload', data: this.TextDocument });",
-      "metadata": {},
-      "title": "Eficiência de Lavagem Ciclo 1",
-      "icon": "fa fa-play"
+      "metadata": {
+        
+      },
+      "title": "Eficiência de Lavagem Ciclo 1"
     },
     {
       "id": "MTY5cTc2MDUyMjI1ODEwMDg4NDk4",
       "type": "ps1",
       "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst standardMachine = getCell('MTY4NDE2MDM3MjQ2NDEwMDg2NTE5').items\r\nconst standardMachineCycles = []\r\nconst cyclesData = getCell('MTY4NDE2MDY4MzI3ODEwMDg2NTE5').items\r\nconst cycles = [ ]\r\nthis.cell.metadata={}\r\n\r\nstandardMachineCycles.C = IM.average(standardMachine[1].metadata.negro_fumo) + IM.average(standardMachine[1].metadata.sangue) + IM.average(standardMachine[1].metadata.chocolateComLeite) + IM.average(standardMachine[1].metadata.vinho)  \r\n\r\ncycles.negro_fumo = IM.average((cyclesData[4].metadata.negro_fumo).concat(cyclesData[5].metadata.negro_fumo))\r\ncycles.sangue = IM.average((cyclesData[4].metadata.sangue).concat(cyclesData[5].metadata.sangue))\r\ncycles.chocolateComLeite = IM.average((cyclesData[4].metadata.chocolateComLeite).concat(cyclesData[5].metadata.chocolateComLeite))\r\ncycles.vinho = IM.average((cyclesData[4].metadata.vinho).concat(cyclesData[5].metadata.vinho))\r\ncycles.C = cycles.negro_fumo+cycles.sangue+cycles.chocolateComLeite+cycles.vinho\r\nthis.cell.metadata.html = cycles.C/standardMachineCycles.C\r\n\r\nvscode.postMessage({type: 'update_with_reload', data: this.TextDocument });",
-      "metadata": {},
-      "title": "Eficiência de Lavagem Ciclo 2",
-      "icon": "fa fa-play"
+      "metadata": {
+        
+      },
+      "title": "Eficiência de Lavagem Ciclo 2"
     },
     {
       "id": "MTY5cTc2MDUyMjI1ODEwMDg2NDk4",
       "type": "ps1",
       "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst standardMachine = getCell('MTY4NDE2MDM3MjQ2NDEwMDg2NTE5').items\r\nconst standardMachineCycles = []\r\nconst cyclesData = getCell('MTY4NDE2MDY4MzI3ODEwMDg2NTE5').items\r\nconst cycles = [ ]\r\nthis.cell.metadata={}\r\n\r\nstandardMachineCycles.C = IM.average(standardMachine[2].metadata.negro_fumo) + IM.average(standardMachine[2].metadata.sangue) + IM.average(standardMachine[2].metadata.chocolateComLeite) + IM.average(standardMachine[2].metadata.vinho)  \r\n\r\ncycles.negro_fumo = IM.average((cyclesData[7].metadata.negro_fumo).concat(cyclesData[8].metadata.negro_fumo))\r\ncycles.sangue = IM.average((cyclesData[7].metadata.sangue).concat(cyclesData[8].metadata.sangue))\r\ncycles.chocolateComLeite = IM.average((cyclesData[7].metadata.chocolateComLeite).concat(cyclesData[8].metadata.chocolateComLeite))\r\ncycles.vinho = IM.average((cyclesData[7].metadata.vinho).concat(cyclesData[8].metadata.vinho))\r\ncycles.C = cycles.negro_fumo+cycles.sangue+cycles.chocolateComLeite+cycles.vinho\r\nthis.cell.metadata.html = cycles.C/standardMachineCycles.C\r\n\r\nvscode.postMessage({type: 'update_with_reload', data: this.TextDocument });",
-      "metadata": {},
-      "title": "Eficiência de Lavagem Ciclo 3",
-      "icon": "fa fa-play"
+      "metadata": {
+        
+      },
+      "title": "Eficiência de Lavagem Ciclo 3"
     },
     {
       "id": "MTY5cTc2MDUyMjI1ODEwMDg2NDk3",
       "type": "ps1",
       "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst standardMachine = getCell('MTY4NDE2MDM3MjQ2NDEwMDg2NTE5').items\r\nconst standardMachineCycles = []\r\nconst cyclesData = getCell('MTY4NDE2MDY4MzI3ODEwMDg2NTE5').items\r\nconst cycles = [ ]\r\nthis.cell.metadata={}\r\n\r\nstandardMachineCycles.C = IM.average(standardMachine[3].metadata.negro_fumo) + IM.average(standardMachine[3].metadata.sangue) + IM.average(standardMachine[3].metadata.chocolateComLeite) + IM.average(standardMachine[3].metadata.vinho)  \r\n\r\ncycles.negro_fumo = IM.average((cyclesData[10].metadata.negro_fumo).concat(cyclesData[11].metadata.negro_fumo))\r\ncycles.sangue = IM.average((cyclesData[10].metadata.sangue).concat(cyclesData[11].metadata.sangue))\r\ncycles.chocolateComLeite = IM.average((cyclesData[10].metadata.chocolateComLeite).concat(cyclesData[11].metadata.chocolateComLeite))\r\ncycles.vinho = IM.average((cyclesData[10].metadata.vinho).concat(cyclesData[11].metadata.vinho))\r\ncycles.C = cycles.negro_fumo+cycles.sangue+cycles.chocolateComLeite+cycles.vinho\r\nthis.cell.metadata.html = cycles.C/standardMachineCycles.C\r\n\r\nvscode.postMessage({type: 'update_with_reload', data: this.TextDocument });",
-      "metadata": {},
-      "title": "Eficiência de Lavagem Ciclo 4",
-      "icon": "fa fa-play"
+      "metadata": {
+        
+      },
+      "title": "Eficiência de Lavagem Ciclo 4"
     },
     {
       "id": "MTY5cTc2MDUyMjI11DEwMDg2NDk4",
       "type": "ps1",
       "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst standardMachine = getCell('MTY4NDE2MDM3MjQ2NDEwMDg2NTE5').items\r\nconst standardMachineCycles = []\r\nconst cyclesData = getCell('MTY4NDE2MDY4MzI3ODEwMDg2NTE5').items\r\nconst cycles = [ ]\r\nthis.cell.metadata={}\r\n\r\nstandardMachineCycles.C = IM.average(standardMachine[4].metadata.negro_fumo) + IM.average(standardMachine[4].metadata.sangue) + IM.average(standardMachine[4].metadata.chocolateComLeite) + IM.average(standardMachine[4].metadata.vinho)  \r\n\r\ncycles.negro_fumo = IM.average((cyclesData[13].metadata.negro_fumo).concat(cyclesData[14].metadata.negro_fumo))\r\ncycles.sangue = IM.average((cyclesData[13].metadata.sangue).concat(cyclesData[14].metadata.sangue))\r\ncycles.chocolateComLeite = IM.average((cyclesData[13].metadata.chocolateComLeite).concat(cyclesData[14].metadata.chocolateComLeite))\r\ncycles.vinho = IM.average((cyclesData[13].metadata.vinho).concat(cyclesData[14].metadata.vinho))\r\ncycles.C = cycles.negro_fumo+cycles.sangue+cycles.chocolateComLeite+cycles.vinho\r\nthis.cell.metadata.html = cycles.C/standardMachineCycles.C\r\n\r\nvscode.postMessage({type: 'update_with_reload', data: this.TextDocument });",
-      "metadata": {},
-      "title": "Eficiência de Lavagem Ciclo 5",
-      "icon": "fa fa-play"
+      "metadata": {
+        
+      },
+      "title": "Eficiência de Lavagem Ciclo 5"
     }
   ],
   "report_template": {
@@ -363,6 +367,6 @@
     "": ""
   },
   "metadata": {
-    "lastModified": "2023-08-18T11:47:12.903Z"
+    "lastModified": "2023-05-24T19:42:24.757Z"
   }
 }

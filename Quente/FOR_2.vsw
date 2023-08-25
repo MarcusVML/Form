@@ -7,16 +7,54 @@
       "value": "Tensão&nbsp;"
     },
     {
-      "id": "MTY4MDExNzkzNzgwNzEwMDg4NDk4",
-      "type": "select",
+      "id": "MTY4MzgxMjg0NTI5MzEwMDg2NTE5",
+      "type": "list",
       "items": [
-        "Selecionar",
-        "Frio",
-        "Quente"
+        {
+          "id": "MTY4MzgxMjg3NDEyMTEwMDg2NTE5",
+          "type": "input",
+          "parentId": "MTY4MzgxMjg0NTI5MzEwMDg2NTE5",
+          "title": "Executor"
+        },
+        {
+          "id": "MTY4MzgxMjg4NTI0NDEwMDg2NTE5",
+          "type": "select",
+          "parentId": "MTY4MzgxMjg0NTI5MzEwMDg2NTE5",
+          "items": [
+            "2935DOM",
+            "2936DOM",
+            "2949DOM",
+            "3039DOM"
+          ],
+          "title": "TAG",
+          "value": "2935DOM"
+        },
+        {
+          "id": "MTY4MzgxMjg5MjUwNDEwMDg2NTE5",
+          "type": "inputDateWithOutTime",
+          "parentId": "MTY4MzgxMjg0NTI5MzEwMDg2NTE5",
+          "title": "Data do Ensaio"
+        },
+        {
+          "id": "MTY4NDQyNzUxMjk2NjEwMDg4NDk4",
+          "type": "select",
+          "parentId": "MTY4MzgxMjg0NTI5MzEwMDg2NTE5",
+          "items": [
+            "Frio",
+            "Quente"
+          ],
+          "title": "Ciclo<div><br></div>",
+          "value": "Quente",
+          "lock": true
+        }
       ],
-      "title": "Tipo de ciclo<div><br></div>",
-      "value": "Quente",
-      "lock": true
+      "title": "Ciclo<div><br></div>",
+      "value": "2935DOM"
+    },
+    {
+      "id": "MTY4MzgxMzEzNTM0OTEwMDg2NTE5",
+      "type": "h3",
+      "value": "Arquivos"
     },
     {
       "id": "MTY4MDExOTE0MDAzMjEwMDg4NDk4",
@@ -26,16 +64,22 @@
           "id": "MTY4MDExOTE0NDk2NTEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDExOTE0MDAzMjEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
           },
-          "title": "Arquivo das tesões do ciclo 1&nbsp;",
+          "title": "Arquivo das tensões do ciclo 1&nbsp;",
           "value": ""
+        },
+        {
+          "id": "MTY5MTU4MTQxNzk2OTEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MDExOTE0MDAzMjEwMDg4NDk4",
+          "title": "Observações"
         }
       ],
-      "title": "Arquivo das tesões do ciclo 1&nbsp;",
+      "title": "Observações",
       "metadata": {
         "Max_tension": 218.441,
         "Min_tension": 217.691
@@ -49,16 +93,22 @@
           "id": "MTY4MDE4MDYyMzE4NjEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDE4MDYxNjM0MDEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
           },
-          "title": "Arquivo das tesões do ciclo 2&nbsp;",
+          "title": "Arquivo das tensões do ciclo 2&nbsp;",
           "value": ""
+        },
+        {
+          "id": "MTY5MTU4MTQyMDk3NjEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MDE4MDYxNjM0MDEwMDg4NDk4",
+          "title": "Observações"
         }
       ],
-      "title": "Arquivo das tesões do ciclo 2&nbsp;",
+      "title": "Observações",
       "metadata": {
         "Max_tension": 218.448,
         "Min_tension": 217.238
@@ -72,19 +122,25 @@
           "id": "MTY4MDE4MDY1NzA0OTEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDE4MDY0ODM3MDEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
           },
-          "title": "Arquivo das tesões do ciclo 3&nbsp;",
+          "title": "Arquivo das tensões do ciclo 3&nbsp;",
           "value": ""
+        },
+        {
+          "id": "MTY5MTU4MTQyMzY2MTEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MDE4MDY0ODM3MDEwMDg4NDk4",
+          "title": "Observações"
         }
       ],
-      "title": "Arquivo das tesões do ciclo 3&nbsp;",
+      "title": "Observações",
       "metadata": {
-        "Max_tension": 218.979,
-        "Min_tension": 217.868
+        "Max_tension": 218.542,
+        "Min_tension": 217.545
       }
     },
     {
@@ -95,19 +151,25 @@
           "id": "MTY4MDE4MDY2MTAyMzEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDE4MDY1MTgwNTEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
           },
-          "title": "Arquivo das tesões do ciclo 4&nbsp;",
+          "title": "Arquivo das tensões do ciclo 4&nbsp;",
           "value": ""
+        },
+        {
+          "id": "MTY5MTU4MTQyNjc0MzEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MDE4MDY1MTgwNTEwMDg4NDk4",
+          "title": "Observações"
         }
       ],
-      "title": "Arquivo das tesões do ciclo 4&nbsp;",
+      "title": "Observações",
       "metadata": {
-        "Max_tension": 218.542,
-        "Min_tension": 217.545
+        "Max_tension": 218.623,
+        "Min_tension": 217.488
       }
     },
     {
@@ -118,246 +180,47 @@
           "id": "MTY4MDE4MDY2NDQ1MDEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDE4MDY1MzgzMTEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
           },
-          "title": "Arquivo das tesões do ciclo 5&nbsp;",
+          "title": "Arquivo das tensões do ciclo 5&nbsp;",
           "value": ""
+        },
+        {
+          "id": "MTY5MTU4MTQyOTM1MjEwMDg4NDk4",
+          "type": "input",
+          "parentId": "MTY4MDE4MDY1MzgzMTEwMDg4NDk4",
+          "title": "Observações"
         }
       ],
-      "title": "Arquivo das tesões do ciclo 5&nbsp;",
+      "title": "Observações",
       "metadata": {
-        "Max_tension": 218.623,
-        "Min_tension": 217.488
+        "Max_tension": 218.448,
+        "Min_tension": 217.238
       },
-      "": ""
-    },
-    {
-      "id": "MTY4MjAwOTk5ODI3MTEwMDg4NDk4",
-      "type": "file",
-      "source": "const getCell = (id) => this.TextDocument.cells.find((c) => c.id === id);\r\n\r\nconst csvToArray = (str, delimiter) => {\r\n  // slice from start of text to the first \\n index\r\n  // use split to create an array from string by delimiter\r\n  const headers = str.slice(0, str.indexOf(\"\\n\")).split(delimiter);\r\n\r\n  // slice from \\n index + 1 to the end of the text\r\n  // use split to create an array of each csv value row\r\n  const rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n\r\n  // Map the rows\r\n  // split values from each row into an array\r\n  // use headers.reduce to create an object\r\n  // object properties derived from headers:values\r\n  // the object passed as an element of the array\r\n  const arr = rows.map(function (row) {\r\n    const values = row.split(delimiter);\r\n    const el = headers.reduce(function (object, header, index) {\r\n      object[header] = values[index];\r\n      return object;\r\n    }, {});\r\n    return el;\r\n  });\r\n\r\n  // return the array\r\n  return arr;\r\n};\r\n\r\nconst data = csvToArray(file, \";\");\r\n\r\nthis.cell.metadata.Instrumentos_ref = data;\r\n",
-      "metadata": {
-        "alreadyExecuted": false,
-        "Instrumentos_ref": [
-          {
-            "Grandeza": "Balança (kg)",
-            "Resol.": 0.005,
-            "TAG": "2980DOM",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.005,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.01
-          },
-          {
-            "Grandeza": "Tensão (V)",
-            "Resol.": 0.01,
-            "TAG": "2935DOM",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.01,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0,
-            "Total": 2.17238
-          },
-          {
-            "Grandeza": "Máxima pressão (kPa)",
-            "Resol.": 0.001,
-            "TAG": "1205DOM",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.05,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0
-          },
-          {
-            "Grandeza": "Mínima pressão (kPa)",
-            "Resol.": 0.001,
-            "TAG": "",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.05,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0
-          },
-          {
-            "Grandeza": "Temperatura de entrada min. (°C)",
-            "Resol.": 0.01,
-            "TAG": "1205DOM",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.5
-          },
-          {
-            "Grandeza": "Temperatura de entrada máx. (°C)",
-            "Resol.": 0.01,
-            "TAG": "",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.5
-          },
-          {
-            "Grandeza": "Cronômetro (s)",
-            "Resol.": 1,
-            "TAG": "3378LAV",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 1
-          },
-          {
-            "Grandeza": "Energia água fria (kWh)",
-            "Resol.": 0.00063,
-            "TAG": "3018DOM",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.01,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0
-          },
-          {
-            "Grandeza": "Energia água quente (kWh)",
-            "Resol.": 0.00063,
-            "TAG": "",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.01,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0
-          },
-          {
-            "Grandeza": "Volume água fria (L)",
-            "Resol.": 0.01,
-            "TAG": "2988LAV",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.01,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0
-          },
-          {
-            "Grandeza": "Volume água quente (L)",
-            "Resol.": 0.01,
-            "TAG": "",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.01,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0
-          },
-          {
-            "Grandeza": "Datacolor água fria",
-            "Resol.": 0.01,
-            "TAG": "2952DOM",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.5
-          },
-          {
-            "Grandeza": "Datacolor água quente",
-            "Resol.": 0.01,
-            "TAG": "",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.5
-          },
-          {
-            "Grandeza": "Balança analítica (g)",
-            "Resol.": 0.0001,
-            "TAG": "1315QUI",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0
-          },
-          {
-            "Grandeza": "Balão volumétrico (mL)",
-            "Resol.": 0.01,
-            "TAG": "1891QUI",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.8
-          },
-          {
-            "Grandeza": "Pipeta / Proveta (mL)",
-            "Resol.": 0.01,
-            "TAG": "3113QUI",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.05
-          },
-          {
-            "Grandeza": "Padrão de cálcio (mmol/L)",
-            "Resol.": 0.01,
-            "TAG": "1890QUI",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.8
-          },
-          {
-            "Grandeza": "-",
-            "Resol.": 0.08,
-            "TAG": "1648QUI",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.08
-          },
-          {
-            "Grandeza": "Água fria - Balança (kg)",
-            "Resol.": 0.005,
-            "TAG": "2980DOM",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.005,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.01
-          },
-          {
-            "Grandeza": "Água quente - Balança (kg)",
-            "Resol.": 0.005,
-            "TAG": "2980DOM",
-            "Faixa": 0,
-            "Criterio de aceitação - % da leitura": 0.005,
-            "Criterio de aceitação - % da faixa": 0,
-            "Criterio de aceitação - Valor absoluto\r": 0.01
-          }
-        ],
-        "output": ""
-      },
-      "title": "Instrumentos de Referência Utilizados",
-      "value": "",
       "": ""
     },
     {
       "id": "MTY4MTQxMTU3MTI3NzEwMDg4NDk4",
       "type": "ps1",
-      "source": "const getCell = (id) => this.TextDocument.cells.find(c=> c.id === id);\r\n\r\n\r\n\r\nconst fixReference = (Reference_instruments) =>{\r\n    let size = Object.keys(Reference_instruments).length\r\n    for (let i = 0; i < size; i++) {\r\n        Reference_instruments[i][\"Resol.\"]=(+Reference_instruments[i][\"Resol.\"].replace(',', '.').replace('%', ''))\r\n        Reference_instruments[i][\"Faixa\"]=(+Reference_instruments[i][\"Faixa\"].replace(',', '.').replace('%', ''))\r\n        Reference_instruments[i][\"Criterio de aceitação - % da faixa\"]=(+Reference_instruments[i][\"Criterio de aceitação - % da faixa\"].replace(',', '.').replace('%', ''))\r\n        Reference_instruments[i][\"Criterio de aceitação - Valor absoluto\\r\"]=+Reference_instruments[i][\"Criterio de aceitação - Valor absoluto\\r\"].replace(',', '.').replace('%', '').replace('\\r', '')\r\n        Reference_instruments[i][\"Criterio de aceitação - % da leitura\"]=(+Reference_instruments[i][\"Criterio de aceitação - % da leitura\"].replace(',', '.').replace('%', ''))/100   \r\n    }\r\n    \r\n    \r\n        \r\n       return Reference_instruments \r\n    }\r\n\r\n    //----Ciclo 1----\r\nconst cicle1_max_tension =      getCell(`MTY4MDExOTE0MDAzMjEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle1_min_tension =      getCell(`MTY4MDExOTE0MDAzMjEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n//----Ciclo 2----\r\nconst cicle2_max_tension =      getCell(`MTY4MDE4MDYxNjM0MDEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle2_min_tension =      getCell(`MTY4MDE4MDYxNjM0MDEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n//----Ciclo 3----\r\nconst cicle3_max_tension =      getCell(`MTY4MDE4MDY0ODM3MDEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle3_min_tension =      getCell(`MTY4MDE4MDY0ODM3MDEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n//----Ciclo 4----\r\nconst cicle4_max_tension =      getCell(`MTY4MDE4MDY1MTgwNTEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle4_min_tension =      getCell(`MTY4MDE4MDY1MTgwNTEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n//----Ciclo 5----\r\nconst cicle5_max_tension =      getCell(`MTY4MDE4MDY1MzgzMTEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle5_min_tension =      getCell(`MTY4MDE4MDY1MzgzMTEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n\r\nconst Min_tension_average = Math.min(cicle1_min_tension,cicle2_min_tension,cicle3_min_tension,cicle4_min_tension,cicle5_min_tension)\r\n\r\n//Valor dos instrumentos de referência e calculo para o uso das Incertezas quente\r\nlet Reference_instruments =  getCell(`MTY4MjAwOTk5ODI3MTEwMDg4NDk4`).metadata.Instrumentos_ref\r\nReference_instruments=fixReference(Reference_instruments)\r\nReference_instruments[1][\"Total\"]= (Reference_instruments[1][\"Criterio de aceitação - % da leitura\"]*(Min_tension_average)) + (Reference_instruments[1][\"Criterio de aceitação - % da faixa\"]*Reference_instruments[1][\"Faixa\"]) + Reference_instruments[1][\"Criterio de aceitação - Valor absoluto\\r\"] // IM - Tensão\r\n\r\nconst contributes = [\r\n    {\r\n        value: Reference_instruments[1][\"Total\"],\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação do plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (Reference_instruments[1][\"Resol.\"])/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n]\r\n\r\nconst imValue = IM.calculate(contributes);\r\n\r\nthis.cell.metadata.html = \"Cálculo de incerteza concluido!\";\r\nthis.cell.metadata.IM = imValue\r\nvscode.postMessage({type: 'update_with_reload', data: this.TextDocument});\r\n\r\n\r\n\r\n\r\n",
-      "metadata": {
-        "output": "",
-        "html": "Cálculo de incerteza concluido!",
-        "IM": {
-          "ui_2": 1.254227499884557,
-          "ui_4": 0.00002474575300665943,
-          "v_eff": 100001,
-          "k": 2.0000273517838094,
-          "u": "2.6",
-          "numberOfDecimals": 1
-        }
-      },
-      "title": "Calcular Incertezas",
-      "": ""
+      "source": "this.cell.metadata = {html: \"Lendo Incertezas ...\"};\r\nvscode.postMessage({\r\n    type: 'sp_request', \r\n    method: 'GET',\r\n    url: `https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/web/lists/GetByTitle('Incerteza')/items?$filter=FileDirRef eq '/sites/Labelo_Processos/Lists/CES/Máquinas de Lavar' and Grandeza eq 'Tensão'`,\r\n    data: this.TextDocument,\r\n    id: this.cell.id\r\n});",
+      "metadata": {},
+      "title": "Atualizar incertezas",
+      "": "",
+      "icon": "fa fa-play"
     }
   ],
   "report_template": {
     "type": "code",
     "id": "report_template",
-    "source": "const getCell = (id)=> register.cells.find(c=>c.id===id);\r\n\r\n\r\n\r\n//----Ciclo 1----\r\nconst cicle1_max_tension =      getCell(`MTY4MDExOTE0MDAzMjEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle1_min_tension =      getCell(`MTY4MDExOTE0MDAzMjEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n//----Ciclo 2----\r\nconst cicle2_max_tension =      getCell(`MTY4MDE4MDYxNjM0MDEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle2_min_tension =      getCell(`MTY4MDE4MDYxNjM0MDEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n//----Ciclo 3----\r\nconst cicle3_max_tension =      getCell(`MTY4MDE4MDY0ODM3MDEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle3_min_tension =      getCell(`MTY4MDE4MDY0ODM3MDEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n//----Ciclo 4----\r\nconst cicle4_max_tension =      getCell(`MTY4MDE4MDY1MTgwNTEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle4_min_tension =      getCell(`MTY4MDE4MDY1MTgwNTEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n//----Ciclo 5----\r\nconst cicle5_max_tension =      getCell(`MTY4MDE4MDY1MzgzMTEwMDg4NDk4`).metadata.Max_tension\r\nconst cicle5_min_tension =      getCell(`MTY4MDE4MDY1MzgzMTEwMDg4NDk4`).metadata.Min_tension\r\n//---------------\r\n\r\nconst Max_tension_average = Math.max(cicle1_max_tension,cicle2_max_tension,cicle3_max_tension,cicle4_max_tension,cicle5_max_tension)\r\nconst Min_tension_average = Math.min(cicle1_min_tension,cicle2_min_tension,cicle3_min_tension,cicle4_min_tension,cicle5_min_tension)\r\nconst IM = getCell(`MTY4MTQxMTU3MTI3NzEwMDg4NDk4`).metadata.IM\r\nlet decimals = IM.numberOfDecimals\r\nif(IM.numberOfDecimals==-1){decimals=0}\r\nif(IM.numberOfDecimals==32){decimals=2}\r\n\r\nreturn`\r\nTensão máxima: ${Max_tension_average.toFixed(decimals)} ± ${IM.u}\r\n<br>\r\nTensão mínima: ${Min_tension_average.toFixed(decimals)} ± ${IM.u}\r\n`",
+    "source": "const getCell = (id)=> register.cells.find(c=>c.id===id);\r\n\r\nconst sp = getCell('MTY4MTQxMTU3MTI3NzEwMDg4NDk4').metadata.sp || [];\r\nlet instrument = getCell('MTY4MzgxMjg0NTI5MzEwMDg2NTE5').items[1].value\r\ninstrument = sp.find(s => s.Title=== instrument)\r\n\r\nif (!instrument) {\r\n    return `<span class=\"error\">Nenhum instrumento encontrado</span>`\r\n}\r\n\r\n// \"Resolu_x00e7__x00e3_o\": 0.01,\r\n// \"Crit_x002e_Aceitacao_x0028_perce\": 0,\r\n// \"Criterio_Aceitacao_x0028_percetu\": 0.01,\r\n// \"criteriovalorabsoluto\": 0,\r\n\r\nconst ciclos = [\r\n'MTY4MDExOTE0MDAzMjEwMDg4NDk4',\r\n'MTY4MDE4MDYxNjM0MDEwMDg4NDk4',\r\n'MTY4MDE4MDY0ODM3MDEwMDg4NDk4',\r\n'MTY4MDE4MDY1MTgwNTEwMDg4NDk4',\r\n'MTY4MDE4MDY1MzgzMTEwMDg4NDk4'\r\n].map(id => {\r\n    const cell = getCell(id);\r\n    console.log(cell)\r\n    return {Max_tension: cell.metadata.Max_tension, Min_tension: cell.metadata.Min_tension}\r\n});\r\n\r\nconst Max_tension_average = Math.max(...ciclos.map(c => c.Max_tension))\r\nconst Min_tension_average = Math.min(...ciclos.map(c => c.Min_tension))\r\n\r\nconst contributes = [\r\n    {\r\n        value: instrument.Criterio_Aceitacao_x0028_percetu * Max_tension_average + instrument.criteriovalorabsoluto,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação do plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (instrument.Resolu_x00e7__x00e3_o)/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: IM.standardDeviation([...ciclos.map(c => c.Max_tension), ...ciclos.map(c => c.Min_tension)])/2,\r\n        divisor: Math.sqrt(ciclos.length * 2),\r\n        name: \"Desvio Padrão\",\r\n        cs: 1,\r\n        v_eff: (ciclos.length * 2) - 1\r\n    }\r\n]\r\n\r\nconst {u} = IM.calculate(contributes);\r\nreturn`\r\n<table>\r\n    <tr>\r\n        <th>Descrição</th>\r\n        <th>Valor</th>\r\n        <th>Incerteza</th>\r\n    </tr>\r\n    <tr>\r\n        <td>Tensão máxima</td>\r\n        <td>${Max_tension_average}</td>\r\n        <td>&pm; ${u}</td>\r\n    </tr>\r\n    <tr>\r\n        <td>Tensão mínima</td>\r\n        <td>${Min_tension_average}</td>\r\n        <td>&pm; ${u}</td>\r\n    </tr>\r\n</table>\r\n\r\n\r\n`",
     "metadata": {
-      "output": "\nTensão máxima: 219.0 ± 2.6\n<br>\nTensão mínima: 217.2 ± 2.6\n"
+      "output": "<span class=\"error\">Nenhum instrumento encontrado</span>"
     }
   },
   "metadata": {
-    "lastModified": "2023-05-02T14:02:55.039Z"
+    "lastModified": "2023-08-24T17:54:47.928Z"
   }
 }

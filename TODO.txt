@@ -1,0 +1,8 @@
+-Colocar aviso se os valores medidos estão na faixa aceitada pela norma
+-ajustar os valores do erro sistematico pressao, temperatura e tensao 
+-colocar um ciclo extra para registro (frio e quente), colocando um campo de observação
+
+
+---futuro:
+-FOR da frequencia
+-carga padrao

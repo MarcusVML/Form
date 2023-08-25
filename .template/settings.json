@@ -1,7 +1,9 @@
 {
     "options": [
         "Frio",
-        "Quente"
+        "Quente",
+        "Frio - Semiautomática"
     ],
-    "dist": "C:/Users/80400607/Desktop"
+    "required":["Arquivos"],
+    "dist": "T:\\Relatórios\\Lavadoras de roupa\\"
 }

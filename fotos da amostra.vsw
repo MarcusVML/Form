@@ -85,12 +85,12 @@
   "report_template": {
     "type": "code",
     "id": "report_template",
-    "source": "return `\r\n<h3>Fotos da Amostra:</h3>\r\n<br>\r\n<div style=\"text-align:center\">\r\n${register.cells.filter(cell=> cell.type === `file` && cell.value).map(cell=>{\r\n    return `\r\n    <figure>\r\n    <img src=\"${cell.value}\" alt=\"${cell.value}\">\r\n    <figcaption>${cell.value.split(\"/\")[2].split(\".\")[0]}</figcaption>\r\n    </figure>\r\n    `\r\n}).join('\\n') || \"\"}\r\n</div>\r\n\r\n`;",
+    "source": "return `\r\n<h3>Fotos da Amostra:</h3>\r\n<br>\r\n<div style=\"text-align:center\">\r\n${register.cells.filter(cell=> cell.type === `file` && cell.value).map(cell=>{\r\n    let caption = cell.value.split('/').slice(-1)[0].split(\".\")[0];\r\n    return `\r\n    <figure>\r\n    <img src=\"${cell.value}\" alt=\"${cell.value}\">\r\n    <figcaption>${caption}</figcaption>\r\n    </figure>\r\n    `\r\n}).join('\\n') || \"\"}\r\n</div>\r\n\r\n`;",
     "metadata": {
-      "output": "\n<h3>Fotos da Amostra:</h3>\n<br>\n<div style=\"text-align:center\">\n\n    <figure>\n    <img src=\"Arquivos/Fotos/Captura de tela 2023-04-13 091040.png\" alt=\"Arquivos/Fotos/Captura de tela 2023-04-13 091040.png\">\n    <figcaption>Captura de tela 2023-04-13 091040</figcaption>\n    </figure>\n    \n</div>\n\n"
+      "output": "\n<h3>Fotos da Amostra:</h3>\n<br>\n<div style=\"text-align:center\">\n\n    <figure>\n    <img src=\"teste.jpg\" alt=\"teste.jpg\">\n    <figcaption>teste</figcaption>\n    </figure>\n    \n</div>\n\n"
     }
   },
   "metadata": {
-    "lastModified": "2023-05-02T11:16:39.851Z"
+    "lastModified": "2023-07-12T10:55:22.758Z"
   }
 }
