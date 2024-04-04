@@ -5,12 +5,14 @@
     {
       "id": "title",
       "type": "h1",
-      "value": "Pressão, Temperatura e Centrifugação&nbsp;"
+      "value": "Pressão, Temperatura e Centrifugação&nbsp;",
+      "toggleButton": "open"
     },
     {
       "id": "MTY4MzgxMTgyNjIyNzEwMDg2NTE5",
       "type": "h2",
-      "value": "Dados do Ensaio"
+      "value": "Dados do Ensaio",
+      "toggleButton": "open"
     },
     {
       "id": "MTY4MzgxMTgzMjYzNTEwMDg2NTE5",
@@ -44,7 +46,7 @@
             "1315QUI"
           ],
           "title": "TAG Balança",
-          "value": "2980DOM"
+          "value": ""
         },
         {
           "id": "MTY4MzgxMjQyOTI2MjEwMDg2NTE5",
@@ -55,7 +57,7 @@
             "1206DOM"
           ],
           "title": "TAG Pressão/Temperatura",
-          "value": "1205DOM"
+          "value": ""
         },
         {
           "id": "MTY4MzgxMjQ5ODcyNzEwMDg2NTE5",
@@ -72,20 +74,25 @@
             "3023DOM"
           ],
           "title": "TAG Energia",
-          "value": "3018DOM"
+          "value": ""
         },
         {
           "id": "MTY4MzgxMjUwODMzMzEwMDg2NTE5",
           "type": "select",
           "parentId": "MTY4MzgxMTgzMjYzNTEwMDg2NTE5",
           "items": [
-            "3378DOM",
             "3377LAV",
             "3344DOM",
-            "1810DOM"
+            "1810DOM",
+            "3454LAV",
+            "3455LAV",
+            "3456LAV",
+            "3457LAV",
+            "3378LAV"
           ],
           "title": "TAG Cronômetro",
-          "value": "3378DOM"
+          "value": "",
+          "contentEditable": ""
         },
         {
           "id": "MTY4MzgxMjU3MzE4MDEwMDg2NTE5",
@@ -103,18 +110,312 @@
             "3012LAV"
           ],
           "title": "TAG Vazão",
-          "value": "2988LAV"
+          "value": ""
         }
       ],
       "title": "TAG Vazão",
-      "value": "3378DOM",
-      "": ""
+      "value": "3378LAV",
+      "": "",
+      "contentEditable": "",
+      "lock": false
     },
     {
       "id": "MTY5MjEyMjg4NDQ2NjEwMDg4NDk4",
       "type": "ps1",
-      "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst Temperatura = getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[3].value\r\nconst canal = getCell('MTY3OTY4NzM3MDcxMjEwMDg4NDk4').items[2].value\r\n\r\n\r\nthis.cell.metadata = {};\r\n\r\nvscode.postMessage({\r\n    type: 'sp_request', \r\n    method: 'GET',\r\n    url: `https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/web/lists/GetByTitle('CES')/items?$filter=FileDirRef eq '/sites/Labelo_Processos/Lists/CES1/${Temperatura}/Temperatura/${canal}'`,\r\n    data: this.TextDocument,\r\n    id: this.cell.id\r\n})\r\ns",
-      "metadata": {},
+      "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst Temperatura = getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[3].value\r\nconst canal = getCell('MTY3OTY4NzM3MDcxMjEwMDg4NDk4').items[2].value\r\n\r\n\r\nthis.cell.metadata = {};\r\n\r\nvscode.postMessage({\r\n    type: 'sp_request', \r\n    method: 'GET',\r\n    url: `https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/web/lists/GetByTitle('CES')/items?$filter=FileDirRef eq '/sites/Labelo_Processos/Lists/CES1/${Temperatura}/Temperatura/${canal}'`,\r\n    data: this.TextDocument,\r\n    id: this.cell.id\r\n})\r\n",
+      "metadata": {
+        "sp": [
+          {
+            "__metadata": {
+              "id": "bf80d967-8bb0-4cf5-b13d-a39215513260",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 13,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": -0.14,
+            "VR0": 0,
+            "ID": 13,
+            "Modified": "2023-08-15T17:39:41Z",
+            "Created": "2023-08-15T17:39:41Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "64469470-83ec-44d4-8206-23669c8d8c78"
+          },
+          {
+            "__metadata": {
+              "id": "36f5729f-3e99-4862-b223-291cab29d64d",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 14,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 24.87,
+            "VR0": 25,
+            "ID": 14,
+            "Modified": "2023-08-15T17:39:55Z",
+            "Created": "2023-08-15T17:39:55Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "53c2f069-4325-4367-8cad-2c7ca640c8bb"
+          },
+          {
+            "__metadata": {
+              "id": "296c0da4-4d5d-466d-9423-45b7dd0be95c",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 15,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 49.85,
+            "VR0": 50,
+            "ID": 15,
+            "Modified": "2023-08-15T17:40:11Z",
+            "Created": "2023-08-15T17:40:11Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "2cb0183b-80c4-48c6-a15c-b3ca40b872d6"
+          }
+        ],
+        "html": "Requisição realizada com sucesso"
+      },
       "title": "Puxar valores para interpolação do Ciclo 1 (Escolher TAG de temperatura e&nbsp; preencher o canal)",
       "icon": "fa fa-play"
     },
@@ -192,7 +493,7 @@
           "id": "MTY3OTk0ODI0NjgwNzEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
-          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Templo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Tempo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -205,28 +506,32 @@
           "id": "MTY5MTQ5MTk0OTUyMTEwMDg4NDk4",
           "type": "input",
           "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
-          "title": "Observações"
+          "title": "Observações",
+          "value": ""
         },
         {
           "id": "MTY5MTYwOTQyNTk5OTEwMDg4NDk4",
           "type": "input",
           "parentId": "MTY3OTY4NzM3MDcxMjEwMDg4NDk4",
-          "title": "Valores do Ciclo"
+          "title": "Valores do Ciclo",
+          "value": ""
         }
       ],
       "title": "Valores do Ciclo",
       "value": "",
       "": "",
       "metadata": {
-        "max_temp": 22.140485829959513,
-        "min_temp": 20.968218623481782,
-        "max_pres": 260.307,
-        "min_pres": 216.788,
-        "water_volume": 204,
-        "cicle_time": 196.38333333333333,
-        "energy": -1107,
-        "standard_load": 123,
-        "new_load": 123
+        "max_temp": 23.6202,
+        "min_temp": 20.5264,
+        "max_pres": 263.922,
+        "min_pres": 221.016,
+        "water_volume": 80.101,
+        "cicle_time": 228.48333333333332,
+        "energy": 0.25,
+        "standard_load": 10.78,
+        "new_load": 16.446,
+        "max_temp_interpolate": 23.750699720111957,
+        "min_temp_interpolate": 20.658136745301878
       }
     },
     {
@@ -234,7 +539,297 @@
       "type": "ps1",
       "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst Temperatura = getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[3].value\r\nconst canal = getCell('NTY3OT666zM3MDcxMjEgMDg4NDk4').items[2].value\r\n\r\n\r\nthis.cell.metadata = {};\r\n\r\nvscode.postMessage({\r\n    type: 'sp_request', \r\n    method: 'GET',\r\n    url: `https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/web/lists/GetByTitle('CES')/items?$filter=FileDirRef eq '/sites/Labelo_Processos/Lists/CES1/${Temperatura}/Temperatura/${canal}'`,\r\n    data: this.TextDocument,\r\n    id: this.cell.id\r\n})\r\ns",
       "metadata": {
-        "output": ""
+        "sp": [
+          {
+            "__metadata": {
+              "id": "6e82e935-d448-49c5-8a0b-20fd45a12569",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 13,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": -0.14,
+            "VR0": 0,
+            "ID": 13,
+            "Modified": "2023-08-15T17:39:41Z",
+            "Created": "2023-08-15T17:39:41Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "64469470-83ec-44d4-8206-23669c8d8c78"
+          },
+          {
+            "__metadata": {
+              "id": "7bc304cf-208b-43a9-a0d9-4ff1bac811a0",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 14,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 24.87,
+            "VR0": 25,
+            "ID": 14,
+            "Modified": "2023-08-15T17:39:55Z",
+            "Created": "2023-08-15T17:39:55Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "53c2f069-4325-4367-8cad-2c7ca640c8bb"
+          },
+          {
+            "__metadata": {
+              "id": "4960abf6-f7e4-443d-9352-afbd295743d0",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 15,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 49.85,
+            "VR0": 50,
+            "ID": 15,
+            "Modified": "2023-08-15T17:40:11Z",
+            "Created": "2023-08-15T17:40:11Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "2cb0183b-80c4-48c6-a15c-b3ca40b872d6"
+          }
+        ],
+        "html": "Requisição realizada com sucesso"
       },
       "title": "Puxar valores para interpolação do Ciclo 2 (Escolher TAG de temperatura e&nbsp; preencher o canal)",
       "icon": "fa fa-play"
@@ -262,7 +857,8 @@
           "type": "input",
           "parentId": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
           "title": "Canal de Temperatura - Ciclo 2",
-          "value": ""
+          "value": "",
+          "lock": ""
         },
         {
           "id": "MTY3OTkyNTkzOTI0NDEwMDg4NDk4",
@@ -311,7 +907,7 @@
           "id": "MTY4MDAzNTE0NTI5MDEwMDg4NDk4",
           "type": "file",
           "parentId": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
-          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Templo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Tempo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -324,36 +920,331 @@
           "id": "MTY5MTQ5MTk0NjY5OTEwMDg4NDk4",
           "type": "input",
           "parentId": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
-          "title": "Observações"
+          "title": "Observações",
+          "value": "Erro de faixa:  Temperatura Máxima (0.1399440223910436). Temperatura Mínima (0.1399440223910436). Pressão Máxima (null). Pressão Mínima (null)."
         },
         {
           "id": "MTY5MTYwOTY3NTk3MDEwMDg4NDk4",
           "type": "input",
           "parentId": "NTY3OT666zM3MDcxMjEgMDg4NDk4",
-          "title": "Valores do Ciclo"
+          "title": "Valores do Ciclo",
+          "value": ""
         }
       ],
       "title": "Valores do Ciclo",
       "value": "",
       "metadata": {
-        "max_temp": 22.456174089068824,
-        "min_temp": 20.968218623481782,
-        "max_pres": 260.752,
-        "min_pres": 216.788,
-        "water_volume": 205.508,
-        "cicle_time": 181,
-        "energy": 0.35875,
-        "standard_load": 16.772,
-        "new_load": 25.905
+        "max_temp": null,
+        "min_temp": null,
+        "max_pres": null,
+        "min_pres": null,
+        "water_volume": 2,
+        "cicle_time": 60,
+        "energy": 2,
+        "standard_load": 1,
+        "new_load": 4,
+        "max_temp_interpolate": 0.1399440223910436,
+        "min_temp_interpolate": 0.1399440223910436
       },
-      "": ""
+      "": "",
+      "lock": ""
     },
     {
       "id": "MTY5MjI3NDM0NzcyMzEwMDg4NDk4",
       "type": "ps1",
       "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst Temperatura = getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[3].value\r\nconst canal = getCell('GTG3OTY4NzM3D6cxMjEwMDg4NDk5').items[2].value\r\n\r\n\r\nthis.cell.metadata = {};\r\n\r\nvscode.postMessage({\r\n    type: 'sp_request', \r\n    method: 'GET',\r\n    url: `https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/web/lists/GetByTitle('CES')/items?$filter=FileDirRef eq '/sites/Labelo_Processos/Lists/CES1/${Temperatura}/Temperatura/${canal}'`,\r\n    data: this.TextDocument,\r\n    id: this.cell.id\r\n})\r\ns",
       "metadata": {
-        "output": ""
+        "sp": [
+          {
+            "__metadata": {
+              "id": "75924660-d215-402e-bac6-8885adad8434",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 13,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": -0.14,
+            "VR0": 0,
+            "ID": 13,
+            "Modified": "2023-08-15T17:39:41Z",
+            "Created": "2023-08-15T17:39:41Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "64469470-83ec-44d4-8206-23669c8d8c78"
+          },
+          {
+            "__metadata": {
+              "id": "082864fb-1ca5-404c-ac08-2ad46c13ecc9",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 14,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 24.87,
+            "VR0": 25,
+            "ID": 14,
+            "Modified": "2023-08-15T17:39:55Z",
+            "Created": "2023-08-15T17:39:55Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "53c2f069-4325-4367-8cad-2c7ca640c8bb"
+          },
+          {
+            "__metadata": {
+              "id": "50076ad1-7b3e-4ce1-b6b5-354b6faacd70",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 15,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 49.85,
+            "VR0": 50,
+            "ID": 15,
+            "Modified": "2023-08-15T17:40:11Z",
+            "Created": "2023-08-15T17:40:11Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "2cb0183b-80c4-48c6-a15c-b3ca40b872d6"
+          }
+        ],
+        "html": "Requisição realizada com sucesso"
       },
       "title": "Puxar valores para interpolação do Ciclo 3 (Escolher TAG de temperatura e&nbsp; preencher o canal)",
       "icon": "fa fa-play"
@@ -430,7 +1321,7 @@
           "id": "MTY4MDAzNTU0OTgzNzEwMDg4NDk4",
           "type": "file",
           "parentId": "GTG3OTY4NzM3D6cxMjEwMDg4NDk5",
-          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Templo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Tempo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -442,7 +1333,8 @@
           "id": "MTY5MTQ5MTk0MzYzMTEwMDg4NDk4",
           "type": "input",
           "parentId": "GTG3OTY4NzM3D6cxMjEwMDg4NDk5",
-          "title": "Observações"
+          "title": "Observações",
+          "value": ""
         },
         {
           "id": "MTY5MTYwOTY3OTUyMzEwMDg4NDk4",
@@ -462,7 +1354,9 @@
         "cicle_time": 196,
         "energy": 0.38063,
         "standard_load": 16.772,
-        "new_load": 26.465
+        "new_load": 26.465,
+        "max_temp_interpolate": 22.13711681319375,
+        "min_temp_interpolate": 21.258318534934205
       }
     },
     {
@@ -470,7 +1364,297 @@
       "type": "ps1",
       "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst Temperatura = getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[3].value\r\nconst canal = getCell('sTY2OTY4NzM3hDcxMjEwMfg666k4').items[2].value\r\n\r\n\r\nthis.cell.metadata = {};\r\n\r\nvscode.postMessage({\r\n    type: 'sp_request', \r\n    method: 'GET',\r\n    url: `https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/web/lists/GetByTitle('CES')/items?$filter=FileDirRef eq '/sites/Labelo_Processos/Lists/CES1/${Temperatura}/Temperatura/${canal}'`,\r\n    data: this.TextDocument,\r\n    id: this.cell.id\r\n})\r\ns",
       "metadata": {
-        "output": ""
+        "sp": [
+          {
+            "__metadata": {
+              "id": "7a38507b-099d-44aa-86f9-0da8a655d405",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 13,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": -0.14,
+            "VR0": 0,
+            "ID": 13,
+            "Modified": "2023-08-15T17:39:41Z",
+            "Created": "2023-08-15T17:39:41Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "64469470-83ec-44d4-8206-23669c8d8c78"
+          },
+          {
+            "__metadata": {
+              "id": "f3c4b0e1-397c-4f75-b758-31515be3b328",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 14,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 24.87,
+            "VR0": 25,
+            "ID": 14,
+            "Modified": "2023-08-15T17:39:55Z",
+            "Created": "2023-08-15T17:39:55Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "53c2f069-4325-4367-8cad-2c7ca640c8bb"
+          },
+          {
+            "__metadata": {
+              "id": "fc618c1c-c11f-4988-ac84-b21e4bc47f5d",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 15,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 49.85,
+            "VR0": 50,
+            "ID": 15,
+            "Modified": "2023-08-15T17:40:11Z",
+            "Created": "2023-08-15T17:40:11Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "2cb0183b-80c4-48c6-a15c-b3ca40b872d6"
+          }
+        ],
+        "html": "Requisição realizada com sucesso"
       },
       "title": "Puxar valores para interpolação do Ciclo 4 (Escolher TAG de temperatura e&nbsp; preencher o canal)",
       "icon": "fa fa-play"
@@ -547,7 +1731,7 @@
           "id": "MTY4MDA4NjA3MjAxMDEwMDg4NDk4",
           "type": "file",
           "parentId": "sTY2OTY4NzM3hDcxMjEwMfg666k4",
-          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Templo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Tempo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -559,7 +1743,8 @@
           "id": "MTY5MTQ5MTk0MDcwNjEwMDg4NDk4",
           "type": "input",
           "parentId": "sTY2OTY4NzM3hDcxMjEwMfg666k4",
-          "title": "Observações"
+          "title": "Observações",
+          "value": ""
         },
         {
           "id": "MTY5MTYwOTY4MjQwNjEwMDg4NDk4",
@@ -579,7 +1764,9 @@
         "cicle_time": 171,
         "energy": 0.36125,
         "standard_load": 16.772,
-        "new_load": 26.47
+        "new_load": 26.47,
+        "max_temp_interpolate": 22.33541805949685,
+        "min_temp_interpolate": 21.306477409036386
       }
     },
     {
@@ -587,7 +1774,297 @@
       "type": "ps1",
       "source": "const getCell = (id) => this.TextDocument.cells.find(cell => cell.id === id);\r\nconst Temperatura = getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[3].value\r\nconst canal = getCell('MTY3OTY4NzM3MDcx554wMDg4NDk4').items[2].value\r\n\r\n\r\nthis.cell.metadata = {};\r\n\r\nvscode.postMessage({\r\n    type: 'sp_request', \r\n    method: 'GET',\r\n    url: `https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/web/lists/GetByTitle('CES')/items?$filter=FileDirRef eq '/sites/Labelo_Processos/Lists/CES1/${Temperatura}/Temperatura/${canal}'`,\r\n    data: this.TextDocument,\r\n    id: this.cell.id\r\n})\r\ns",
       "metadata": {
-        "output": ""
+        "sp": [
+          {
+            "__metadata": {
+              "id": "0a02102b-863d-4b97-b1d9-70cefa7f7d42",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(13)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 13,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": -0.14,
+            "VR0": 0,
+            "ID": 13,
+            "Modified": "2023-08-15T17:39:41Z",
+            "Created": "2023-08-15T17:39:41Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "64469470-83ec-44d4-8206-23669c8d8c78"
+          },
+          {
+            "__metadata": {
+              "id": "c274b202-7128-40ca-9160-778655b7ab52",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(14)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 14,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 24.87,
+            "VR0": 25,
+            "ID": 14,
+            "Modified": "2023-08-15T17:39:55Z",
+            "Created": "2023-08-15T17:39:55Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "53c2f069-4325-4367-8cad-2c7ca640c8bb"
+          },
+          {
+            "__metadata": {
+              "id": "5eae1748-4823-4c53-99c2-b43ae5e0b532",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CES1ListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'c3d60718-2912-4fb3-9214-9ac92f120dcb')/Items(15)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 15,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01005A3685692F661F499F94EC6E6B0F3EA1",
+            "Title": "-",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "VR": 49.85,
+            "VR0": 50,
+            "ID": 15,
+            "Modified": "2023-08-15T17:40:11Z",
+            "Created": "2023-08-15T17:40:11Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "2cb0183b-80c4-48c6-a15c-b3ca40b872d6"
+          }
+        ],
+        "html": "Requisição realizada com sucesso"
       },
       "title": "Puxar valores para interpolação do Ciclo 5 (Escolher TAG de temperatura e&nbsp; preencher o canal)",
       "icon": "fa fa-play"
@@ -664,7 +2141,7 @@
           "id": "MTY4MDA4NjQ1NjM0NzEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY3OTY4NzM3MDcx554wMDg4NDk4",
-          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Templo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
+          "source": "\r\nconst parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\nconst excelDate2Js = (excelDate)=> {\r\n    let delta = excelDate - 25569;\r\n    let parsed = delta * 24 * 60 * 60 * 1000;\r\n    return new Date(parsed);\r\n}\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    var flag = rows\r\n      for (let i = 5; i < number_rows; i++) {\r\n        rows[i-5]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[4].split(delimiter);\r\n    flag = headers\r\n    for (let i = 0; i < headers.length; i++) {\r\n      \r\n      headers[i]=flag[i].replace(/['\"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\" \"]+/g, '')\r\n      headers[i]=flag[i].replace(/[\"\\r\"]+/g, '')\r\n      headers[i]=\"D\"+headers[i]\r\n      if(i==0){headers[0]=\"time\"} //dou um nome único para o parâmetro de tempo, já que vamos filtrar a partir dele e pode ter nomes diferentes no arquivo original\r\n    }\r\n    console.log(headers)\r\n  \r\n    const arr = rows.map(function (row) {\r\n      const values = row.split(delimiter);\r\n      const el = headers.reduce(function (object, header, index) {\r\n        if(header==\"time\"){\r\n          let t= excelDate2Js(+values[index].replace(/[\",\"]+/g, '.'))\r\n          object[header] = t.getTime()+(3*3600000)\r\n      }\r\n        else{\r\n          let t = +values[index].replace(/[\",\"]+/g, '.')\r\n          object[header] = t;\r\n        }\r\n        return object;\r\n      }, {});\r\n      return el;\r\n    });\r\n    \r\n    // return the array\r\n    return arr;\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,begin,end,temp,pres,op)=>{\r\n\r\n    var filter = data.filter( function(e){\r\n  \r\n    return e.time>begin&&e.time<end;\r\n  \r\n    }).map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"time\"]=new Date(item.time-(3*3600000))\r\n      conteiner[\"temperature\"]=item[\"D\" + temp]\r\n      conteiner[\"pressure\"]=item[\"D\" + pres]\r\n      \r\n      return conteiner\r\n    })\r\n    \r\n    if(op===\"filtro\"){\r\n      filter= filter\r\n      return filter\r\n    }\r\n    if(op===\"maximo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_temp\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"temperature\"]=item.temperature\r\n      return conteiner[\"temperature\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    if(op===\"maximo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.max(...filter)\r\n    }\r\n    if(op===\"minimo_pres\"){\r\n      filter= filter.map(item=>{\r\n      const conteiner={}\r\n      conteiner[\"pressure\"]=item.pressure\r\n      return conteiner[\"pressure\"]\r\n      })\r\n      return  Math.min(...filter)\r\n    }\r\n    \r\n}\r\n\r\nconst csvToUnit = (str,delimiter) =>{\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[3].split(delimiter)[7].replace(/['\"]+/g, '');\r\n\r\n    return headers\r\n}\r\n\r\nconst HourToMinutes = (time) => {\r\n\r\n  const minutes = ((+time.split(\":\")[0])*60)+(+time.split(\":\")[1])+((+time.split(\":\")[2])/60)\r\n\r\n    return minutes\r\n\r\n}\r\n\r\nconst fixTemperature = (temp) => {\r\n  if(temp>0.17 && temp<24.87){temp = ((25-0)/(24.87-0.17))*(temp-0.17)+0}\r\n  return temp\r\n}\r\n\r\nvar time_begin = new Date(parentCell.items[0].value)\r\ntime_begin = time_begin.getTime();\r\nvar time_end = new Date(parentCell.items[1].value)\r\ntime_end=time_end.getTime();\r\nconst temp = parentCell.items[2].value\r\nconst pres = parentCell.items[3].value\r\nconst water_volume = (parentCell.items[4].value).replace(/[\",\"]+/g, '.')\r\nconst cicle_time = HourToMinutes(parentCell.items[5].value)\r\nconst energy = (+(parentCell.items[7].value).replace(/[\",\"]+/g, '.'))-(+(parentCell.items[6].value).replace(/[\",\"]+/g, '.'))\r\nconst standard_load = (parentCell.items[8].value).replace(/[\",\"]+/g, '.')\r\nconst new_load = (parentCell.items[9].value).replace(/[\",\"]+/g, '.')\r\nlet unit_pres = await csvToUnit(await readFile(parentCell.items[10].value),\";\")\r\n\r\n\r\nlet data = await readFile(parentCell.items[10].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst ciclo = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"filtro\"))\r\nlet ciclo_max_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_temp\"))\r\nlet ciclo_min_temp = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_temp\"))\r\nconst ciclo_max_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"maximo_pres\"))\r\nconst ciclo_min_pres = JSON.stringify(await Filter_Data(data,time_begin,time_end,temp,pres,\"minimo_pres\"))\r\n\r\n\r\n\r\nparentCell.items[12].value=\"Volume de água: \"+water_volume+\"; \"+\"Tempo de ciclo: \"+cicle_time+\"; \"+\"Energia: \"+energy+\"; \"+\"RM: \"+(100*(new_load-standard_load)/standard_load)+\"%;\"\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.max_temp = +ciclo_max_temp;\r\nparentCell.metadata.min_temp = +ciclo_min_temp;\r\nparentCell.metadata.max_pres = +ciclo_max_pres;\r\nparentCell.metadata.min_pres = +ciclo_min_pres;\r\nparentCell.metadata.water_volume = +water_volume;\r\nparentCell.metadata.cicle_time = cicle_time;\r\nparentCell.metadata.energy = energy;\r\nparentCell.metadata.standard_load = +standard_load;\r\nparentCell.metadata.new_load = +new_load;\r\n\r\n\r\n",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -677,7 +2154,8 @@
           "id": "MTY5MTQ5MTkzNzY1NzEwMDg4NDk4",
           "type": "input",
           "parentId": "MTY3OTY4NzM3MDcx554wMDg4NDk4",
-          "title": "Observações"
+          "title": "Observações",
+          "value": ""
         },
         {
           "id": "MTY5MTYwOTY4NTMzMTEwMDg4NDk4",
@@ -697,7 +2175,9 @@
         "cicle_time": 171,
         "energy": 0.35813,
         "standard_load": 16.772,
-        "new_load": 26.475
+        "new_load": 26.475,
+        "max_temp_interpolate": 22.38863563886186,
+        "min_temp_interpolate": 21.54271894481074
       },
       "": ""
     },
@@ -719,7 +2199,8 @@
           "id": "MTY5MTQzODM2MzgwNjEwMDg4NDk4",
           "type": "inputDate",
           "parentId": "MTY5MTQzODE4ODMwNTEwMDg4NDk4",
-          "title": "Tempo de Início - Ciclo Extra"
+          "title": "Tempo de Início - Ciclo Extra",
+          "value": ""
         },
         {
           "id": "MTY5MTQzODM2ODAyNjEwMDg4NDk4",
@@ -784,7 +2265,8 @@
           "metadata": {
             "output": ""
           },
-          "title": "Arquivo de leituras"
+          "title": "Arquivo de leituras",
+          "alreadyExecuted": true
         },
         {
           "id": "MTY5MTQzODQyNDAyMzEwMDg4NDk4",
@@ -805,7 +2287,7 @@
         "sp": [
           {
             "__metadata": {
-              "id": "1e034841-9cfe-4c1b-adba-81b4ab207dcc",
+              "id": "e9be5fcb-94dc-47d8-91b8-c49c31342ae1",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(3)",
               "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
@@ -906,7 +2388,7 @@
           },
           {
             "__metadata": {
-              "id": "4db99d54-212c-47bf-b7c3-cb1f360e4609",
+              "id": "699910f4-acf6-43f2-879b-4cd228084398",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)",
               "etag": "\"4\"",
               "type": "SP.Data.CESListItem"
@@ -1007,7 +2489,7 @@
           },
           {
             "__metadata": {
-              "id": "571c630f-8a8e-4ff9-975d-6c62f2d22dab",
+              "id": "616cff2a-3783-49fb-be09-3b21c71f2c1f",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(5)",
               "etag": "\"3\"",
               "type": "SP.Data.CESListItem"
@@ -1108,7 +2590,7 @@
           },
           {
             "__metadata": {
-              "id": "658b792e-95b8-4c47-8d3d-8b7ad66b674b",
+              "id": "6d7083f9-3893-4640-9877-ebdcb13c1e44",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(6)",
               "etag": "\"3\"",
               "type": "SP.Data.CESListItem"
@@ -1209,7 +2691,7 @@
           },
           {
             "__metadata": {
-              "id": "524e59cc-f5a6-4afa-81a4-c11f5833065a",
+              "id": "5d0f9778-4d8e-4c1f-a3cf-dd934cad60f3",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(8)",
               "etag": "\"3\"",
               "type": "SP.Data.CESListItem"
@@ -1310,7 +2792,7 @@
           },
           {
             "__metadata": {
-              "id": "f142be1a-7822-486f-9b50-da0fb6e13086",
+              "id": "f96d402e-6f23-4ad8-8ad9-7bbd6098761a",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(9)",
               "etag": "\"6\"",
               "type": "SP.Data.CESListItem"
@@ -1411,7 +2893,7 @@
           },
           {
             "__metadata": {
-              "id": "250963fc-dc2d-443d-983a-f9b2730e00c2",
+              "id": "a29d5724-b557-4bb4-aa04-5147712529f8",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(10)",
               "etag": "\"7\"",
               "type": "SP.Data.CESListItem"
@@ -1512,7 +2994,7 @@
           },
           {
             "__metadata": {
-              "id": "02f0f50e-e6aa-4007-bab2-69df09443030",
+              "id": "5ce9128e-9b13-4e6a-bf64-1095211340dc",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(11)",
               "etag": "\"3\"",
               "type": "SP.Data.CESListItem"
@@ -1613,7 +3095,7 @@
           },
           {
             "__metadata": {
-              "id": "675b9400-4b7d-4bc3-8afc-6e723dd2bd45",
+              "id": "c9af2db7-7160-4018-8e03-b62dbd7bdc84",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(12)",
               "etag": "\"3\"",
               "type": "SP.Data.CESListItem"
@@ -1714,7 +3196,7 @@
           },
           {
             "__metadata": {
-              "id": "e3f7df1b-dd52-477f-9b4a-5273389bc91c",
+              "id": "8405d2ae-652f-4e13-9169-fd76a8075548",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(13)",
               "etag": "\"3\"",
               "type": "SP.Data.CESListItem"
@@ -1815,7 +3297,7 @@
           },
           {
             "__metadata": {
-              "id": "5abea1c0-e7d2-4841-9025-05b8d2e5f164",
+              "id": "4006b525-da5f-4481-82bd-4493a7bc9d63",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(14)",
               "etag": "\"3\"",
               "type": "SP.Data.CESListItem"
@@ -1916,7 +3398,7 @@
           },
           {
             "__metadata": {
-              "id": "1b1be469-9cb5-4a16-859d-dd0521c32d4c",
+              "id": "c89412db-a8a7-4efb-9d32-084d86d94fa1",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(15)",
               "etag": "\"3\"",
               "type": "SP.Data.CESListItem"
@@ -2017,7 +3499,7 @@
           },
           {
             "__metadata": {
-              "id": "e6380ba0-e719-4c53-a85f-2e4f4e28f052",
+              "id": "a4227c86-b1cb-4730-bea4-e4ee59d8fd56",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(16)",
               "etag": "\"7\"",
               "type": "SP.Data.CESListItem"
@@ -2118,7 +3600,7 @@
           },
           {
             "__metadata": {
-              "id": "ace82c32-e656-43ef-871c-14d8b9095fca",
+              "id": "125fab40-9e2d-452f-823b-1de643740fda",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(17)",
               "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
@@ -2219,7 +3701,7 @@
           },
           {
             "__metadata": {
-              "id": "85257c02-9c7f-4d6d-a6c6-46b377b8599c",
+              "id": "a2342b53-f3f1-400a-a02b-d2db7dc5a153",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(18)",
               "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
@@ -2320,7 +3802,7 @@
           },
           {
             "__metadata": {
-              "id": "5a74dd02-36f9-46a2-9474-ca802c31da94",
+              "id": "55f7f71e-9ed0-4baa-9931-788bc0a21e88",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(19)",
               "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
@@ -2421,7 +3903,7 @@
           },
           {
             "__metadata": {
-              "id": "56e4d60b-bf35-41d6-b0bf-77d0adf1d08c",
+              "id": "1a578a42-9833-43d0-8d6c-59d4feb778b5",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(20)",
               "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
@@ -2522,7 +4004,7 @@
           },
           {
             "__metadata": {
-              "id": "dea761bf-f65e-4f7e-956e-61bff4a2a0c1",
+              "id": "0cd47717-b371-499c-a638-f8545a5a4f22",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(21)",
               "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
@@ -2623,7 +4105,7 @@
           },
           {
             "__metadata": {
-              "id": "7b756166-9ff0-4e0e-beae-dff2025d3953",
+              "id": "1ab9c889-d73f-4c1c-8fb4-a365d7aa7ce2",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(22)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -2724,7 +4206,7 @@
           },
           {
             "__metadata": {
-              "id": "8fc9461e-5090-4e20-b683-12424e696b43",
+              "id": "f54f2aba-49b7-4059-8dfc-c7bcde298a3f",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(23)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -2825,7 +4307,7 @@
           },
           {
             "__metadata": {
-              "id": "1d81b8fc-28da-4c85-8dda-7779ee274146",
+              "id": "60a69e4b-7f3d-4f3b-8748-4c207d7e4e0d",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(24)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -2926,7 +4408,7 @@
           },
           {
             "__metadata": {
-              "id": "ba60cc52-aed8-4a24-ad01-f99882d7e1a1",
+              "id": "d2fe38c3-d582-4ade-a96e-f8865b06c596",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(25)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -3027,7 +4509,7 @@
           },
           {
             "__metadata": {
-              "id": "5b45e44d-1b17-4768-a4fa-dc6c00724a2a",
+              "id": "8874c570-9770-4f90-9081-555640e90123",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(26)",
               "etag": "\"3\"",
               "type": "SP.Data.CESListItem"
@@ -3128,9 +4610,9 @@
           },
           {
             "__metadata": {
-              "id": "583bd3c1-abc2-4ee0-82eb-9dd44a39cdba",
+              "id": "82f6ef39-cb16-4983-897c-2fea7c8b0b65",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(27)",
-              "etag": "\"1\"",
+              "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
             },
             "FirstUniqueAncestorSecurableObject": {
@@ -3214,24 +4696,24 @@
             "Grandeza": "Energia",
             "Resolu_x00e7__x00e3_o": 0.00063,
             "Crit_x002e_Aceitacao_x0028_perce": 0,
-            "Criterio_Aceitacao_x0028_percetu": 0.0001,
+            "Criterio_Aceitacao_x0028_percetu": 0.01,
             "criteriovalorabsoluto": 0,
             "IncertezadeMedicao": null,
             "ErroMaximo_x0028_Pa_x0029_": null,
             "ID": 27,
-            "Modified": "2023-05-30T14:16:23Z",
+            "Modified": "2023-09-12T18:52:29Z",
             "Created": "2023-05-30T14:16:23Z",
             "AuthorId": 38,
-            "EditorId": 38,
-            "OData__UIVersionString": "1.0",
+            "EditorId": 40,
+            "OData__UIVersionString": "2.0",
             "Attachments": false,
             "GUID": "55ed85b1-24fa-4d52-8f3c-966141faa011"
           },
           {
             "__metadata": {
-              "id": "a1eb9de8-04c9-415f-84bd-0a9d02609f42",
+              "id": "d78be26a-d28f-4ad9-82b7-f3fb1bb7f9fd",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(28)",
-              "etag": "\"1\"",
+              "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
             },
             "FirstUniqueAncestorSecurableObject": {
@@ -3315,24 +4797,24 @@
             "Grandeza": "Energia",
             "Resolu_x00e7__x00e3_o": 0.00063,
             "Crit_x002e_Aceitacao_x0028_perce": 0,
-            "Criterio_Aceitacao_x0028_percetu": 0.0001,
+            "Criterio_Aceitacao_x0028_percetu": 0.01,
             "criteriovalorabsoluto": 0,
             "IncertezadeMedicao": null,
             "ErroMaximo_x0028_Pa_x0029_": null,
             "ID": 28,
-            "Modified": "2023-05-30T14:34:47Z",
+            "Modified": "2023-09-12T18:52:42Z",
             "Created": "2023-05-30T14:34:47Z",
             "AuthorId": 38,
-            "EditorId": 38,
-            "OData__UIVersionString": "1.0",
+            "EditorId": 40,
+            "OData__UIVersionString": "2.0",
             "Attachments": false,
             "GUID": "4c29af97-6e11-494f-8aec-542f33ae7e09"
           },
           {
             "__metadata": {
-              "id": "a694aac7-bb81-4891-be7f-351649b7f267",
+              "id": "ce59f570-83bb-4452-b6f4-be4b8e8faf0f",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(29)",
-              "etag": "\"1\"",
+              "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
             },
             "FirstUniqueAncestorSecurableObject": {
@@ -3416,24 +4898,24 @@
             "Grandeza": "Energia",
             "Resolu_x00e7__x00e3_o": 0.00063,
             "Crit_x002e_Aceitacao_x0028_perce": 0,
-            "Criterio_Aceitacao_x0028_percetu": 0.0001,
+            "Criterio_Aceitacao_x0028_percetu": 0.01,
             "criteriovalorabsoluto": 0,
             "IncertezadeMedicao": null,
             "ErroMaximo_x0028_Pa_x0029_": null,
             "ID": 29,
-            "Modified": "2023-05-30T14:35:10Z",
+            "Modified": "2023-09-12T18:52:56Z",
             "Created": "2023-05-30T14:35:10Z",
             "AuthorId": 38,
-            "EditorId": 38,
-            "OData__UIVersionString": "1.0",
+            "EditorId": 40,
+            "OData__UIVersionString": "2.0",
             "Attachments": false,
             "GUID": "2c100a2a-4875-45d4-ab44-9167fa56d7ce"
           },
           {
             "__metadata": {
-              "id": "571072d5-0c3e-42d9-a93f-271f7ee52521",
+              "id": "bfd9bbd8-679d-449a-b12b-b44ebb8be1d4",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(30)",
-              "etag": "\"1\"",
+              "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
             },
             "FirstUniqueAncestorSecurableObject": {
@@ -3517,22 +4999,22 @@
             "Grandeza": "Energia",
             "Resolu_x00e7__x00e3_o": 0.00063,
             "Crit_x002e_Aceitacao_x0028_perce": 0,
-            "Criterio_Aceitacao_x0028_percetu": 0.0001,
+            "Criterio_Aceitacao_x0028_percetu": 0.01,
             "criteriovalorabsoluto": 0,
             "IncertezadeMedicao": null,
             "ErroMaximo_x0028_Pa_x0029_": null,
             "ID": 30,
-            "Modified": "2023-05-30T14:38:33Z",
+            "Modified": "2023-09-12T18:53:10Z",
             "Created": "2023-05-30T14:38:33Z",
             "AuthorId": 38,
-            "EditorId": 38,
-            "OData__UIVersionString": "1.0",
+            "EditorId": 40,
+            "OData__UIVersionString": "2.0",
             "Attachments": false,
             "GUID": "10805dcd-11b4-4cac-9778-b48e19979532"
           },
           {
             "__metadata": {
-              "id": "f8661094-0bd9-4314-b7b0-f79e14d1365d",
+              "id": "82992d54-9bdd-4f20-815a-ec1075dda32c",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -3633,7 +5115,7 @@
           },
           {
             "__metadata": {
-              "id": "5c51dd03-2d12-4b81-b805-a54c3989318e",
+              "id": "078c87b5-2c35-4b8c-80c7-ac7a7b8311af",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -3734,7 +5216,7 @@
           },
           {
             "__metadata": {
-              "id": "fd654554-40c3-4d98-987d-3064394c780d",
+              "id": "e3d20e21-3648-4c2e-bab7-fdc98c80f6be",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -3835,7 +5317,7 @@
           },
           {
             "__metadata": {
-              "id": "38303d68-3720-42ea-9dc0-1d29b6d38bdd",
+              "id": "83f465c0-e662-419b-a3dd-2e418ad77829",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(34)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -3936,7 +5418,7 @@
           },
           {
             "__metadata": {
-              "id": "837a50e7-815a-46d6-a5f2-717ad4ca727c",
+              "id": "8f9182c0-8976-4cae-ab9d-948d017f0c9f",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(35)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -4037,7 +5519,7 @@
           },
           {
             "__metadata": {
-              "id": "031792d0-18e8-4c2f-b6ef-ffd60f5a7bc8",
+              "id": "1d7007cd-16ad-4782-b930-ee96cbf3a240",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(36)",
               "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
@@ -4138,7 +5620,7 @@
           },
           {
             "__metadata": {
-              "id": "4a83a348-76b0-4f36-bda0-2a43ae654baf",
+              "id": "c947d777-826f-4733-b116-008fc8e5b5e6",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(37)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -4239,7 +5721,7 @@
           },
           {
             "__metadata": {
-              "id": "d3dbbc44-133a-427c-b0bb-e1751cdccafb",
+              "id": "a6a4a044-7658-4651-add5-e13b53f35814",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(46)",
               "etag": "\"5\"",
               "type": "SP.Data.CESListItem"
@@ -4340,9 +5822,9 @@
           },
           {
             "__metadata": {
-              "id": "d38f04cc-b493-4b22-a130-5a3f45c82c96",
+              "id": "d2810535-29a3-4245-b47b-6bb200f33056",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(47)",
-              "etag": "\"1\"",
+              "etag": "\"2\"",
               "type": "SP.Data.CESListItem"
             },
             "FirstUniqueAncestorSecurableObject": {
@@ -4426,22 +5908,22 @@
             "Grandeza": "Vazão",
             "Resolu_x00e7__x00e3_o": 0.001,
             "Crit_x002e_Aceitacao_x0028_perce": 0,
-            "Criterio_Aceitacao_x0028_percetu": 0.0001,
+            "Criterio_Aceitacao_x0028_percetu": 0.01,
             "criteriovalorabsoluto": 0,
             "IncertezadeMedicao": null,
             "ErroMaximo_x0028_Pa_x0029_": null,
             "ID": 47,
-            "Modified": "2023-08-07T20:18:59Z",
+            "Modified": "2023-08-23T12:29:38Z",
             "Created": "2023-08-07T20:18:59Z",
             "AuthorId": 40,
             "EditorId": 40,
-            "OData__UIVersionString": "1.0",
+            "OData__UIVersionString": "2.0",
             "Attachments": false,
             "GUID": "d15bea40-e273-4ae1-9d79-ca544ac7c9e0"
           },
           {
             "__metadata": {
-              "id": "14361089-9083-4905-8efb-49ec9f99fe38",
+              "id": "ad74de18-dfb8-4667-9012-4af740e8c176",
               "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(48)",
               "etag": "\"1\"",
               "type": "SP.Data.CESListItem"
@@ -4551,7 +6033,7 @@
   "report_template": {
     "type": "code",
     "id": "report_template",
-    "source": "const getCell = (id) => register.cells.find((c) => c.id === id);\r\nconst refInstruments = getCell('MTY4MzgyNzg3NzMxMjEwMDg2NTE5').metadata.sp;\r\nif (!refInstruments) {\r\n  return \"<span class=\\\"error\\\"> Não foi possível encontrar os dados dos instrumentos utilizados</span>\"\r\n}\r\n\r\nconst erro_faixa = (id,ciclo) =>{\r\n\r\nlet obs=\"Erro de faixa: \"\r\n\r\nif((+ciclo.metadata.max_temp_interpolate<20) || (+ciclo.metadata.max_temp_interpolate>24)){\r\n  obs = obs+\" Temperatura Máxima (\"+ciclo.metadata.max_temp_interpolate+\").\"\r\n  \r\n}\r\nif((+ciclo.metadata.min_temp_interpolate<20) || (+ciclo.metadata.min_temp_interpolate>24)){\r\n  obs = obs+\" Temperatura Mínima (\"+ciclo.metadata.min_temp_interpolate+\").\"\r\n  \r\n}\r\nif((+ciclo.metadata.max_pres<190) || (+ciclo.metadata.max_pres>290)){\r\n  obs = obs+\" Pressão Máxima (\"+ciclo.metadata.max_pres+\").\"\r\n \r\n}\r\nif((+ciclo.metadata.min_pres<190) || (+ciclo.metadata.min_pres>290)){\r\n  obs = obs+\" Pressão Mínima (\"+ciclo.metadata.min_pres+\").\"\r\n   \r\n}\r\nif(obs.length>15){getCell(id).items[11].value =obs}\r\nelse{getCell(id).items[11].value=\"\"}\r\n\r\n}\r\n\r\n\r\nconst temp_ref_ciclo1 = getCell('MTY5MjEyMjg4NDQ2NjEwMDg4NDk4').metadata.sp;\r\nconst temp_ref_ciclo2 = getCell('MTY5MjI3Mzg0MTY3ODEwMDg4NDk4').metadata.sp;\r\nconst temp_ref_ciclo3 = getCell('MTY5MjI3NDM0NzcyMzEwMDg4NDk4').metadata.sp;\r\nconst temp_ref_ciclo4 = getCell('MTY5MjI3NDY4NTIwMzEwMDg4NDk4').metadata.sp;\r\nconst temp_ref_ciclo5 = getCell('MTY5MjI3NDgyMzE4MDEwMDg4NDk4').metadata.sp;\r\n\r\n\r\nconst list_CES = (ref) =>{\r\nlet arrey = [];\r\nlet obj = {}\r\nfor (let i = 0; i < ref.length; i++) {\r\nobj = {}\r\nobj.VR=ref[i].VR0\r\nobj.MM=ref[i].VR\r\narrey[i]=obj\r\n}\r\nreturn arrey\r\n}\r\n\r\n\r\nlet Ciclo1_CES=[]\r\nlet Ciclo2_CES=[]\r\nlet Ciclo3_CES=[]\r\nlet Ciclo4_CES=[]\r\nlet Ciclo5_CES=[]\r\n\r\nif(temp_ref_ciclo1){Ciclo1_CES = list_CES(temp_ref_ciclo1)}\r\nif(temp_ref_ciclo2){Ciclo2_CES = list_CES(temp_ref_ciclo2)}\r\nif(temp_ref_ciclo3){Ciclo3_CES = list_CES(temp_ref_ciclo3)}\r\nif(temp_ref_ciclo4){Ciclo4_CES = list_CES(temp_ref_ciclo4)}\r\nif(temp_ref_ciclo5){Ciclo5_CES = list_CES(temp_ref_ciclo5)}\r\n\r\n\r\n\r\nlet ciclos =\r\n  [\r\n    \"MTY3OTY4NzM3MDcxMjEwMDg4NDk4\",\r\n    \"NTY3OT666zM3MDcxMjEgMDg4NDk4\",\r\n    \"GTG3OTY4NzM3D6cxMjEwMDg4NDk5\",\r\n    \"sTY2OTY4NzM3hDcxMjEwMfg666k4\",\r\n    \"MTY3OTY4NzM3MDcx554wMDg4NDk4\",\r\n  ].map((id) => {\r\n    const cell = getCell(id);\r\n    if (!cell.items[0].value) return null;\r\n    const data = new Date(cell.items[0].value);\r\n    data.setHours(3, 0, 0);\r\n    const DataRelatorio = getGeneral()?.Data;\r\n    if (DataRelatorio) {\r\n      DataRelatorio.Inicial = DataRelatorio.Inicial || data.toJSON();\r\n      DataRelatorio.Final = DataRelatorio.Final || data.toJSON();\r\n      if (data) {\r\n        if (data.getTime() < (new Date(DataRelatorio.Inicial).getTime())) {\r\n          DataRelatorio.Inicial = data.toJSON();\r\n        }\r\n        if (data.getTime() > (new Date(DataRelatorio.Final).getTime())) {\r\n          DataRelatorio.Final = data.toJSON();\r\n        }\r\n      }\r\n\r\n    }\r\n    return cell;\r\n  });\r\n\r\n  // só pego os valores das interpolações em variáveis pra garantir de não dar erro durante o uso da função, estavam dando valores estranhos quando eu mandava o valor pro metadata direto\r\n  let interpolation_temp_max_1 = IM.interpolation(ciclos[0].metadata.max_temp,Ciclo1_CES)\r\n  let interpolation_temp_min_1 = IM.interpolation(ciclos[0].metadata.min_temp,Ciclo1_CES)\r\n  let interpolation_temp_max_2 = IM.interpolation(ciclos[1].metadata.max_temp,Ciclo2_CES)\r\n  let interpolation_temp_min_2 = IM.interpolation(ciclos[1].metadata.min_temp,Ciclo2_CES)\r\n  let interpolation_temp_max_3 = IM.interpolation(ciclos[2].metadata.max_temp,Ciclo3_CES)\r\n  let interpolation_temp_min_3 = IM.interpolation(ciclos[2].metadata.min_temp,Ciclo3_CES)\r\n  let interpolation_temp_max_4 = IM.interpolation(ciclos[3].metadata.max_temp,Ciclo4_CES)\r\n  let interpolation_temp_min_4 = IM.interpolation(ciclos[3].metadata.min_temp,Ciclo4_CES)\r\n  let interpolation_temp_max_5 = IM.interpolation(ciclos[4].metadata.max_temp,Ciclo5_CES)\r\n  let interpolation_temp_min_5 = IM.interpolation(ciclos[4].metadata.min_temp,Ciclo5_CES)\r\n\r\n  ciclos[0].metadata.max_temp_interpolate = interpolation_temp_max_1\r\n  ciclos[0].metadata.min_temp_interpolate = interpolation_temp_min_1\r\n  ciclos[1].metadata.max_temp_interpolate = interpolation_temp_max_2\r\n  ciclos[1].metadata.min_temp_interpolate = interpolation_temp_min_2\r\n  ciclos[2].metadata.max_temp_interpolate = interpolation_temp_max_3\r\n  ciclos[2].metadata.min_temp_interpolate = interpolation_temp_min_3\r\n  ciclos[3].metadata.max_temp_interpolate = interpolation_temp_max_4\r\n  ciclos[3].metadata.min_temp_interpolate = interpolation_temp_min_4\r\n  ciclos[4].metadata.max_temp_interpolate = interpolation_temp_max_5\r\n  ciclos[4].metadata.min_temp_interpolate = interpolation_temp_min_5\r\n\r\n  //função para determinar a faixa\r\n  erro_faixa(\"MTY3OTY4NzM3MDcxMjEwMDg4NDk4\",ciclos[0])\r\n  erro_faixa(\"NTY3OT666zM3MDcxMjEgMDg4NDk4\",ciclos[1])\r\n  erro_faixa(\"GTG3OTY4NzM3D6cxMjEwMDg4NDk5\",ciclos[2])\r\n  erro_faixa(\"sTY2OTY4NzM3hDcxMjEwMfg666k4\",ciclos[3])\r\n  erro_faixa(\"MTY3OTY4NzM3MDcx554wMDg4NDk4\",ciclos[4])\r\n\r\n\r\nconst averages = {\r\n  min_temp: ciclos.reduce((acc, c) => acc + c.metadata.min_temp, 0) / ciclos.length,\r\n  max_temp: ciclos.reduce((acc, c) => acc + c.metadata.max_temp, 0) / ciclos.length,\r\n  min_pres: ciclos.reduce((acc, c) => acc + c.metadata.min_pres, 0) / ciclos.length,\r\n  max_pres: ciclos.reduce((acc, c) => acc + c.metadata.max_pres, 0) / ciclos.length,\r\n  cicle_time: ciclos.reduce((acc, c) => acc + c.metadata.cicle_time, 0) / ciclos.length,\r\n  water_volume: ciclos.reduce((acc, c) => acc + c.metadata.water_volume, 0) / ciclos.length,\r\n  energy: ciclos.reduce((acc, c) => acc + c.metadata.energy, 0) / ciclos.length,\r\n  standard_load: ciclos.reduce((acc, c) => acc + c.metadata.standard_load, 0) / ciclos.length,\r\n  new_load: ciclos.reduce((acc, c) => acc + c.metadata.new_load, 0) / ciclos.length,\r\n}\r\n\r\nconst RM = ciclos.map((c) => (c.metadata.new_load - averages.standard_load) / averages.standard_load);\r\naverages.RM = 100 * RM.reduce((acc, c) => acc + c, 0) / RM.length;\r\n\r\n\r\n\r\nconst getInstrument = (TAG, faixa, value, grandeza) => {\r\n  const ref = refInstruments.find((i) => i.Title === TAG && grandeza === i.Grandeza)\r\n  const obj = {\r\n    TAG: TAG,\r\n    Resolucao: ref.Resolu_x00e7__x00e3_o,\r\n    criterio_percentual_leitura: ref.Criterio_Aceitacao_x0028_percetu,\r\n    criterio_absoluto: ref.criteriovalorabsoluto,\r\n    criterio_percentual_faixa: ref.Crit_x002e_Aceitacao_x0028_perce\r\n  }\r\n\r\n  obj.Total = obj.criterio_absoluto + obj.criterio_percentual_faixa * (faixa) + obj.criterio_percentual_leitura * (value)\r\n  return obj\r\n}\r\n\r\nconst balanca = getInstrument(\r\n  getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[2].value,\r\n  0, averages.new_load, 'Peso')\r\n\r\nconst volume = getInstrument(\r\n  getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[6].value,\r\n  0, averages.water_volume, 'Vazão')\r\n\r\n\r\nconst energy = getInstrument(\r\n  getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[4].value,\r\n  0, averages.energy, 'Energia')\r\n\r\nconst time = getInstrument(\r\n  getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[5].value,\r\n  0, averages.cicle_time, 'Tempo')\r\n\r\n\r\n\r\nconst contributes_eficiencia_centrifugacao = [\r\n  {\r\n    value: balanca.Total,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Critério de aceitação - Plano de calibração - UMP1\",\r\n    cs: 1 / averages.standard_load,\r\n    v_eff: 1e5\r\n  },\r\n  {\r\n    value: (balanca.Resolucao) / 2,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Resolução - UMP1\",\r\n    cs: 1 / averages.standard_load,\r\n    v_eff: 1e5\r\n  },\r\n  {\r\n    value: balanca.Total,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Critério de aceitação - Plano de calibração - UMP2\",\r\n    cs: (-1 / averages.standard_load) + ((- ((averages.new_load) - averages.standard_load))) / (averages.standard_load * averages.standard_load),\r\n    v_eff: 1e5\r\n  },\r\n  {\r\n    value: balanca.Resolucao / 2,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Resolução - UMP2\",\r\n    cs: (-1 / averages.standard_load) + ((- ((averages.new_load) - averages.standard_load))) / (averages.standard_load * averages.standard_load),\r\n    v_eff: 1e5\r\n  }\r\n]\r\n\r\nconst contributes_Consumo_de_agua = [\r\n  {\r\n    value: volume.Total,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Critério de aceitação - Plano de calibração\",\r\n    cs: 1,\r\n    v_eff: 1e5\r\n  },\r\n  {\r\n    value: (volume.Resolucao) / 2,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Resolução\",\r\n    cs: 1,\r\n    v_eff: 1e5\r\n  },\r\n]\r\n\r\nconst contributes_energy = [\r\n  {\r\n    value: energy.Total,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Critério de aceitação - Plano de calibração\",\r\n    cs: 1,\r\n    v_eff: 1e5\r\n  },\r\n  {\r\n    value: energy.Resolucao / 2,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Resolução\",\r\n    cs: 1,\r\n    v_eff: 1e5\r\n  }\r\n]\r\n\r\nconst contributes_tempo = [\r\n  {\r\n    value: time.Total,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Critério de aceitação - Plano de calibração\",\r\n    cs: 1,\r\n    v_eff: 1e5\r\n  },\r\n  {\r\n    value: time.Resolucao / 2,\r\n    divisor: Math.sqrt(3),\r\n    name: \"Resolução\",\r\n    cs: 1,\r\n    v_eff: 1e5\r\n  }\r\n]\r\n\r\nregister.metadata.IM_Contributes = {\r\n  contributes_eficiencia_centrifugacao,\r\n  contributes_Consumo_de_agua,\r\n  contributes_energy,\r\n  contributes_tempo\r\n}\r\n\r\n\r\nconst IM_Values = {\r\n  RM: IM.calculate([...contributes_eficiencia_centrifugacao,\r\n  {\r\n    value: IM.standardDeviation(RM),\r\n    cs: 1,\r\n    name: 'Desvio padrão',\r\n    divisor: Math.sqrt(RM.length),\r\n    v_eff: RM.length - 1\r\n  }],0.9545, 2),\r\n  Water_volume: IM.calculate([...contributes_Consumo_de_agua,\r\n  {\r\n    value: IM.standardDeviation(ciclos.map((c) => c.metadata.water_volume)),\r\n    cs: 1,\r\n    name: 'Desvio padrão',\r\n    divisor: Math.sqrt(ciclos.length),\r\n    v_eff: ciclos.length - 1\r\n  }\r\n  ]),\r\n  Energy: IM.calculate([...contributes_energy,\r\n  {\r\n    value: IM.standardDeviation(ciclos.map((c) => c.metadata.energy)),\r\n    cs: 1,\r\n    name: 'Desvio padrão',\r\n    divisor: Math.sqrt(ciclos.length),\r\n    v_eff: ciclos.length - 1\r\n  }\r\n  ]),\r\n  Time: IM.calculate([...contributes_tempo,\r\n  {\r\n    value: IM.standardDeviation(ciclos.map((c) => c.metadata.cicle_time)).toString(),\r\n    cs: 1,\r\n    name: 'Desvio padrão',\r\n    divisor: Math.sqrt(ciclos.length),\r\n    v_eff: ciclos.length - 1\r\n  }\r\n  ])\r\n}\r\nregister.metadata.IM_Values = IM_Values\r\nreturn `\r\n<h1 class=\"title\">Eficiência de extração de água:</h1>\r\n<table>\r\n  <tr>\r\n    <th>Média dos valores medidos</th>\r\n    <th>IM</th>\r\n    <th>k</th>\r\n  </tr>\r\n  <tr>\r\n    <td>${averages.RM.toFixed(IM_Values.RM.numberOfDecimals).replace(\".\", \",\")}%</td>\r\n    <td>${IM_Values.RM.u.replace(\".\", \",\")}%</td>\r\n    <td>${IM_Values.RM.k.toFixed(2).replace(\".\", \",\")}</td>\r\n</tr>\r\n<caption>Eficiência de extração de água</caption>\r\n</table>\r\n\r\n<br>\r\n<h1 class=\"title\">Consumo de água, energia elétrica e tempo de programa:</h1>\r\n<table>\r\n  <tr>\r\n    <th>Média dos valores medidos (L)</th>\r\n    <th>IM (L)</th>\r\n    <th>k</th>\r\n  </tr>\r\n  <tr>\r\n    <td>${averages.water_volume\r\n    .toFixed(IM_Values.Water_volume.numberOfDecimals)\r\n    .replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Water_volume.u.replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Water_volume.k.toFixed(2\r\n    ).replace(\".\", \",\")}</td>\r\n</tr>\r\n<caption>Consumo de água</caption>\r\n</table>\r\n\r\n<br>\r\n\r\n<table>\r\n  <tr>\r\n    <th>Média dos valores medidos (kWh/ciclo)</th>\r\n    <th>IM (kWh/ciclo)</th>\r\n    <th>k</th>\r\n  </tr>\r\n  <tr>\r\n    <td>${averages.energy\r\n    .toFixed(IM_Values.Energy.numberOfDecimals)\r\n    .replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Energy.u.replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Energy.k.toFixed(\r\n      2\r\n    ).replace(\".\", \",\")}</td>\r\n</tr>\r\n<caption>Energia</caption>\r\n</table>\r\n\r\n<br>\r\n\r\n<table>\r\n  <tr>\r\n    <th>Média dos valores medidos (min)</th>\r\n    <th>IM (min)</th>\r\n    <th>k</th>\r\n  </tr>\r\n  <tr>\r\n    <td>${averages.cicle_time\r\n    .toFixed(IM_Values.Time.numberOfDecimals)\r\n    .replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Time.u.replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Time.k.toFixed(\r\n      2\r\n    ).replace(\".\", \",\")}</td>\r\n</tr>\r\n<caption>Tempo de programa</caption>\r\n</table>\r\n`;\r\n",
+    "source": "const getCell = (id) => register.cells.find((c) => c.id === id);\r\nconst refInstruments = getCell('MTY4MzgyNzg3NzMxMjEwMDg2NTE5').metadata.sp;\r\nif (!refInstruments) {\r\n  return \"<span class=\\\"error\\\"> Não foi possível encontrar os dados dos instrumentos utilizados</span>\"\r\n}\r\n\r\nconst erro_faixa = (id,ciclo) =>{\r\n\r\nlet obs=\"Erro de faixa: \"\r\n\r\nif((+ciclo.metadata.max_temp_interpolate<20) || (+ciclo.metadata.max_temp_interpolate>24)){\r\n  obs = obs+\" Temperatura Máxima (\"+ciclo.metadata.max_temp_interpolate+\").\"\r\n  \r\n}\r\nif((+ciclo.metadata.min_temp_interpolate<20) || (+ciclo.metadata.min_temp_interpolate>24)){\r\n  obs = obs+\" Temperatura Mínima (\"+ciclo.metadata.min_temp_interpolate+\").\"\r\n  \r\n}\r\nif((+ciclo.metadata.max_pres<190) || (+ciclo.metadata.max_pres>290)){\r\n  obs = obs+\" Pressão Máxima (\"+ciclo.metadata.max_pres+\").\"\r\n \r\n}\r\nif((+ciclo.metadata.min_pres<190) || (+ciclo.metadata.min_pres>290)){\r\n  obs = obs+\" Pressão Mínima (\"+ciclo.metadata.min_pres+\").\"\r\n   \r\n}\r\nif(obs.length>15){getCell(id).items[11].value =obs}\r\nelse{getCell(id).items[11].value=\"\"}\r\n\r\n}\r\n\r\n\r\nconst temp_ref_ciclo1 = getCell('MTY5MjEyMjg4NDQ2NjEwMDg4NDk4').metadata.sp;\r\nconst temp_ref_ciclo2 = getCell('MTY5MjI3Mzg0MTY3ODEwMDg4NDk4').metadata.sp;\r\nconst temp_ref_ciclo3 = getCell('MTY5MjI3NDM0NzcyMzEwMDg4NDk4').metadata.sp;\r\nconst temp_ref_ciclo4 = getCell('MTY5MjI3NDY4NTIwMzEwMDg4NDk4').metadata.sp;\r\nconst temp_ref_ciclo5 = getCell('MTY5MjI3NDgyMzE4MDEwMDg4NDk4').metadata.sp;\r\n\r\n\r\nconst list_CES = (ref) =>{\r\nlet arrey = [];\r\nlet obj = {}\r\nfor (let i = 0; i < ref.length; i++) {\r\nobj = {}\r\nobj.VR=ref[i].VR0\r\nobj.MM=ref[i].VR\r\narrey[i]=obj\r\n}\r\nreturn arrey\r\n}\r\n\r\n\r\nlet Ciclo1_CES=[]\r\nlet Ciclo2_CES=[]\r\nlet Ciclo3_CES=[]\r\nlet Ciclo4_CES=[]\r\nlet Ciclo5_CES=[]\r\n\r\nif(temp_ref_ciclo1){Ciclo1_CES = list_CES(temp_ref_ciclo1)}\r\nif(temp_ref_ciclo2){Ciclo2_CES = list_CES(temp_ref_ciclo2)}\r\nif(temp_ref_ciclo3){Ciclo3_CES = list_CES(temp_ref_ciclo3)}\r\nif(temp_ref_ciclo4){Ciclo4_CES = list_CES(temp_ref_ciclo4)}\r\nif(temp_ref_ciclo5){Ciclo5_CES = list_CES(temp_ref_ciclo5)}\r\n\r\n\r\n\r\nlet ciclos =\r\n  [\r\n    \"MTY3OTY4NzM3MDcxMjEwMDg4NDk4\",\r\n    \"NTY3OT666zM3MDcxMjEgMDg4NDk4\",\r\n    \"GTG3OTY4NzM3D6cxMjEwMDg4NDk5\",\r\n    \"sTY2OTY4NzM3hDcxMjEwMfg666k4\",\r\n    \"MTY3OTY4NzM3MDcx554wMDg4NDk4\",\r\n  ].map((id) => {\r\n    const cell = getCell(id);\r\n    if (!cell.items[0].value) return null;\r\n    const data = new Date(cell.items[0].value);\r\n    data.setHours(3, 0, 0);\r\n    const DataRelatorio = getGeneral()?.Data;\r\n    if (DataRelatorio) {\r\n      DataRelatorio.Inicial = DataRelatorio.Inicial || data.toJSON();\r\n      DataRelatorio.Final = DataRelatorio.Final || data.toJSON();\r\n      if (data) {\r\n        if (data.getTime() < (new Date(DataRelatorio.Inicial).getTime())) {\r\n          DataRelatorio.Inicial = data.toJSON();\r\n        }\r\n        if (data.getTime() > (new Date(DataRelatorio.Final).getTime())) {\r\n          DataRelatorio.Final = data.toJSON();\r\n        }\r\n      }\r\n\r\n    }\r\n    return cell;\r\n  });\r\n\r\n  // só pego os valores das interpolações em variáveis pra garantir de não dar erro durante o uso da função, estavam dando valores estranhos quando eu mandava o valor pro metadata direto\r\n  let interpolation_temp_max_1 = IM.interpolation(ciclos[0].metadata.max_temp,Ciclo1_CES)\r\n  let interpolation_temp_min_1 = IM.interpolation(ciclos[0].metadata.min_temp,Ciclo1_CES)\r\n  let interpolation_temp_max_2 = IM.interpolation(ciclos[1].metadata.max_temp,Ciclo2_CES)\r\n  let interpolation_temp_min_2 = IM.interpolation(ciclos[1].metadata.min_temp,Ciclo2_CES)\r\n  let interpolation_temp_max_3 = IM.interpolation(ciclos[2].metadata.max_temp,Ciclo3_CES)\r\n  let interpolation_temp_min_3 = IM.interpolation(ciclos[2].metadata.min_temp,Ciclo3_CES)\r\n  let interpolation_temp_max_4 = IM.interpolation(ciclos[3].metadata.max_temp,Ciclo4_CES)\r\n  let interpolation_temp_min_4 = IM.interpolation(ciclos[3].metadata.min_temp,Ciclo4_CES)\r\n  let interpolation_temp_max_5 = IM.interpolation(ciclos[4].metadata.max_temp,Ciclo5_CES)\r\n  let interpolation_temp_min_5 = IM.interpolation(ciclos[4].metadata.min_temp,Ciclo5_CES)\r\n\r\n  ciclos[0].metadata.max_temp_interpolate = interpolation_temp_max_1\r\n  ciclos[0].metadata.min_temp_interpolate = interpolation_temp_min_1\r\n  ciclos[1].metadata.max_temp_interpolate = interpolation_temp_max_2\r\n  ciclos[1].metadata.min_temp_interpolate = interpolation_temp_min_2\r\n  ciclos[2].metadata.max_temp_interpolate = interpolation_temp_max_3\r\n  ciclos[2].metadata.min_temp_interpolate = interpolation_temp_min_3\r\n  ciclos[3].metadata.max_temp_interpolate = interpolation_temp_max_4\r\n  ciclos[3].metadata.min_temp_interpolate = interpolation_temp_min_4\r\n  ciclos[4].metadata.max_temp_interpolate = interpolation_temp_max_5\r\n  ciclos[4].metadata.min_temp_interpolate = interpolation_temp_min_5\r\n\r\n  //função para determinar a faixa\r\n  erro_faixa(\"MTY3OTY4NzM3MDcxMjEwMDg4NDk4\",ciclos[0])\r\n  erro_faixa(\"NTY3OT666zM3MDcxMjEgMDg4NDk4\",ciclos[1])\r\n  erro_faixa(\"GTG3OTY4NzM3D6cxMjEwMDg4NDk5\",ciclos[2])\r\n  erro_faixa(\"sTY2OTY4NzM3hDcxMjEwMfg666k4\",ciclos[3])\r\n  erro_faixa(\"MTY3OTY4NzM3MDcx554wMDg4NDk4\",ciclos[4])\r\n\r\n\r\nconst averages = {\r\n  min_temp: ciclos.reduce((acc, c) => acc + c.metadata.min_temp, 0) / ciclos.length,\r\n  max_temp: ciclos.reduce((acc, c) => acc + c.metadata.max_temp, 0) / ciclos.length,\r\n  min_pres: ciclos.reduce((acc, c) => acc + c.metadata.min_pres, 0) / ciclos.length,\r\n  max_pres: ciclos.reduce((acc, c) => acc + c.metadata.max_pres, 0) / ciclos.length,\r\n  cicle_time: ciclos.reduce((acc, c) => acc + c.metadata.cicle_time, 0) / ciclos.length,\r\n  water_volume: ciclos.reduce((acc, c) => acc + c.metadata.water_volume, 0) / ciclos.length,\r\n  energy: ciclos.reduce((acc, c) => acc + c.metadata.energy, 0) / ciclos.length,\r\n  standard_load: ciclos.reduce((acc, c) => acc + c.metadata.standard_load, 0) / ciclos.length,\r\n  new_load: ciclos.reduce((acc, c) => acc + c.metadata.new_load, 0) / ciclos.length,\r\n}\r\n\r\nconst RM = ciclos.map((c) => (c.metadata.new_load - averages.standard_load) / averages.standard_load);\r\naverages.RM = 100 * RM.reduce((acc, c) => acc + c, 0) / RM.length;\r\n\r\n\r\n\r\nconst getInstrument = (TAG, faixa, value, grandeza) => {\r\n  const ref = refInstruments.find((i) => i.Title === TAG && grandeza === i.Grandeza)\r\n  const obj = {\r\n    TAG: TAG,\r\n    Resolucao: ref.Resolu_x00e7__x00e3_o,\r\n    criterio_percentual_leitura: ref.Criterio_Aceitacao_x0028_percetu,\r\n    criterio_absoluto: ref.criteriovalorabsoluto,\r\n    criterio_percentual_faixa: ref.Crit_x002e_Aceitacao_x0028_perce\r\n  }\r\n\r\n  obj.Total = obj.criterio_absoluto + obj.criterio_percentual_faixa * (faixa) + obj.criterio_percentual_leitura * (value)\r\n  return obj\r\n}\r\n\r\nconst balanca = getInstrument(\r\n  getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[2].value,\r\n  0, averages.new_load, 'Peso')\r\n\r\nconst volume = getInstrument(\r\n  getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[6].value,\r\n  0, averages.water_volume, 'Vazão')\r\n\r\n\r\nconst energy = getInstrument(\r\n  getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[4].value,\r\n  0, averages.energy, 'Energia')\r\n\r\nconst time = getInstrument(\r\n  getCell('MTY4MzgxMTgzMjYzNTEwMDg2NTE5').items[5].value,\r\n  0, averages.cicle_time, 'Tempo')\r\n\r\n\r\n\r\n  const contributes_eficiencia_centrifugacao = [\r\n    {\r\n      value: balanca.Total,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Critério de aceitação - Plano de calibração - UMP1\",\r\n      cs: 1 / averages.standard_load,\r\n      v_eff: 1e5\r\n    },\r\n    {\r\n      value: (balanca.Resolucao) / 2,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Resolução - UMP1\",\r\n      cs: 1 / averages.standard_load,\r\n      v_eff: 1e5\r\n    },\r\n    {\r\n      value: balanca.Total,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Critério de aceitação - Plano de calibração - UMP2\",\r\n      cs: (-1 / averages.standard_load) + ((- ((averages.new_load) - averages.standard_load))) / (averages.standard_load * averages.standard_load),\r\n      v_eff: 1e5\r\n    },\r\n    {\r\n      value: balanca.Resolucao / 2,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Resolução - UMP2\",\r\n      cs: (-1 / averages.standard_load) + ((- ((averages.new_load) - averages.standard_load))) / (averages.standard_load * averages.standard_load),\r\n      v_eff: 1e5\r\n    },\r\n    {\r\n      value: IM.standardDeviation(RM),\r\n      cs: 1,\r\n      name: 'Desvio padrão',\r\n      divisor: Math.sqrt(RM.length),\r\n      v_eff: RM.length - 1\r\n    }\r\n  ]\r\n  \r\n  const contributes_Consumo_de_agua = [\r\n    {\r\n      value: volume.Total,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Critério de aceitação - Plano de calibração\",\r\n      cs: 1,\r\n      v_eff: 1e5\r\n    },\r\n    {\r\n      value: (volume.Resolucao) / 2,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Resolução\",\r\n      cs: 1,\r\n      v_eff: 1e5\r\n    },\r\n    {\r\n      value: IM.standardDeviation(ciclos.map((c) => c.metadata.water_volume)),\r\n      cs: 1,\r\n      name: 'Desvio padrão',\r\n      divisor: Math.sqrt(ciclos.length),\r\n      v_eff: ciclos.length - 1\r\n    }\r\n  ]\r\n  \r\n  const contributes_energy = [\r\n    {\r\n      value: energy.Total,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Critério de aceitação - Plano de calibração\",\r\n      cs: 1,\r\n      v_eff: 1e5\r\n    },\r\n    {\r\n      value: energy.Resolucao / 2,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Resolução\",\r\n      cs: 1,\r\n      v_eff: 1e5\r\n    },\r\n    {\r\n      value: IM.standardDeviation(ciclos.map((c) => c.metadata.energy)),\r\n      cs: 1,\r\n      name: 'Desvio padrão',\r\n      divisor: Math.sqrt(ciclos.length),\r\n      v_eff: ciclos.length - 1\r\n    }\r\n\r\n  ]\r\n  \r\n  const contributes_tempo = [\r\n    {\r\n      value: time.Total,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Critério de aceitação - Plano de calibração\",\r\n      cs: 1,\r\n      v_eff: 1e5\r\n    },\r\n    {\r\n      value: time.Resolucao / 2,\r\n      divisor: Math.sqrt(3),\r\n      name: \"Resolução\",\r\n      cs: 1,\r\n      v_eff: 1e5\r\n    },\r\n    { \r\n      value: IM.standardDeviation(ciclos.map((c) => c.metadata.cicle_time)),\r\n      cs: 1,\r\n      name: 'Desvio padrão',\r\n      divisor: Math.sqrt(ciclos.length),\r\n      v_eff: ciclos.length - 1\r\n    }\r\n  ]\r\n  \r\n  register.metadata.IM_Contributes = {\r\n    contributes_eficiencia_centrifugacao,\r\n    contributes_Consumo_de_agua,\r\n    contributes_energy,\r\n    contributes_tempo\r\n  }\r\n  \r\n  \r\n  const IM_Values = {\r\n    RM: IM.calculate([...contributes_eficiencia_centrifugacao],0.9545, 2),\r\n    Water_volume: IM.calculate([...contributes_Consumo_de_agua\r\n    ],0.9545),\r\n    Energy: IM.calculate([...contributes_energy\r\n    ],0.9545),\r\n    Time: IM.calculate([...contributes_tempo\r\n    ],0.9545)\r\n  }\r\n  register.metadata.IM_Values = IM_Values\r\nreturn `\r\n<h1 class=\"title\">Eficiência de extração de água:</h1>\r\n<table>\r\n  <tr>\r\n    <th>Média dos valores medidos</th>\r\n    <th>IM</th>\r\n    <th>k</th>\r\n  </tr>\r\n  <tr>\r\n    <td>${averages.RM.toFixed(IM_Values.RM.numberOfDecimals).replace(\".\", \",\")}%</td>\r\n    <td>${IM_Values.RM.u.replace(\".\", \",\")}%</td>\r\n    <td>${IM_Values.RM.k.toFixed(2).replace(\".\", \",\")}</td>\r\n</tr>\r\n<caption>Eficiência de extração de água</caption>\r\n</table>\r\n\r\n<br>\r\n<h1 class=\"title\">Consumo de água, energia elétrica e tempo de programa:</h1>\r\n<table>\r\n  <tr>\r\n    <th>Média dos valores medidos (L)</th>\r\n    <th>IM (L)</th>\r\n    <th>k</th>\r\n  </tr>\r\n  <tr>\r\n    <td>${averages.water_volume\r\n    .toFixed(IM_Values.Water_volume.numberOfDecimals)\r\n    .replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Water_volume.u.replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Water_volume.k.toFixed(2\r\n    ).replace(\".\", \",\")}</td>\r\n</tr>\r\n<caption>Consumo de água</caption>\r\n</table>\r\n\r\n<br>\r\n\r\n<table>\r\n  <tr>\r\n    <th>Média dos valores medidos (kWh/ciclo)</th>\r\n    <th>IM (kWh/ciclo)</th>\r\n    <th>k</th>\r\n  </tr>\r\n  <tr>\r\n    <td>${averages.energy\r\n    .toFixed(IM_Values.Energy.numberOfDecimals)\r\n    .replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Energy.u.replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Energy.k.toFixed(\r\n      2\r\n    ).replace(\".\", \",\")}</td>\r\n</tr>\r\n<caption>Energia</caption>\r\n</table>\r\n\r\n<br>\r\n\r\n<table>\r\n  <tr>\r\n    <th>Média dos valores medidos (min)</th>\r\n    <th>IM (min)</th>\r\n    <th>k</th>\r\n  </tr>\r\n  <tr>\r\n    <td>${averages.cicle_time\r\n    .toFixed(IM_Values.Time.numberOfDecimals)\r\n    .replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Time.u.replace(\".\", \",\")}</td>\r\n    <td>${IM_Values.Time.k.toFixed(\r\n      2\r\n    ).replace(\".\", \",\")}</td>\r\n</tr>\r\n<caption>Tempo de programa</caption>\r\n</table>\r\n`;\r\n",
     "metadata": {
       "averages": {
         "min_temp": 21.146113360323888,
@@ -4714,6 +6196,190 @@
     "": ""
   },
   "metadata": {
-    "lastModified": "2023-08-24T14:20:09.172Z"
+    "lastModified": "2024-03-27T17:41:13.231Z",
+    "IM_Contributes": {
+      "contributes_eficiencia_centrifugacao": [
+        {
+          "value": 0.109856,
+          "divisor": 1.7320508075688772,
+          "name": "Critério de aceitação - Plano de calibração - UMP1",
+          "cs": 0.08052048441123422,
+          "v_eff": 100000,
+          "ui": 0.0051070432211491506,
+          "ui2": 0.00002608189046268549,
+          "ui4": 6.8026501010752444e-15
+        },
+        {
+          "value": 0.0025,
+          "divisor": 1.7320508075688772,
+          "name": "Resolução - UMP1",
+          "cs": 0.08052048441123422,
+          "v_eff": 100000,
+          "ui": 0.00011622130837526286,
+          "ui2": 1.3507392520457946e-8,
+          "ui4": 1.824496527017233e-21
+        },
+        {
+          "value": 0.109856,
+          "divisor": 1.7320508075688772,
+          "name": "Critério de aceitação - Plano de calibração - UMP2",
+          "cs": -0.12948424200219344,
+          "v_eff": 100000,
+          "ui": -0.008212588699611402,
+          "ui2": 0.00006744661314898489,
+          "ui4": 4.549045625268822e-14
+        },
+        {
+          "value": 0.0025,
+          "divisor": 1.7320508075688772,
+          "name": "Resolução - UMP2",
+          "cs": -0.12948424200219344,
+          "v_eff": 100000,
+          "ui": -0.00018689440493945258,
+          "ui2": 3.4929518597672073e-8,
+          "ui4": 1.2200712694651195e-20
+        },
+        {
+          "value": 0.7993554432715732,
+          "cs": 1,
+          "name": "Desvio padrão",
+          "divisor": 2.23606797749979,
+          "v_eff": 4,
+          "ui": 0.3574826218679429,
+          "ui2": 0.12779382493757863,
+          "ui4": 0.004082815423044124
+        }
+      ],
+      "contributes_Consumo_de_agua": [
+        {
+          "value": 1.4075659999999999,
+          "divisor": 1.7320508075688772,
+          "name": "Critério de aceitação - Plano de calibração",
+          "cs": 1,
+          "v_eff": 100000,
+          "ui": 0.8126586090021648,
+          "ui2": 0.6604140147853333,
+          "ui4": 0.000004361466709248825
+        },
+        {
+          "value": 0.0005,
+          "divisor": 1.7320508075688772,
+          "name": "Resolução",
+          "cs": 1,
+          "v_eff": 100000,
+          "ui": 0.0002886751345948129,
+          "ui2": 8.333333333333334e-8,
+          "ui4": 6.944444444444446e-20
+        },
+        {
+          "value": 95.12150102001125,
+          "cs": 1,
+          "name": "Desvio padrão",
+          "divisor": 2.23606797749979,
+          "v_eff": 4,
+          "ui": 42.53962848051215,
+          "ui2": 1809.6199912600005,
+          "ui4": 818681.128191961
+        }
+      ],
+      "contributes_energy": [
+        {
+          "value": 0.00670002,
+          "divisor": 1.7320508075688772,
+          "name": "Critério de aceitação - Plano de calibração",
+          "cs": 1,
+          "v_eff": 100000,
+          "ui": 0.0038682583505758768,
+          "ui2": 0.000014963422666800003,
+          "ui4": 2.2390401790530413e-15
+        },
+        {
+          "value": 0.000315,
+          "divisor": 1.7320508075688772,
+          "name": "Resolução",
+          "cs": 1,
+          "v_eff": 100000,
+          "ui": 0.00018186533479473213,
+          "ui2": 3.3075000000000003e-8,
+          "ui4": 1.0939556250000006e-20
+        },
+        {
+          "value": 0.7452557373613437,
+          "cs": 1,
+          "name": "Desvio padrão",
+          "divisor": 2.23606797749979,
+          "v_eff": 4,
+          "ui": 0.33328849787233883,
+          "ui2": 0.111081222814,
+          "ui4": 0.003084759515463379
+        }
+      ],
+      "contributes_tempo": [
+        {
+          "value": 1,
+          "divisor": 1.7320508075688772,
+          "name": "Critério de aceitação - Plano de calibração",
+          "cs": 1,
+          "v_eff": 100000,
+          "ui": 0.5773502691896258,
+          "ui2": 0.3333333333333334,
+          "ui4": 0.0000011111111111111117
+        },
+        {
+          "value": 0.5,
+          "divisor": 1.7320508075688772,
+          "name": "Resolução",
+          "cs": 1,
+          "v_eff": 100000,
+          "ui": 0.2886751345948129,
+          "ui2": 0.08333333333333336,
+          "ui4": 6.944444444444448e-8
+        },
+        {
+          "value": 63.41863597467931,
+          "cs": 1,
+          "name": "Desvio padrão",
+          "divisor": 2.23606797749979,
+          "v_eff": 4,
+          "ui": 28.361676215939312,
+          "ui2": 804.3846777777776,
+          "ui4": 161758.6774609148
+        }
+      ]
+    },
+    "IM_Values": {
+      "RM": {
+        "ui_2": 0.35761348111907276,
+        "ui_4": 0.004082815423096417,
+        "v_eff": 4,
+        "k": 2.869315165197189,
+        "u": "1.1",
+        "numberOfDecimals": 1
+      },
+      "Water_volume": {
+        "ui_2": 42.54739011218102,
+        "ui_4": 818681.1281963225,
+        "v_eff": 4,
+        "k": 2.869315165197189,
+        "u": "123",
+        "numberOfDecimals": 0
+      },
+      "Energy": {
+        "ui_2": 0.3333109948856575,
+        "ui_4": 0.003084759515465618,
+        "v_eff": 4,
+        "k": 2.869315165197189,
+        "u": "0.96",
+        "numberOfDecimals": 2
+      },
+      "Time": {
+        "ui_2": 28.369020858049442,
+        "ui_4": 161758.67746209537,
+        "v_eff": 4,
+        "k": 2.869315165197189,
+        "u": "82",
+        "numberOfDecimals": 0
+      }
+    }
   }
 }

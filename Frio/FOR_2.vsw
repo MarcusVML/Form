@@ -4,7 +4,8 @@
     {
       "id": "title",
       "type": "h1",
-      "value": "Tensão&nbsp;"
+      "value": "Tensão&nbsp;",
+      "toggleButton": "open"
     },
     {
       "id": "MTY4MzgxMjg0NTI5MzEwMDg2NTE5",
@@ -27,7 +28,7 @@
             "3039DOM"
           ],
           "title": "TAG",
-          "value": "2935DOM"
+          "value": ""
         },
         {
           "id": "MTY4MzgxMjg5MjUwNDEwMDg2NTE5",
@@ -44,7 +45,8 @@
             "Quente"
           ],
           "title": "Ciclo",
-          "lock": true
+          "lock": true,
+          "value": "Frio"
         }
       ],
       "title": "Ciclo",
@@ -53,7 +55,8 @@
     {
       "id": "MTY4MzgxMzEzNTM0OTEwMDg2NTE5",
       "type": "h3",
-      "value": "Arquivos"
+      "value": "Arquivos",
+      "toggleButton": "open"
     },
     {
       "id": "MTY4MDExOTE0MDAzMjEwMDg4NDk4",
@@ -63,7 +66,7 @@
           "id": "MTY4MDExOTE0NDk2NTEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDExOTE0MDAzMjEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif((+Min_tension<200) && (+Min_tension>100)){nominal_tension=127}\r\nif((+Max_tension<250) && (+Max_tension>200)){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -92,7 +95,7 @@
           "id": "MTY4MDE4MDYyMzE4NjEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDE4MDYxNjM0MDEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif((+Min_tension<200) && (+Min_tension>100)){nominal_tension=127}\r\nif((+Max_tension<250) && (+Max_tension>200)){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -121,7 +124,7 @@
           "id": "MTY4MDE4MDY1NzA0OTEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDE4MDY0ODM3MDEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif((+Min_tension<200) && (+Min_tension>100)){nominal_tension=127}\r\nif((+Max_tension<250) && (+Max_tension>200)){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -150,7 +153,7 @@
           "id": "MTY4MDE4MDY2MTAyMzEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDE4MDY1MTgwNTEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\nlet nominal_tension =0\r\nif((+Min_tension<200) && (+Min_tension>100)){nominal_tension=127}\r\nif((+Max_tension<250) && (+Max_tension>200)){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -179,7 +182,7 @@
           "id": "MTY4MDE4MDY2NDQ1MDEwMDg4NDk4",
           "type": "file",
           "parentId": "MTY4MDE4MDY1MzgzMTEwMDg4NDk4",
-          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\n\r\nlet nominal_tension =0\r\nif(Min_tension<127 && Min_tension>100){nominal_tension=127}\r\nif(Max_tension<220 && Max_tension>200){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
+          "source": "const parentCell = this.TextDocument.cells.find(c=> c.id === cell.parentId);\r\n\r\n\r\n\r\nconst  csvToArray = (str, delimiter) =>{\r\n    var rows = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\");\r\n    const number_rows = rows.indexOf(\"\")\r\n    let flag = rows\r\n      for (let i = 1; i < number_rows; i++) {\r\n        rows[i-1]=flag[i]\r\n      }\r\n    rows=rows.filter((str) => str !== '')\r\n  \r\n      // slice from start of text to the first \\n index\r\n      // use split to create an array from string by delimiter\r\n    var headers = str.slice(str.indexOf(\"\\n\") + 1).split(\"\\n\")[0].split(delimiter);\r\n    //Valor 1-avg[V]\r\n\r\n    headers[2] =\"volts\"\r\n\r\n    const arr = rows.map(function (row) {\r\n        const values = row.split(delimiter);\r\n        const el = headers.reduce(function (object, header, index) {\r\n        \r\n        if(header==\"volts\"){\r\n            let t = +values[index].replace(/[\",\"]+/g, '.')\r\n            object[header] = t;\r\n        }\r\n        else{object[header] = values[index];}\r\n        \r\n        \r\n        return object;\r\n        }, {});\r\n        return el;\r\n    });\r\n    \r\n      // return the array\r\n    return arr;\r\n\r\n\r\n}\r\n\r\n\r\n\r\n\r\nconst Filter_Data = (data,op)=>{\r\nif(op==\"max\")\r\n{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.max(...data)\r\n}\r\nelse{\r\n  data= data.map(item=>{\r\n    const conteiner={}\r\n    conteiner[\"volts\"]=item.volts\r\n    return conteiner[\"volts\"]\r\n    })\r\n    return  Math.min(...data)\r\n}\r\n}\r\n\r\nlet data = await readFile(parentCell.items[0].value)\r\ndata = await csvToArray(data,\";\")\r\n\r\nconst Max_tension = JSON.stringify(await Filter_Data(data,\"max\"))\r\nconst Min_tension = JSON.stringify(await Filter_Data(data,\"min\"))\r\n\r\n\r\nlet nominal_tension =0\r\nif((+Min_tension<200) && (+Min_tension>100)){nominal_tension=127}\r\nif((+Max_tension<250) && (+Max_tension>200)){nominal_tension=220}\r\n\r\nlet obs=\"Erro de faixa: \"\r\nif((+Max_tension<(nominal_tension-nominal_tension*0.02)) || (+Max_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Maxima (\"+Max_tension+\").\"\r\n  \r\n}\r\nif((+Min_tension<(nominal_tension-nominal_tension*0.02)) || (+Min_tension>(nominal_tension+nominal_tension*0.02))){\r\n  obs = obs+\" Tensão Minima (\"+Min_tension+\").\"\r\n  \r\n}\r\nif(obs.length>15){parentCell.items[1].value =obs}\r\nelse{parentCell.items[1].value=\"\"}\r\n\r\nparentCell.metadata = {};\r\nparentCell.metadata.Max_tension = +Max_tension;\r\nparentCell.metadata.Min_tension = +Min_tension;",
           "metadata": {
             "alreadyExecuted": false,
             "output": ""
@@ -205,7 +208,415 @@
       "id": "MTY4MTQxMTU3MTI3NzEwMDg4NDk4",
       "type": "ps1",
       "source": "this.cell.metadata = {html: \"Lendo Incertezas ...\"};\r\nvscode.postMessage({\r\n    type: 'sp_request', \r\n    method: 'GET',\r\n    url: `https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/web/lists/GetByTitle('Incerteza')/items?$filter=FileDirRef eq '/sites/Labelo_Processos/Lists/CES/Máquinas de Lavar' and Grandeza eq 'Tensão'`,\r\n    data: this.TextDocument,\r\n    id: this.cell.id\r\n});",
-      "metadata": {},
+      "metadata": {
+        "html": "Requisição realizada com sucesso",
+        "sp": [
+          {
+            "__metadata": {
+              "id": "6e27e68a-9899-4fa7-bd3c-03fe27e14fb8",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)",
+              "etag": "\"4\"",
+              "type": "SP.Data.CESListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(4)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 4,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01001E3CAC342FC1624DB1B124FBAFDFAE65",
+            "Title": "2935DOM",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "Grandeza": "Tensão",
+            "Resolu_x00e7__x00e3_o": 0.01,
+            "Crit_x002e_Aceitacao_x0028_perce": 0,
+            "Criterio_Aceitacao_x0028_percetu": 0.01,
+            "criteriovalorabsoluto": 0,
+            "IncertezadeMedicao": null,
+            "ErroMaximo_x0028_Pa_x0029_": null,
+            "ID": 4,
+            "Modified": "2023-05-12T14:20:40Z",
+            "Created": "2023-05-11T14:47:35Z",
+            "AuthorId": 26,
+            "EditorId": 38,
+            "OData__UIVersionString": "4.0",
+            "Attachments": false,
+            "GUID": "0596feaf-9d4f-4d03-89c6-3fc066842aee"
+          },
+          {
+            "__metadata": {
+              "id": "e9b3d255-42dc-4984-a65d-3bdd89bff58f",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CESListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(31)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 31,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01001E3CAC342FC1624DB1B124FBAFDFAE65",
+            "Title": "2936DOM",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "Grandeza": "Tensão",
+            "Resolu_x00e7__x00e3_o": 0.01,
+            "Crit_x002e_Aceitacao_x0028_perce": 0,
+            "Criterio_Aceitacao_x0028_percetu": 0.01,
+            "criteriovalorabsoluto": 0,
+            "IncertezadeMedicao": null,
+            "ErroMaximo_x0028_Pa_x0029_": null,
+            "ID": 31,
+            "Modified": "2023-05-30T14:50:49Z",
+            "Created": "2023-05-30T14:50:49Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "a6c54a3f-3196-4f89-ad23-63e45e62fb8b"
+          },
+          {
+            "__metadata": {
+              "id": "b026a6a6-f5fa-429d-820f-a590e79d3ce5",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CESListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(32)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 32,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01001E3CAC342FC1624DB1B124FBAFDFAE65",
+            "Title": "2949DOM",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "Grandeza": "Tensão",
+            "Resolu_x00e7__x00e3_o": 0.01,
+            "Crit_x002e_Aceitacao_x0028_perce": 0,
+            "Criterio_Aceitacao_x0028_percetu": 0.01,
+            "criteriovalorabsoluto": 0,
+            "IncertezadeMedicao": null,
+            "ErroMaximo_x0028_Pa_x0029_": null,
+            "ID": 32,
+            "Modified": "2023-05-30T14:52:19Z",
+            "Created": "2023-05-30T14:52:19Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "66683b62-ba40-47cd-a4f7-e0c77fe461f7"
+          },
+          {
+            "__metadata": {
+              "id": "c76efe19-fe73-4426-9088-bb9766797e99",
+              "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)",
+              "etag": "\"1\"",
+              "type": "SP.Data.CESListItem"
+            },
+            "FirstUniqueAncestorSecurableObject": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/FirstUniqueAncestorSecurableObject"
+              }
+            },
+            "RoleAssignments": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/RoleAssignments"
+              }
+            },
+            "AttachmentFiles": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/AttachmentFiles"
+              }
+            },
+            "ContentType": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/ContentType"
+              }
+            },
+            "GetDlpPolicyTip": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/GetDlpPolicyTip"
+              }
+            },
+            "FieldValuesAsHtml": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/FieldValuesAsHtml"
+              }
+            },
+            "FieldValuesAsText": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/FieldValuesAsText"
+              }
+            },
+            "FieldValuesForEdit": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/FieldValuesForEdit"
+              }
+            },
+            "File": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/File"
+              }
+            },
+            "Folder": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/Folder"
+              }
+            },
+            "LikedByInformation": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/LikedByInformation"
+              }
+            },
+            "ParentList": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/ParentList"
+              }
+            },
+            "Properties": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/Properties"
+              }
+            },
+            "Versions": {
+              "__deferred": {
+                "uri": "https://brpucrs.sharepoint.com/sites/Labelo_Processos/_api/Web/Lists(guid'3f1d4d31-aa82-4cdf-b8c8-cab75e5890e5')/Items(33)/Versions"
+              }
+            },
+            "FileSystemObjectType": 0,
+            "Id": 33,
+            "ServerRedirectedEmbedUri": null,
+            "ServerRedirectedEmbedUrl": "",
+            "ContentTypeId": "0x01001E3CAC342FC1624DB1B124FBAFDFAE65",
+            "Title": "3039DOM",
+            "OData__ColorTag": null,
+            "ComplianceAssetId": null,
+            "Grandeza": "Tensão",
+            "Resolu_x00e7__x00e3_o": 0.01,
+            "Crit_x002e_Aceitacao_x0028_perce": 0,
+            "Criterio_Aceitacao_x0028_percetu": 0.01,
+            "criteriovalorabsoluto": 0,
+            "IncertezadeMedicao": null,
+            "ErroMaximo_x0028_Pa_x0029_": null,
+            "ID": 33,
+            "Modified": "2023-05-30T14:52:57Z",
+            "Created": "2023-05-30T14:52:57Z",
+            "AuthorId": 38,
+            "EditorId": 38,
+            "OData__UIVersionString": "1.0",
+            "Attachments": false,
+            "GUID": "bd4cc9b2-9013-4aa1-8515-6310cfabb96f"
+          }
+        ]
+      },
       "title": "Atualizar incertezas",
       "": "",
       "icon": "fa fa-play"
@@ -214,12 +625,56 @@
   "report_template": {
     "type": "code",
     "id": "report_template",
-    "source": "const getCell = (id)=> register.cells.find(c=>c.id===id);\r\n\r\nconst sp = getCell('MTY4MTQxMTU3MTI3NzEwMDg4NDk4').metadata.sp || [];\r\nlet instrument = getCell('MTY4MzgxMjg0NTI5MzEwMDg2NTE5').items[1].value\r\ninstrument = sp.find(s => s.Title=== instrument)\r\n\r\nif (!instrument) {\r\n    return `<span class=\"error\">Nenhum instrumento encontrado</span>`\r\n}\r\n\r\n// \"Resolu_x00e7__x00e3_o\": 0.01,\r\n// \"Crit_x002e_Aceitacao_x0028_perce\": 0,\r\n// \"Criterio_Aceitacao_x0028_percetu\": 0.01,\r\n// \"criteriovalorabsoluto\": 0,\r\n\r\nconst ciclos = [\r\n'MTY4MDExOTE0MDAzMjEwMDg4NDk4',\r\n'MTY4MDE4MDYxNjM0MDEwMDg4NDk4',\r\n'MTY4MDE4MDY0ODM3MDEwMDg4NDk4',\r\n'MTY4MDE4MDY1MTgwNTEwMDg4NDk4',\r\n'MTY4MDE4MDY1MzgzMTEwMDg4NDk4'\r\n].map(id => {\r\n    const cell = getCell(id);\r\n    console.log(cell)\r\n    return {Max_tension: cell.metadata.Max_tension, Min_tension: cell.metadata.Min_tension}\r\n});\r\n\r\nconst Max_tension_average = Math.max(...ciclos.map(c => c.Max_tension))\r\nconst Min_tension_average = Math.min(...ciclos.map(c => c.Min_tension))\r\n\r\nconst contributes = [\r\n    {\r\n        value: instrument.Criterio_Aceitacao_x0028_percetu * Max_tension_average + instrument.criteriovalorabsoluto,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação do plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (instrument.Resolu_x00e7__x00e3_o)/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: IM.standardDeviation([...ciclos.map(c => c.Max_tension), ...ciclos.map(c => c.Min_tension)])/2,\r\n        divisor: Math.sqrt(ciclos.length * 2),\r\n        name: \"Desvio Padrão\",\r\n        cs: 1,\r\n        v_eff: (ciclos.length * 2) - 1\r\n    }\r\n]\r\n\r\nconst {u} = IM.calculate(contributes);\r\nreturn`\r\n<table>\r\n    <tr>\r\n        <th>Descrição</th>\r\n        <th>Valor</th>\r\n        <th>Incerteza</th>\r\n    </tr>\r\n    <tr>\r\n        <td>Tensão máxima</td>\r\n        <td>${Max_tension_average}</td>\r\n        <td>&pm; ${u}</td>\r\n    </tr>\r\n    <tr>\r\n        <td>Tensão mínima</td>\r\n        <td>${Min_tension_average}</td>\r\n        <td>&pm; ${u}</td>\r\n    </tr>\r\n</table>\r\n\r\n\r\n`",
+    "source": "const getCell = (id)=> register.cells.find(c=>c.id===id);\r\n\r\nconst sp = getCell('MTY4MTQxMTU3MTI3NzEwMDg4NDk4').metadata.sp || [];\r\nlet instrument = getCell('MTY4MzgxMjg0NTI5MzEwMDg2NTE5').items[1].value\r\ninstrument = sp.find(s => s.Title=== instrument)\r\n\r\nif (!instrument) {\r\n    return `<span class=\"error\">Nenhum instrumento encontrado</span>`\r\n}\r\n\r\n// \"Resolu_x00e7__x00e3_o\": 0.01,\r\n// \"Crit_x002e_Aceitacao_x0028_perce\": 0,\r\n// \"Criterio_Aceitacao_x0028_percetu\": 0.01,\r\n// \"criteriovalorabsoluto\": 0,\r\n\r\nconst ciclos = [\r\n'MTY4MDExOTE0MDAzMjEwMDg4NDk4',\r\n'MTY4MDE4MDYxNjM0MDEwMDg4NDk4',\r\n'MTY4MDE4MDY0ODM3MDEwMDg4NDk4',\r\n'MTY4MDE4MDY1MTgwNTEwMDg4NDk4',\r\n'MTY4MDE4MDY1MzgzMTEwMDg4NDk4'\r\n].map(id => {\r\n    const cell = getCell(id);\r\n    console.log(cell)\r\n    return {Max_tension: cell.metadata.Max_tension, Min_tension: cell.metadata.Min_tension}\r\n});\r\n\r\nconst Max_tension_average = Math.max(...ciclos.map(c => c.Max_tension))\r\nconst Min_tension_average = Math.min(...ciclos.map(c => c.Min_tension))\r\n\r\nconst contributes = [\r\n    {\r\n        value: instrument.Criterio_Aceitacao_x0028_percetu * Max_tension_average + instrument.criteriovalorabsoluto,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Critério de aceitação do plano de calibração\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: (instrument.Resolu_x00e7__x00e3_o)/2,\r\n        divisor: Math.sqrt(3),\r\n        name: \"Resolução\",\r\n        cs: 1,\r\n        v_eff: 1e5\r\n    },\r\n    {\r\n        value: IM.standardDeviation([...ciclos.map(c => c.Max_tension), ...ciclos.map(c => c.Min_tension)])/2,\r\n        divisor: Math.sqrt(ciclos.length * 2),\r\n        name: \"Desvio Padrão\",\r\n        cs: 1,\r\n        v_eff: (ciclos.length * 2) - 1\r\n    }\r\n]\r\n\r\nconst {u} = IM.calculate(contributes);\r\nregister.metadata.IM_Contributes = {\r\n    contributes\r\n  }\r\n\r\n\r\nregister.metadata.IM_Values = {\r\n    IM:IM.calculate(contributes)\r\n}\r\n\r\nreturn`\r\n<table>\r\n    <tr>\r\n        <th>Descrição</th>\r\n        <th>Valor</th>\r\n        <th>Incerteza</th>\r\n    </tr>\r\n    <tr>\r\n        <td>Tensão máxima</td>\r\n        <td>${Max_tension_average}</td>\r\n        <td>&pm; ${u}</td>\r\n    </tr>\r\n    <tr>\r\n        <td>Tensão mínima</td>\r\n        <td>${Min_tension_average}</td>\r\n        <td>&pm; ${u}</td>\r\n    </tr>\r\n</table>\r\n\r\n\r\n`",
     "metadata": {
       "output": "<span class=\"error\">Nenhum instrumento encontrado</span>"
     }
   },
   "metadata": {
-    "lastModified": "2023-08-24T17:54:23.864Z"
+    "lastModified": "2024-01-16T13:14:28.051Z",
+    "IM_Contributes": {
+      "contributes": [
+        {
+          "value": 2.18623,
+          "divisor": 1.7320508075688772,
+          "name": "Critério de aceitação do plano de calibração",
+          "cs": 1,
+          "v_eff": 100000,
+          "ui": 1.2622204790104357,
+          "ui2": 1.5932005376333336,
+          "ui4": 0.000025382879531151433
+        },
+        {
+          "value": 0.005,
+          "divisor": 1.7320508075688772,
+          "name": "Resolução",
+          "cs": 1,
+          "v_eff": 100000,
+          "ui": 0.002886751345948129,
+          "ui2": 0.000008333333333333334,
+          "ui4": 6.944444444444445e-16
+        },
+        {
+          "value": 0.2884267478735101,
+          "divisor": 3.1622776601683795,
+          "name": "Desvio Padrão",
+          "cs": 1,
+          "v_eff": 9,
+          "ui": 0.09120854613954185,
+          "ui2": 0.008318998888888934,
+          "ui4": 0.000007689526945926149
+        }
+      ]
+    },
+    "IM_Values": {
+      "IM": {
+        "ui_2": 1.2655148635458835,
+        "ui_4": 0.000033072406477772026,
+        "v_eff": 77553,
+        "k": 2.000034588309436,
+        "u": "2.6",
+        "numberOfDecimals": 1
+      }
+    }
   }
 }

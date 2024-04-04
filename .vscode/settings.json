@@ -1,5 +1,6 @@
 {
     "report": {
+        "state": "none",
         "options": [
             "Frio",
             "Quente"
