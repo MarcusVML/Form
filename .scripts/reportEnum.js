@@ -48,7 +48,7 @@ module.exports = function (args, callback) {
                 }
             } else {
                 let reportNumber = outputData.split('\n')[1].trim()
-                reportNumber = reportNumber.split('/')[0] + "_"+ args[1] +"_"+"Máquina de lavar"+"_"+ args[5]+"_"+"Eficiência"+ +"_"+args[6]+"_"+args[7] +"/"+reportNumber.split('/')[1]
+                reportNumber = reportNumber + "_"+ args[1] +"_"+"Máquina de lavar"+"_"+ args[5]+"_"+"Eficiência_"+args[6]+"_"+args[7] +"/"
                 callback({
                     report: reportNumber,
                     status: 'ok',
